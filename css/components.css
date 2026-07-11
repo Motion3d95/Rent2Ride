@@ -1,5 +1,5 @@
 /* =========================================================
-   VELORIARIDE — PREMIUM EDITION
+   RENT2RIDE — PREMIUM EDITION
    components.css — sections, cards, hero, calendar, forms,
    reviews, FAQ, gallery, WhatsApp widget, footer
    ========================================================= */
@@ -173,12 +173,35 @@
   padding:6px 12px; border-radius:var(--radius-pill);
   box-shadow:var(--shadow-card);
 }
-.bike-fav{
-  position:absolute; top:14px; right:14px;
-  width:34px; height:34px; border-radius:50%;
-  background:rgba(255,255,255,.9);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--c-accent); font-size:1rem;
+/* ---- Badge de disponibilité — bandeau en bas de la photo,
+   pleine largeur, vert/rouge plein pour être lisible sur tous
+   les écrans (y compris mobile, où il n'y a pas la place pour
+   deux badges côte à côte en haut) ---- */
+.bike-availability{
+  position:absolute; bottom:0; left:0; right:0;
+  display:flex; align-items:center; justify-content:center; gap:7px;
+  font-size:.78rem; font-weight:700; letter-spacing:.03em;
+  padding:9px 12px;
+  color:#fff;
+}
+.bike-availability::before{
+  content:""; width:8px; height:8px; border-radius:50%; flex-shrink:0;
+  background:#fff;
+}
+.bike-availability.is-available{
+  background:var(--c-success);
+}
+.bike-availability.is-unavailable{
+  background:var(--c-accent);
+}
+
+/* ---- Carte grisée quand la moto est indisponible ---- */
+.bike-card.unavailable .bike-photo{
+  filter:grayscale(.85) brightness(.8);
+}
+.bike-card.unavailable .bike-price-row .btn{
+  background:var(--c-border); color:var(--c-ink-faint);
+  box-shadow:none; cursor:not-allowed; pointer-events:none;
 }
 .bike-body{ padding:20px 20px 22px; display:flex; flex-direction:column; gap:12px; flex:1; }
 .bike-top-row{ display:flex; justify-content:space-between; align-items:flex-start; gap:8px; }

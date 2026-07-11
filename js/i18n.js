@@ -1,5 +1,5 @@
 /* =========================================================
-   VELORIARIDE — PREMIUM EDITION
+   RENT2RIDE — PREMIUM EDITION
    i18n.js — All site text, organised by key.
    ---------------------------------------------------------
    To EDIT TEXT: find the key (e.g. "hero_title") and change
@@ -74,6 +74,9 @@ const TRANSLATIONS = {
   bike_tracer9_f3:   { fr: "Régulateur de vitesse", es: "Control de crucero", en: "Cruise control" },
 
   bike_cta:       { fr: "Réserver ce modèle", es: "Reservar este modelo", en: "Book this bike" },
+  status_available:   { fr: "Disponible", es: "Disponible", en: "Available" },
+  status_unavailable: { fr: "Actuellement loué", es: "Actualmente alquilada", en: "Currently rented" },
+  bike_unavailable_btn: { fr: "Indisponible", es: "No disponible", en: "Unavailable" },
   per_day:        { fr: "/ jour", es: "/ día", en: "/ day" },
   view_all_fleet: { fr: "Voir tout le catalogue", es: "Ver todo el catálogo", en: "View full catalogue" },
 
@@ -85,7 +88,7 @@ const TRANSLATIONS = {
   inc2_t: { fr: "Équipement de protection", es: "Equipo de protección", en: "Protective gear" },
   inc2_p: { fr: "Casques, gants et vestes disponibles sur demande.", es: "Cascos, guantes y chaquetas disponibles bajo petición.", en: "Helmets, gloves and jackets available on request." },
   inc3_t: { fr: "Cartes et itinéraires", es: "Mapas y rutas", en: "Maps & routes" },
-  inc3_p: { fr: "Itinéraires « VeloriaRide » intégrés au GPS.", es: "Rutas «VeloriaRide» integradas en el GPS.", en: "\"VeloriaRide\" routes pre-loaded on the GPS." },
+  inc3_p: { fr: "Itinéraires « Rent2Ride » intégrés au GPS.", es: "Rutas «Rent2Ride» integradas en el GPS.", en: "\"Rent2Ride\" routes pre-loaded on the GPS." },
   inc4_t: { fr: "Assistance 24/7", es: "Asistencia 24/7", en: "24/7 assistance" },
   inc4_p: { fr: "Une équipe joignable à tout moment en cas de panne.", es: "Un equipo disponible en todo momento ante cualquier avería.", en: "A team reachable at any time in case of breakdown." },
   inc5_t: { fr: "Kilométrage illimité", es: "Kilómetros ilimitados", en: "Unlimited mileage" },
@@ -95,7 +98,7 @@ const TRANSLATIONS = {
 
   /* ---------------- ROUTES ---------------- */
   routes_eyebrow: { fr: "ITINÉRAIRES SUGGÉRÉS", es: "RUTAS SUGERIDAS", en: "SUGGESTED ROUTES" },
-  routes_title:   { fr: "Les routes qui donnent leur nom à VeloriaRide", es: "Las carreteras que dan nombre a VeloriaRide", en: "The roads that give VeloriaRide its name" },
+  routes_title:   { fr: "Les routes qui donnent leur nom à Rent2Ride", es: "Las carreteras que dan nombre a Rent2Ride", en: "The roads that give Rent2Ride its name" },
   route1_km: { fr: "ROUTE A-397", es: "CARRETERA A-397", en: "ROAD A-397" },
   route1_t:  { fr: "Col de la Ronda", es: "Puerto de la Ronda", en: "Ronda mountain pass" },
   route1_p:  { fr: "180 virages entre San Pedro de Alcántara et Ronda, panoramas sur la Sierra de las Nieves.",
@@ -176,7 +179,7 @@ const TRANSLATIONS = {
   /* ---------------- REVIEWS PAGE ---------------- */
   reviewspage_eyebrow: { fr: "AVIS CLIENTS", es: "OPINIONES DE CLIENTES", en: "CUSTOMER REVIEWS" },
   reviewspage_title:   { fr: "Ce que nos clients en disent", es: "Lo que opinan nuestros clientes", en: "What our customers say" },
-  reviewspage_sub:     { fr: "Avis vérifiés de clients ayant loué chez VeloriaRide.", es: "Opiniones verificadas de clientes que alquilaron con VeloriaRide.", en: "Verified reviews from customers who rented with VeloriaRide." },
+  reviewspage_sub:     { fr: "Avis vérifiés de clients ayant loué chez Rent2Ride.", es: "Opiniones verificadas de clientes que alquilaron con Rent2Ride.", en: "Verified reviews from customers who rented with Rent2Ride." },
   rating_count_label:  { fr: "basé sur 1 247 avis", es: "basado en 1.247 opiniones", en: "based on 1,247 reviews" },
 
   review1_text: { fr: "Service impeccable du début à la fin. La MT-07 était comme neuve et l'itinéraire vers Ronda conseillé par l'équipe restera un de mes meilleurs souvenirs de moto.",
@@ -297,7 +300,7 @@ const TRANSLATIONS = {
                            en: "Thank you, your message has been sent. We usually reply within 24h." },
 
   /* ---------------- WHATSAPP WIDGET ---------------- */
-  wa_name:    { fr: "VeloriaRide", es: "VeloriaRide", en: "VeloriaRide" },
+  wa_name:    { fr: "Rent2Ride", es: "Rent2Ride", en: "Rent2Ride" },
   wa_status:  { fr: "Répond généralement en quelques minutes", es: "Suele responder en pocos minutos", en: "Typically replies within minutes" },
   wa_message: { fr: "👋 Bonjour ! Une question sur nos motos ou une réservation ? Écrivez-nous, on est là pour vous aider.",
                 es: "👋 ¡Hola! ¿Alguna pregunta sobre nuestras motos o una reserva? Escríbanos, estamos aquí para ayudarle.",
@@ -320,15 +323,15 @@ const TRANSLATIONS = {
   footer_rights:   { fr: "Tous droits réservés.", es: "Todos los derechos reservados.", en: "All rights reserved." },
 
   /* page <title> values */
-  title_home:      { fr: "VeloriaRide — Location de motos Costa del Sol", es: "VeloriaRide — Alquiler de motos Costa del Sol", en: "VeloriaRide — Motorcycle rental Costa del Sol" },
-  title_fleet:     { fr: "Catalogue motos — VeloriaRide", es: "Catálogo de motos — VeloriaRide", en: "Bike catalogue — VeloriaRide" },
-  title_booking:   { fr: "Tarifs et réservation — VeloriaRide", es: "Tarifas y reserva — VeloriaRide", en: "Pricing & booking — VeloriaRide" },
-  title_gallery:   { fr: "Galerie photos — VeloriaRide", es: "Galería de fotos — VeloriaRide", en: "Photo gallery — VeloriaRide" },
-  title_reviews:   { fr: "Avis clients — VeloriaRide", es: "Opiniones de clientes — VeloriaRide", en: "Customer reviews — VeloriaRide" },
-  title_faq:       { fr: "FAQ — VeloriaRide", es: "Preguntas frecuentes — VeloriaRide", en: "FAQ — VeloriaRide" },
-  title_conditions:{ fr: "Conditions de location — VeloriaRide", es: "Condiciones de alquiler — VeloriaRide", en: "Rental conditions — VeloriaRide" },
-  title_contact:   { fr: "Contact — VeloriaRide", es: "Contacto — VeloriaRide", en: "Contact — VeloriaRide" },
-  title_rides:     { fr: "Balades en Andalousie — VeloriaRide", es: "Rutas por Andalucía — VeloriaRide", en: "Andalusian rides — VeloriaRide" },
+  title_home:      { fr: "Rent2Ride — Location de motos Costa del Sol", es: "Rent2Ride — Alquiler de motos Costa del Sol", en: "Rent2Ride — Motorcycle rental Costa del Sol" },
+  title_fleet:     { fr: "Catalogue motos — Rent2Ride", es: "Catálogo de motos — Rent2Ride", en: "Bike catalogue — Rent2Ride" },
+  title_booking:   { fr: "Tarifs et réservation — Rent2Ride", es: "Tarifas y reserva — Rent2Ride", en: "Pricing & booking — Rent2Ride" },
+  title_gallery:   { fr: "Galerie photos — Rent2Ride", es: "Galería de fotos — Rent2Ride", en: "Photo gallery — Rent2Ride" },
+  title_reviews:   { fr: "Avis clients — Rent2Ride", es: "Opiniones de clientes — Rent2Ride", en: "Customer reviews — Rent2Ride" },
+  title_faq:       { fr: "FAQ — Rent2Ride", es: "Preguntas frecuentes — Rent2Ride", en: "FAQ — Rent2Ride" },
+  title_conditions:{ fr: "Conditions de location — Rent2Ride", es: "Condiciones de alquiler — Rent2Ride", en: "Rental conditions — Rent2Ride" },
+  title_contact:   { fr: "Contact — Rent2Ride", es: "Contacto — Rent2Ride", en: "Contact — Rent2Ride" },
+  title_rides:     { fr: "Balades en Andalousie — Rent2Ride", es: "Rutas por Andalucía — Rent2Ride", en: "Andalusian rides — Rent2Ride" },
 
   /* ---------------- BALADES PAGE ---------------- */
   rides_eyebrow:  { fr: "7 ITINÉRAIRES SÉLECTIONNÉS", es: "7 RUTAS SELECCIONADAS", en: "7 SELECTED ROUTES" },
@@ -453,7 +456,7 @@ const TRANSLATIONS = {
   r7_bike: { fr: "Idéale avec : Tracer 9, Tracer 7", es: "Ideal con: Tracer 9, Tracer 7", en: "Best on: Tracer 9, Tracer 7" },
 
   /* page <title> values */
-  page_fleet_title: { fr: "Le catalogue VeloriaRide", es: "El catálogo de VeloriaRide", en: "The VeloriaRide catalogue" },
+  page_fleet_title: { fr: "Le catalogue Rent2Ride", es: "El catálogo de Rent2Ride", en: "The Rent2Ride catalogue" },
   page_fleet_sub:   { fr: "Quatre Yamaha récentes, entretenues et équipées pour la route.",
                       es: "Cuatro Yamaha recientes, mantenidas y equipadas para la carretera.",
                       en: "Four recent Yamahas, maintained and equipped for the road." },

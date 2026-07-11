@@ -1,5 +1,5 @@
 /* =========================================================
-   VELORIARIDE — PREMIUM EDITION
+   RENT2RIDE — PREMIUM EDITION
    main.js
    ---------------------------------------------------------
    Sections:
@@ -82,6 +82,8 @@ function applyTranslations(lang){
   }
 
   if (typeof updateWhatsAppLink === "function") updateWhatsAppLink();
+
+  if (typeof refreshAvailabilityBadges === "function") refreshAvailabilityBadges();
 }
 
 function setLang(lang){
@@ -300,6 +302,14 @@ function initBookingForm(){
     if (warning) warning.classList.remove("show");
 
     /* ---------------------------------------------------
+       Enregistre la réservation localement, pour que le
+       système de disponibilité (voir AVAILABILITY plus bas)
+       puisse griser automatiquement la moto sur les pages
+       catalogue.html et index.html pendant ces dates.
+       --------------------------------------------------- */
+    saveBooking(modelSelect.value, selectedRange.start, selectedRange.end);
+
+    /* ---------------------------------------------------
        WHERE TO SEND THE BOOKING DATA
        This demo just shows a success message. To actually
        receive bookings, replace this block with either:
@@ -420,8 +430,80 @@ function initMomovenLinks(){
 }
 
 /* =========================================================
-   INIT
+   DISPONIBILITÉ AUTOMATIQUE DES MOTOS
+   ---------------------------------------------------------
+   Chaque réservation validée (voir initBookingForm ci-dessus)
+   est enregistrée dans le navigateur (localStorage). Sur les
+   pages catalogue.html et index.html, on vérifie au chargement
+   si la date du jour tombe dans une période déjà réservée pour
+   chaque modèle, et on grise automatiquement la carte + désactive
+   le bouton si c'est le cas — sans rien à faire manuellement.
+
+   ⚠️ Limite importante : ces réservations sont stockées dans LE
+   NAVIGATEUR de la personne qui réserve, pas sur un serveur
+   partagé. Donc ce système simule la disponibilité sur l'appareil
+   qui a fait la réservation (utile pour tester/démontrer), mais
+   ne synchronise PAS la disponibilité entre tous vos visiteurs.
+   Pour un vrai planning partagé entre tous les clients, il faudra
+   brancher une base de données en ligne (ex: Supabase, Firebase).
    ========================================================= */
+const BOOKINGS_KEY = "rent2ride_bookings";
+
+function saveBooking(model, start, end){
+  if (!model || !start || !end) return;
+  const bookings = JSON.parse(localStorage.getItem(BOOKINGS_KEY) || "[]");
+  bookings.push({
+    model,
+    start: toISO(start),
+    end: toISO(end)
+  });
+  localStorage.setItem(BOOKINGS_KEY, JSON.stringify(bookings));
+}
+
+function getBookings(){
+  return JSON.parse(localStorage.getItem(BOOKINGS_KEY) || "[]");
+}
+
+/* Renvoie true si `model` est réservé à la date `date` (aujourd'hui par défaut) */
+function isModelBookedOn(model, date = new Date()){
+  const d = toISO(date);
+  return getBookings().some(b => b.model === model && d >= b.start && d <= b.end);
+}
+
+/* Met à jour l'affichage (badge + bouton) de toutes les cartes motos
+   présentes sur la page, selon les réservations enregistrées. */
+function refreshAvailabilityBadges(){
+  document.querySelectorAll(".bike-card[data-model]").forEach(card => {
+    const model = card.dataset.model;
+    const booked = isModelBookedOn(model);
+    const badge = card.querySelector(".bike-availability");
+    const btn = card.querySelector(".bike-price-row .btn");
+    const lang = getCurrentLang();
+
+    card.classList.toggle("unavailable", booked);
+
+    if (badge){
+      badge.classList.toggle("is-available", !booked);
+      badge.classList.toggle("is-unavailable", booked);
+      badge.textContent = booked
+        ? TRANSLATIONS.status_unavailable[lang]
+        : TRANSLATIONS.status_available[lang];
+    }
+    if (btn){
+      btn.textContent = booked
+        ? TRANSLATIONS.bike_unavailable_btn[lang]
+        : TRANSLATIONS.bike_cta[lang];
+    }
+  });
+}
+
+/* Optionnel : permet de vider les réservations de test depuis la
+   console du navigateur (F12) en tapant : clearAllBookings() */
+function clearAllBookings(){
+  localStorage.removeItem(BOOKINGS_KEY);
+  refreshAvailabilityBadges();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initLangSwitcher();
   initMobileNav();
@@ -434,4 +516,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initGalleryLightbox();
   initWhatsAppWidget();
   initMomovenLinks();
+  refreshAvailabilityBadges();
 });

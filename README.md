@@ -1,4 +1,4 @@
-# VeloriaRide — Édition Premium
+# Rent2Ride — Édition Premium
 
 Site vitrine complet pour une agence de location de motos en Espagne, dans
 un style premium inspiré d'Airbnb : fond blanc/crème épuré, cartes ombrées,
@@ -263,4 +263,4 @@ Le site est 100% statique. Hébergement gratuit possible via :
 | Connecter les formulaires à un vrai e-mail | voir section 5 |
 | Mettre le site en ligne | voir section 8 |
 
-Bonne route avec VeloriaRide 🏍️
+Bonne route avec Rent2Ride 🏍️
