@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="title_packs">Offres & Packs — Rent2Ride</title>
+<meta name="description" content="Découvrez nos packs de location moto : Explorer, Weekend Escape, Costa Ride, Freedom, Adventure Week, Grand Tour. Kilométrage illimité, tarifs transparents.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/components.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
+      <span class="logo-text"><strong>Rent2Ride</strong><span>Motorcycle Rental</span></span>
+    </a>
+    <button class="burger" aria-label="Menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links">
+      <a href="index.html" data-i18n="nav_home">Accueil</a>
+      <a href="catalogue.html" data-i18n="nav_fleet">Catalogue motos</a>
+      <a href="reservation.html" data-i18n="nav_booking">Réservation</a>
+      <a href="offres.html" class="active" data-i18n="nav_packs">Nos offres</a>
+      <a href="balades.html" data-i18n="nav_rides">Balades</a>
+      <a href="galerie.html" data-i18n="nav_gallery">Galerie</a>
+      <a href="avis.html" data-i18n="nav_reviews">Avis clients</a>
+      <a href="faq.html" data-i18n="nav_faq">FAQ</a>
+      <a href="contact.html" data-i18n="nav_contact">Contact</a>
+      <a href="reservation.html#booking" class="btn btn-primary nav-cta" data-i18n="nav_book">Réserver</a>
+    </div>
+    <div class="nav-right">
+      <div class="lang-switch">
+        <button data-lang="fr">FR</button>
+        <button data-lang="es">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <a href="reservation.html#booking" class="btn btn-primary" data-i18n="nav_book">Réserver</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" style="--hero-img:url('./images/route-ronda.jpg')">
+  <div class="container">
+    <p class="eyebrow" data-i18n="packs_eyebrow">NOS OFFRES</p>
+    <h1 data-i18n="packs_title">La liberté de rouler, sans limite</h1>
+    <p data-i18n="packs_sub">Kilométrage illimité sur toutes nos motos. Tarifs transparents, sans frais cachés.</p>
+  </div>
+</section>
+
+<!-- ================= INCLUS DANS TOUTES LES LOCATIONS ================= -->
+<section class="section--tight" style="background:var(--c-dark);">
+  <div class="container">
+    <p class="eyebrow" style="color:var(--c-gold); margin-bottom:16px;">✅ INCLUS DANS TOUTES LES LOCATIONS</p>
+    <div class="included-strip">
+      <div class="incl-item"><span class="tick">✓</span> Kilométrage illimité</div>
+      <div class="incl-item"><span class="tick">✓</span> Casque homologué</div>
+      <div class="incl-item"><span class="tick">✓</span> Support téléphone</div>
+      <div class="incl-item"><span class="tick">✓</span> Chargeur USB</div>
+      <div class="incl-item"><span class="tick">✓</span> Antivol inclus</div>
+      <div class="incl-item"><span class="tick">✓</span> Assistance 24h/24</div>
+      <div class="incl-item"><span class="tick">✓</span> Assurance responsabilité civile</div>
+      <div class="incl-item"><span class="tick">✓</span> Nettoyage avant location</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 6 PACKS ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head-center" style="margin-bottom:44px;">
+      <div class="section-head-inner">
+        <p class="eyebrow" data-i18n="packs_eyebrow">NOS OFFRES</p>
+        <h2 style="font-family:var(--f-display); font-size:clamp(1.8rem,3.5vw,2.6rem); margin:0 0 10px;">Choisissez votre formule</h2>
+        <p style="color:var(--c-ink-soft);">Tous les tarifs sont indicatifs pour la Yamaha MT-07 — ajustés selon le modèle choisi.</p>
+      </div>
+    </div>
+
+    <div class="packs-grid">
+
+      <!-- Pack 1 — Explorer -->
+      <div class="pack-card">
+        <div class="pack-head">
+          <span class="pack-dur">⏱ <span data-i18n="p1_dur">1 jour</span></span>
+          <h3 class="pack-name" data-i18n="p1_name">Explorer</h3>
+          <p class="pack-tag" data-i18n="p1_tag">Balade d'une journée</p>
+          <div class="pack-price">
+            <span class="from" data-i18n="pack_from">À partir de</span>
+            <span class="amount" data-i18n="p1_price">89 €</span>
+          </div>
+        </div>
+        <ul class="pack-features">
+          <li data-i18n="p1_f1">Kilométrage illimité</li>
+          <li data-i18n="p1_f2">Casque homologué inclus</li>
+          <li data-i18n="p1_f3">Support téléphone + Chargeur USB</li>
+          <li data-i18n="p1_f4">Assistance routière 24/7</li>
+          <li data-i18n="p1_f5">Assurance responsabilité civile</li>
+        </ul>
+        <div class="pack-cta">
+          <a href="reservation.html#booking" class="btn btn-outline btn-block" data-i18n="pack_book">Réserver ce pack</a>
+        </div>
+      </div>
+
+      <!-- Pack 2 — Weekend Escape -->
+      <div class="pack-card">
+        <div class="pack-head">
+          <span class="pack-dur">⏱ <span data-i18n="p2_dur">2 jours</span></span>
+          <h3 class="pack-name" data-i18n="p2_name">Weekend Escape</h3>
+          <p class="pack-tag" data-i18n="p2_tag">Week-end en Andalousie</p>
+          <div class="pack-price">
+            <span class="from" data-i18n="pack_from">À partir de</span>
+            <span class="amount" data-i18n="p2_price">169 €</span>
+          </div>
+        </div>
+        <ul class="pack-features">
+          <li data-i18n="p2_f1">Kilométrage illimité</li>
+          <li data-i18n="p2_f2">2 casques inclus</li>
+          <li data-i18n="p2_f3">Support téléphone + USB</li>
+          <li data-i18n="p2_f4">Assistance 24/7</li>
+          <li data-i18n="p2_f5">Assurance responsabilité civile</li>
+        </ul>
+        <div class="pack-cta">
+          <a href="reservation.html#booking" class="btn btn-outline btn-block" data-i18n="pack_book">Réserver ce pack</a>
+        </div>
+      </div>
+
+      <!-- Pack 3 — Costa Ride (featured) -->
+      <div class="pack-card featured">
+        <div class="pack-featured-badge" data-i18n="pack_popular">Le plus populaire</div>
+        <div class="pack-head">
+          <span class="pack-dur">⏱ <span data-i18n="p3_dur">3 jours</span></span>
+          <h3 class="pack-name" data-i18n="p3_name">Costa Ride</h3>
+          <p class="pack-tag" data-i18n="p3_tag">Costa del Sol & villages blancs</p>
+          <div class="pack-price featured-price">
+            <span class="from" data-i18n="pack_from">À partir de</span>
+            <span class="amount" data-i18n="p3_price">239 €</span>
+          </div>
+        </div>
+        <ul class="pack-features">
+          <li data-i18n="p3_f1">Kilométrage illimité</li>
+          <li data-i18n="p3_f2">2 casques + Gants</li>
+          <li data-i18n="p3_f3">Itinéraires GPS recommandés</li>
+          <li data-i18n="p3_f4">Assistance 24/7</li>
+          <li data-i18n="p3_f5">Remise de 10 %</li>
+        </ul>
+        <div class="pack-cta">
+          <a href="reservation.html#booking" class="btn btn-primary btn-block" data-i18n="pack_book">Réserver ce pack</a>
+        </div>
+      </div>
+
+      <!-- Pack 4 — Freedom -->
+      <div class="pack-card">
+        <div class="pack-head">
+          <span class="pack-dur">⏱ <span data-i18n="p4_dur">5 jours</span></span>
+          <h3 class="pack-name" data-i18n="p4_name">Freedom</h3>
+          <p class="pack-tag" data-i18n="p4_tag">Road trip Costa del Sol</p>
+          <div class="pack-price">
+            <span class="from" data-i18n="pack_from">À partir de</span>
+            <span class="amount" data-i18n="p4_price">379 €</span>
+          </div>
+        </div>
+        <ul class="pack-features">
+          <li data-i18n="p4_f1">Kilométrage illimité</li>
+          <li data-i18n="p4_f2">2 casques + Gants + Intercom</li>
+          <li data-i18n="p4_f3">Bagagerie top-case</li>
+          <li data-i18n="p4_f4">Roadbook numérique offert</li>
+          <li data-i18n="p4_f5">Remise de 15 %</li>
+        </ul>
+        <div class="pack-cta">
+          <a href="reservation.html#booking" class="btn btn-outline btn-block" data-i18n="pack_book">Réserver ce pack</a>
+        </div>
+      </div>
+
+      <!-- Pack 5 — Adventure Week (featured) -->
+      <div class="pack-card featured">
+        <div class="pack-featured-badge" data-i18n="pack_best">Meilleur rapport qualité/prix</div>
+        <div class="pack-head">
+          <span class="pack-dur">⏱ <span data-i18n="p5_dur">7 jours</span></span>
+          <h3 class="pack-name" data-i18n="p5_name">Adventure Week</h3>
+          <p class="pack-tag" data-i18n="p5_tag">L'Espagne à votre rythme</p>
+          <div class="pack-price featured-price">
+            <span class="from" data-i18n="pack_from">À partir de</span>
+            <span class="amount" data-i18n="p5_price">499 €</span>
+          </div>
+        </div>
+        <ul class="pack-features">
+          <li data-i18n="p5_f1">Kilométrage illimité</li>
+          <li data-i18n="p5_f2">2 casques Premium + Gants + Intercom</li>
+          <li data-i18n="p5_f3">Bagagerie complète (top-case + sacoches)</li>
+          <li data-i18n="p5_f4">Assistance Premium prioritaire</li>
+          <li data-i18n="p5_f5">Remise de 20 %</li>
+        </ul>
+        <div class="pack-cta">
+          <a href="reservation.html#booking" class="btn btn-primary btn-block" data-i18n="pack_book">Réserver ce pack</a>
+        </div>
+      </div>
+
+      <!-- Pack 6 — Grand Tour -->
+      <div class="pack-card">
+        <div class="pack-head">
+          <span class="pack-dur">⏱ <span data-i18n="p6_dur">14 jours</span></span>
+          <h3 class="pack-name" data-i18n="p6_name">Grand Tour</h3>
+          <p class="pack-tag" data-i18n="p6_tag">L'Espagne complète, sans limite</p>
+          <div class="pack-price">
+            <span class="from" data-i18n="pack_from">À partir de</span>
+            <span class="amount" data-i18n="p6_price">949 €</span>
+          </div>
+        </div>
+        <ul class="pack-features">
+          <li data-i18n="p6_f1">Kilométrage illimité</li>
+          <li data-i18n="p6_f2">Casques Premium + Équipement complet</li>
+          <li data-i18n="p6_f3">Livraison & reprise hôtel/aéroport</li>
+          <li data-i18n="p6_f4">Assurance tous risques incluse</li>
+          <li data-i18n="p6_f5">Assistance prioritaire + Intercom Bluetooth</li>
+        </ul>
+        <div class="pack-cta">
+          <a href="reservation.html#booking" class="btn btn-outline btn-block" data-i18n="pack_book">Réserver ce pack</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= OPTIONS À LA CARTE ================= -->
+<section class="section section--cream">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <p class="eyebrow" data-i18n="options_title">OPTIONS À LA CARTE</p>
+        <h2 style="font-family:var(--f-display); font-size:clamp(1.6rem,3vw,2.2rem); margin:0;">Personnalisez votre location</h2>
+      </div>
+    </div>
+    <div style="overflow-x:auto; border-radius:var(--radius-lg); border:1px solid var(--c-border);">
+      <table class="options-table">
+        <thead>
+          <tr><th>Option</th><th>Tarif</th></tr>
+        </thead>
+        <tbody>
+          <tr><td data-i18n="opt1">Assurance tous risques (franchise réduite)</td><td class="opt-price" data-i18n="opt1p">15 à 25 €/jour</td></tr>
+          <tr><td data-i18n="opt2">Livraison à l'hôtel</td><td class="opt-price" data-i18n="opt2p">30 à 50 €</td></tr>
+          <tr><td data-i18n="opt3">Livraison à l'aéroport</td><td class="opt-price" data-i18n="opt3p">40 à 60 €</td></tr>
+          <tr><td data-i18n="opt4">Intercom Bluetooth supplémentaire</td><td class="opt-price" data-i18n="opt4p">5 €/jour</td></tr>
+          <tr><td data-i18n="opt5">Caméra d'action</td><td class="opt-price" data-i18n="opt5p">10 €/jour</td></tr>
+          <tr><td data-i18n="opt6">Équipement complet (veste + gants)</td><td class="opt-price" data-i18n="opt6p">15 à 25 €/jour</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROGRAMME FIDÉLITÉ ================= -->
+<section class="section">
+  <div class="container">
+    <div class="section-head-center" style="margin-bottom:36px;">
+      <div class="section-head-inner">
+        <p class="eyebrow">💎 RENT2RIDE CLUB</p>
+        <h2 style="font-family:var(--f-display); font-size:clamp(1.6rem,3vw,2.2rem); margin:0 0 8px;" data-i18n="loyalty_title">Programme fidélité Rent2Ride Club</h2>
+        <p style="color:var(--c-ink-soft);" data-i18n="loyalty_sub">Plus vous roulez, plus vous économisez.</p>
+      </div>
+    </div>
+    <div class="loyalty-grid">
+      <div class="loyalty-card">
+        <div class="icon">🥈</div>
+        <strong data-i18n="loyal1">5 locations = −5 % permanent</strong>
+        <p>Dès votre 5ème location avec Rent2Ride</p>
+      </div>
+      <div class="loyalty-card">
+        <div class="icon">🥇</div>
+        <strong data-i18n="loyal2">10 locations = −10 %</strong>
+        <p>Réduction automatique appliquée à chaque réservation</p>
+      </div>
+      <div class="loyalty-card">
+        <div class="icon">💎</div>
+        <strong data-i18n="loyal3">20 locations = −15 %</strong>
+        <p>Statut VIP et accès prioritaire aux nouvelles motos</p>
+      </div>
+      <div class="loyalty-card">
+        <div class="icon">🤝</div>
+        <strong data-i18n="loyal4">Parrainage : 50 € de crédit</strong>
+        <p>Pour vous et votre filleul, dès sa première location</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= OFFRE DE LANCEMENT ================= -->
+<section class="section section--cream">
+  <div class="container-narrow">
+    <div class="launch-banner">
+      <h3 data-i18n="launch_title">🚀 Offre de lancement</h3>
+      <ul>
+        <li data-i18n="launch1">3 jours ou plus = livraison offerte</li>
+        <li data-i18n="launch2">7 jours = 1 journée supplémentaire offerte (hors haute saison)</li>
+      </ul>
+      <a href="reservation.html#booking" class="btn btn-block" style="background:#fff; color:var(--c-accent); font-weight:700; max-width:320px; margin:0 auto;" data-i18n="pack_book">Réserver maintenant</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="margin-bottom:14px;">
+          <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
+          <span class="logo-text"><strong style="color:#fff;">Rent2Ride</strong><span>Motorcycle Rental</span></span>
+        </div>
+        <p data-i18n="footer_about">Location de motos premium sur la Costa del Sol.</p>
+      </div>
+      <div>
+        <h5 data-i18n="footer_nav_h">Navigation</h5>
+        <ul>
+          <li><a href="catalogue.html" data-i18n="nav_fleet">Catalogue motos</a></li>
+          <li><a href="reservation.html" data-i18n="nav_booking">Réservation</a></li>
+          <li><a href="offres.html" data-i18n="nav_packs">Nos offres</a></li>
+          <li><a href="balades.html" data-i18n="nav_rides">Balades</a></li>
+          <li><a href="galerie.html" data-i18n="nav_gallery">Galerie</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-i18n="footer_legal_h">Informations légales</h5>
+        <ul>
+          <li><a href="conditions.html" data-i18n="footer_legal_terms">Conditions de location</a></li>
+          <li><a href="#" data-i18n="footer_legal_privacy">Confidentialité</a></li>
+          <li><a href="#" data-i18n="footer_legal_cookies">Cookies</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 data-i18n="footer_contact_h">Contact</h5>
+        <ul>
+          <li>+34 911 459 813</li>
+          <li>info@rent2ride.com</li>
+          <li>San Pedro de Alcántara, Málaga</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Rent2Ride. <span data-i18n="footer_rights">Tous droits réservés.</span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- ================= WHATSAPP ================= -->
+<div class="whatsapp-fab">
+  <div class="whatsapp-panel" id="whatsappPanel">
+    <div class="whatsapp-panel-head">
+      <div class="avatar"><img src="./images/logo-header.png" alt=""></div>
+      <div>
+        <strong data-i18n="wa_name">Rent2Ride</strong>
+        <span data-i18n="wa_status">Répond généralement en quelques minutes</span>
+      </div>
+    </div>
+    <div class="whatsapp-panel-body">
+      <div class="whatsapp-msg" data-i18n="wa_message">👋 Bonjour ! Une question ?</div>
+    </div>
+    <div class="whatsapp-panel-foot">
+      <a id="whatsappLink" href="#" target="_blank" rel="noopener" class="btn btn-block" style="background:#25D366; color:#fff;" data-i18n="wa_cta">Démarrer la discussion</a>
+    </div>
+  </div>
+  <button class="whatsapp-bubble" id="whatsappBubble" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36c1.36.74 2.92 1.16 4.621.16h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.16.79.84-3.08-.2-.32a8.07 8.07 0 0 1-1.24-4.3c0-4.49 3.65-8.14 8.14-8.14 2.17 0 4.21.85 5.75 2.39a8.07 8.07 0 0 1 2.38 5.75c0 4.49-3.65 8.14-8.14 8.14zm4.47-6.1c-.25-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.25-.63.8-.77.96-.14.16-.28.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.19 3.7.58.25 1.04.4 1.4.51.59.19 1.12.16 1.55.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>
+  </button>
+</div>
+
+<script src="./js/i18n.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>

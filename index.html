@@ -31,6 +31,7 @@
     <div class="nav-links">
       <a href="index.html" class="active" data-i18n="nav_home">Accueil</a>
       <a href="catalogue.html" data-i18n="nav_fleet">Catalogue motos</a>
+      <a href="offres.html" data-i18n="nav_packs">Nos offres</a>
       <a href="reservation.html" data-i18n="nav_booking">Réservation</a>
       <a href="balades.html" data-i18n="nav_rides">Balades</a>
       <a href="galerie.html" data-i18n="nav_gallery">Galerie</a>
@@ -51,7 +52,21 @@
 </header>
 
 <!-- ================= HERO ================= -->
-<section class="hero" style="--hero-img:url('../images/hero.jpg')">
+<!-- ================= HERO avec vidéo de fond ================= -->
+<!-- VIDEO SLOT : uploadez votre fichier vidéo sur GitHub dans images/
+     et renommez-le exactement : hero-video.mp4
+     Format recommandé : MP4 (H.264), 1920x1080, durée 15-60s
+     La vidéo tourne en boucle, sans son, automatiquement.
+     Si la vidéo ne charge pas, la photo hero.jpg s'affiche à la place. -->
+<section class="hero hero-video-section">
+  <!-- Vidéo de fond -->
+  <video class="hero-video-bg" autoplay muted loop playsinline poster="./images/hero.jpg">
+    <source src="./images/hero-video.mp4" type="video/mp4">
+    <!-- Fallback si le navigateur ne supporte pas la vidéo -->
+  </video>
+  <!-- Overlay sombre pour lisibilité du texte -->
+  <div class="hero-video-overlay"></div>
+  <!-- Contenu texte -->
   <div class="hero-content">
     <span class="hero-badge-pill" data-i18n="hero_pill">★ 4.9/5 · 1,200+ rentals</span>
     <h1 data-i18n="hero_title">Louez votre moto et explorez la Costa del Sol</h1>
@@ -332,7 +347,8 @@
         <h5 data-i18n="footer_nav_h">Navigation</h5>
         <ul>
           <li><a href="catalogue.html" data-i18n="nav_fleet">Catalogue motos</a></li>
-          <li><a href="reservation.html" data-i18n="nav_booking">Réservation</a></li>
+          <li><a href="offres.html" data-i18n="nav_packs">Nos offres</a>
+      <a href="reservation.html" data-i18n="nav_booking">Réservation</a></li>
           <li><a href="balades.html" data-i18n="nav_rides">Balades</a>
       <a href="galerie.html" data-i18n="nav_gallery">Galerie</a></li>
           <li><a href="avis.html" data-i18n="nav_reviews">Avis clients</a></li>
