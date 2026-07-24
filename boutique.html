@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="title_fleet">Catalogue motos — Rent2Ride</title>
-<meta name="description" content="Découvrez notre flotte de motos Yamaha : MT-07, MT-09, Tracer 7, Tracer 9. Assurance incluse, kilométrage illimité.">
+<title data-i18n="title_shop">Boutique — Rent2Ride</title>
+<meta name="description" content="La boutique officielle Rent2Ride : t-shirts, sweat à capuche, casquette et stickers. Livraison partout en Europe.">
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,16 +14,20 @@
 </head>
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="logo">
       <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
-      <span class="logo-text"><strong>Rent2Ride</strong><span>Motorcycle Rental</span></span>
+      <span class="logo-text">
+        <strong>Rent2Ride</strong>
+        <span>Motorcycle Rental</span>
+      </span>
     </a>
     <button class="burger" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <div class="nav-links">
       <a href="index.html" data-i18n="nav_home">Accueil</a>
-      <a href="catalogue.html" class="active" data-i18n="nav_fleet">Catalogue motos</a>
+      <a href="catalogue.html" data-i18n="nav_fleet">Catalogue motos</a>
       <a href="offres.html" data-i18n="nav_packs">Nos offres</a>
       <a href="reservation.html" data-i18n="nav_booking">Réservation</a>
       <a href="balades.html" data-i18n="nav_rides">Balades</a>
@@ -31,7 +35,7 @@
       <a href="avis.html" data-i18n="nav_reviews">Avis clients</a>
       <a href="faq.html" data-i18n="nav_faq">FAQ</a>
       <a href="contact.html" data-i18n="nav_contact">Contact</a>
-      <a href="boutique.html" data-i18n="nav_shop">Boutique</a>
+      <a href="boutique.html" class="active" data-i18n="nav_shop">Boutique</a>
       <a href="reservation.html#booking" class="btn btn-primary nav-cta" data-i18n="nav_book">Réserver</a>
     </div>
     <div class="nav-right">
@@ -49,102 +53,146 @@
   </nav>
 </header>
 
-<section class="page-hero" style="--hero-img:url('../images/route-coast.jpg')">
+<!-- ================= PAGE HERO ================= -->
+<section class="page-hero" style="--hero-img:url('../images/shop-hero.jpg')">
   <div class="container">
-    <h1 data-i18n="page_fleet_title">Le catalogue Rent2Ride</h1>
-    <p data-i18n="page_fleet_sub">Quatre Yamaha récentes, entretenues et équipées pour la route.</p>
+    <p class="eyebrow" data-i18n="shop_eyebrow">LA BOUTIQUE</p>
+    <h1 data-i18n="shop_title">Les goodies Rent2Ride</h1>
+    <p data-i18n="shop_sub">Emportez un souvenir de la Costa del Sol. Textile et accessoires officiels Rent2Ride, en édition limitée.</p>
   </div>
 </section>
 
+<!-- ================= PRODUITS =================
+     Pour changer un prix, un texte ou ajouter un produit :
+     - Les prix et options (tailles/couleurs) sont dans js/main.js → objet SHOP_PRODUCTS
+     - Les textes affichés sont dans js/i18n.js → clés prod_xxx_name / prod_xxx_desc
+     - Les photos ci-dessous sont des placeholders (fond couleur + logo).
+       Remplacez .product-photo par une vraie image (comme .bike-photo dans
+       catalogue.html) dès que vous avez de vraies photos produit. -->
 <section class="section">
   <div class="container">
-    <div class="fleet-grid">
 
-      <article class="bike-card" data-model="mt07">
-        <div class="bike-photo" style="--bike-img:url('../images/mt07.jpg')">
-          <span class="bike-badge" data-i18n="bike_mt07_tag">Naked agile · 689 cc</span>
-          <span class="bike-availability is-available"></span>
+    <div class="shop-grid">
+
+      <!-- T-shirt -->
+      <article class="product-card" data-product="tshirt">
+        <div class="product-photo">
+          <img class="product-main-img" src="./images/shop-tshirt.jpg" alt="T-shirt Rent2Ride">
+          <div class="product-view-toggle" data-view-toggle>
+            <button type="button" data-view="front" class="active" data-i18n="shop_view_front">Recto</button>
+            <button type="button" data-view="back" data-i18n="shop_view_back">Verso</button>
+          </div>
         </div>
-        <div class="bike-body">
-          <div class="bike-top-row">
-            <div><h3 class="bike-name" data-i18n="bike_mt07_name">Yamaha MT-07</h3></div>
-            <span class="bike-rating"><span class="star">★</span> 4.9</span>
+        <div class="product-body">
+          <h3 class="product-name" data-i18n="prod_tshirt_name">T-shirt Rent2Ride</h3>
+          <p class="product-desc" data-i18n="prod_tshirt_desc">Coton bio 180g, logo brodé Rent2Ride sur la poitrine.</p>
+          <div class="product-price">24,90 €</div>
+          <span class="stock-badge"></span>
+
+          <div class="product-option-group">
+            <span class="product-option-label" data-i18n="shop_size_label">Taille</span>
+            <div class="product-swatches">
+              <input type="radio" name="size-tshirt" id="tshirt-size-S" value="S" checked><label for="tshirt-size-S">S</label>
+              <input type="radio" name="size-tshirt" id="tshirt-size-M" value="M"><label for="tshirt-size-M">M</label>
+              <input type="radio" name="size-tshirt" id="tshirt-size-L" value="L"><label for="tshirt-size-L">L</label>
+              <input type="radio" name="size-tshirt" id="tshirt-size-XL" value="XL"><label for="tshirt-size-XL">XL</label>
+              <input type="radio" name="size-tshirt" id="tshirt-size-XXL" value="XXL"><label for="tshirt-size-XXL">XXL</label>
+            </div>
           </div>
-          <ul class="bike-features">
-            <li data-i18n="bike_mt07_f1">Assurance au tiers incluse</li>
-            <li data-i18n="bike_mt07_f2">Casques (2) inclus</li>
-            <li data-i18n="bike_mt07_f3">Kilométrage illimité</li>
-          </ul>
-          <div class="bike-price-row">
-            <span class="bike-price">55 € <small data-i18n="per_day">/ jour</small></span>
-            <a href="reservation.html?model=mt07#booking" class="btn btn-dark btn-sm" data-i18n="bike_cta">Réserver</a>
+          <div class="product-option-group">
+            <span class="product-option-label" data-i18n="shop_color_label">Couleur</span>
+            <div class="product-swatches is-color">
+              <input type="radio" name="color-tshirt" id="tshirt-color-black" value="black" checked><label for="tshirt-color-black" data-swatch="black"></label>
+              <input type="radio" name="color-tshirt" id="tshirt-color-white" value="white"><label for="tshirt-color-white" data-swatch="white"></label>
+              <input type="radio" name="color-tshirt" id="tshirt-color-red" value="red"><label for="tshirt-color-red" data-swatch="red"></label>
+              <input type="radio" name="color-tshirt" id="tshirt-color-grey" value="grey"><label for="tshirt-color-grey" data-swatch="grey"></label>
+            </div>
           </div>
+
+          <button type="button" class="btn btn-primary product-add" data-i18n="shop_add_cart">Ajouter au panier</button>
         </div>
       </article>
 
-      <article class="bike-card" data-model="mt09">
-        <div class="bike-photo" style="--bike-img:url('../images/mt09.jpg')">
-          <span class="bike-badge" data-i18n="bike_mt09_tag">Hyper naked · 890 cc</span>
-          <span class="bike-availability is-available"></span>
+      <!-- Hoodie -->
+      <article class="product-card" data-product="hoodie">
+        <div class="product-photo">
+          <img class="product-main-img" src="./images/shop-hoodie.jpg" alt="Sweat à capuche Rent2Ride">
+          <div class="product-view-toggle" data-view-toggle>
+            <button type="button" data-view="front" class="active" data-i18n="shop_view_front">Recto</button>
+            <button type="button" data-view="back" data-i18n="shop_view_back">Verso</button>
+          </div>
         </div>
-        <div class="bike-body">
-          <div class="bike-top-row">
-            <div><h3 class="bike-name" data-i18n="bike_mt09_name">Yamaha MT-09</h3></div>
-            <span class="bike-rating"><span class="star">★</span> 4.8</span>
+        <div class="product-body">
+          <h3 class="product-name" data-i18n="prod_hoodie_name">Sweat à capuche Rent2Ride</h3>
+          <p class="product-desc" data-i18n="prod_hoodie_desc">Molleton épais 320g, doublure douce, logo dos + poitrine.</p>
+          <div class="product-price">44,90 €</div>
+          <span class="stock-badge"></span>
+
+          <div class="product-option-group">
+            <span class="product-option-label" data-i18n="shop_size_label">Taille</span>
+            <div class="product-swatches">
+              <input type="radio" name="size-hoodie" id="hoodie-size-S" value="S" checked><label for="hoodie-size-S">S</label>
+              <input type="radio" name="size-hoodie" id="hoodie-size-M" value="M"><label for="hoodie-size-M">M</label>
+              <input type="radio" name="size-hoodie" id="hoodie-size-L" value="L"><label for="hoodie-size-L">L</label>
+              <input type="radio" name="size-hoodie" id="hoodie-size-XL" value="XL"><label for="hoodie-size-XL">XL</label>
+              <input type="radio" name="size-hoodie" id="hoodie-size-XXL" value="XXL"><label for="hoodie-size-XXL">XXL</label>
+            </div>
           </div>
-          <ul class="bike-features">
-            <li data-i18n="bike_mt09_f1">Assurance tous risques</li>
-            <li data-i18n="bike_mt09_f2">Modes de conduite réglables</li>
-            <li data-i18n="bike_mt09_f3">Kilométrage illimité</li>
-          </ul>
-          <div class="bike-price-row">
-            <span class="bike-price">75 € <small data-i18n="per_day">/ jour</small></span>
-            <a href="reservation.html?model=mt09#booking" class="btn btn-dark btn-sm" data-i18n="bike_cta">Réserver</a>
+          <div class="product-option-group">
+            <span class="product-option-label" data-i18n="shop_color_label">Couleur</span>
+            <div class="product-swatches is-color">
+              <input type="radio" name="color-hoodie" id="hoodie-color-black" value="black" checked><label for="hoodie-color-black" data-swatch="black"></label>
+              <input type="radio" name="color-hoodie" id="hoodie-color-white" value="white"><label for="hoodie-color-white" data-swatch="white"></label>
+              <input type="radio" name="color-hoodie" id="hoodie-color-red" value="red"><label for="hoodie-color-red" data-swatch="red"></label>
+              <input type="radio" name="color-hoodie" id="hoodie-color-grey" value="grey"><label for="hoodie-color-grey" data-swatch="grey"></label>
+            </div>
           </div>
+
+          <button type="button" class="btn btn-primary product-add" data-i18n="shop_add_cart">Ajouter au panier</button>
         </div>
       </article>
 
-      <article class="bike-card" data-model="tracer7">
-        <div class="bike-photo" style="--bike-img:url('../images/tracer7.jpg')">
-          <span class="bike-badge" data-i18n="bike_tracer7_tag">Routière sport · 689 cc</span>
-          <span class="bike-availability is-available"></span>
+      <!-- Casquette -->
+      <article class="product-card" data-product="cap">
+        <div class="product-photo">
+          <img class="product-main-img" src="./images/shop-cap.jpg" alt="Casquette Rent2Ride">
+          <div class="product-view-toggle" data-view-toggle>
+            <button type="button" data-view="front" class="active" data-i18n="shop_view_front">Recto</button>
+            <button type="button" data-view="back" data-i18n="shop_view_back">Verso</button>
+          </div>
         </div>
-        <div class="bike-body">
-          <div class="bike-top-row">
-            <div><h3 class="bike-name" data-i18n="bike_tracer7_name">Yamaha Tracer 7</h3></div>
-            <span class="bike-rating"><span class="star">★</span> 5.0</span>
+        <div class="product-body">
+          <h3 class="product-name" data-i18n="prod_cap_name">Casquette Rent2Ride</h3>
+          <p class="product-desc" data-i18n="prod_cap_desc">Casquette ajustable, broderie 3D, visière courbée.</p>
+          <div class="product-price">19,90 €</div>
+          <span class="stock-badge"></span>
+
+          <div class="product-option-group">
+            <span class="product-option-label" data-i18n="shop_color_label">Couleur</span>
+            <div class="product-swatches is-color">
+              <input type="radio" name="color-cap" id="cap-color-black" value="black" checked><label for="cap-color-black" data-swatch="black"></label>
+              <input type="radio" name="color-cap" id="cap-color-white" value="white"><label for="cap-color-white" data-swatch="white"></label>
+              <input type="radio" name="color-cap" id="cap-color-red" value="red"><label for="cap-color-red" data-swatch="red"></label>
+              <input type="radio" name="color-cap" id="cap-color-grey" value="grey"><label for="cap-color-grey" data-swatch="grey"></label>
+            </div>
           </div>
-          <ul class="bike-features">
-            <li data-i18n="bike_tracer7_f1">Assurance tous risques</li>
-            <li data-i18n="bike_tracer7_f2">Valises latérales sur demande</li>
-            <li data-i18n="bike_tracer7_f3">Pare-brise réglable</li>
-          </ul>
-          <div class="bike-price-row">
-            <span class="bike-price">65 € <small data-i18n="per_day">/ jour</small></span>
-            <a href="reservation.html?model=tracer7#booking" class="btn btn-dark btn-sm" data-i18n="bike_cta">Réserver</a>
-          </div>
+
+          <button type="button" class="btn btn-primary product-add" data-i18n="shop_add_cart">Ajouter au panier</button>
         </div>
       </article>
 
-      <article class="bike-card" data-model="tracer9">
-        <div class="bike-photo" style="--bike-img:url('../images/tracer9.jpg')">
-          <span class="bike-badge" data-i18n="bike_tracer9_tag">Grand tourisme · 890 cc</span>
-          <span class="bike-availability is-unavailable"></span>
+      <!-- Stickers -->
+      <article class="product-card" data-product="stickers">
+        <div class="product-photo">
+          <img class="product-main-img" src="./images/shop-stickers.jpg" alt="Lot de stickers Rent2Ride">
         </div>
-        <div class="bike-body">
-          <div class="bike-top-row">
-            <div><h3 class="bike-name" data-i18n="bike_tracer9_name">Yamaha Tracer 9</h3></div>
-            <span class="bike-rating"><span class="star">★</span> 4.9</span>
-          </div>
-          <ul class="bike-features">
-            <li data-i18n="bike_tracer9_f1">Assurance tous risques + GPS</li>
-            <li data-i18n="bike_tracer9_f2">Valises latérales incluses</li>
-            <li data-i18n="bike_tracer9_f3">Régulateur de vitesse</li>
-          </ul>
-          <div class="bike-price-row">
-            <span class="bike-price">89 € <small data-i18n="per_day">/ jour</small></span>
-            <a href="reservation.html?model=tracer9#booking" class="btn btn-dark btn-sm" data-i18n="bike_cta">Réserver</a>
-          </div>
+        <div class="product-body">
+          <h3 class="product-name" data-i18n="prod_stickers_name">Lot de 5 stickers Rent2Ride</h3>
+          <p class="product-desc" data-i18n="prod_stickers_desc">Vinyle résistant UV et pluie, à coller sur casque, top-case ou ordinateur.</p>
+          <div class="product-price">6,90 €</div>
+          <span class="stock-badge"></span>
+
+          <button type="button" class="btn btn-primary product-add" data-i18n="shop_add_cart">Ajouter au panier</button>
         </div>
       </article>
 
@@ -152,43 +200,7 @@
   </div>
 </section>
 
-<section class="section section--cream">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <p class="eyebrow" data-i18n="included_eyebrow">TOUT EST INCLUS</p>
-        <h2 data-i18n="included_title">Tout ce qui vient avec votre location</h2>
-      </div>
-    </div>
-    <div class="included-grid">
-      <div class="included-item">
-        <div class="included-icon">&#128737;</div>
-        <div><h4 data-i18n="inc1_t">Assurance incluse</h4><p data-i18n="inc1_p">Options d'extension disponibles.</p></div>
-      </div>
-      <div class="included-item">
-        <div class="included-icon">&#129516;</div>
-        <div><h4 data-i18n="inc2_t">Équipement de protection</h4><p data-i18n="inc2_p">Casques, gants et vestes.</p></div>
-      </div>
-      <div class="included-item">
-        <div class="included-icon">&#128506;</div>
-        <div><h4 data-i18n="inc3_t">Cartes et itinéraires</h4><p data-i18n="inc3_p">Itinéraires intégrés au GPS.</p></div>
-      </div>
-      <div class="included-item">
-        <div class="included-icon">&#128295;</div>
-        <div><h4 data-i18n="inc4_t">Assistance 24/7</h4><p data-i18n="inc4_p">Équipe joignable à tout moment.</p></div>
-      </div>
-      <div class="included-item">
-        <div class="included-icon">&#128279;</div>
-        <div><h4 data-i18n="inc5_t">Kilométrage illimité</h4><p data-i18n="inc5_p">Roulez sans compter.</p></div>
-      </div>
-      <div class="included-item">
-        <div class="included-icon">&#128197;</div>
-        <div><h4 data-i18n="inc6_t">Annulation flexible</h4><p data-i18n="inc6_p">Jusqu'à 48h avant le départ.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
+<!-- ================= FOOTER ================= -->
 <footer class="site-footer">
   <div class="container">
     <div class="footer-grid">
@@ -198,6 +210,11 @@
           <span class="logo-text"><strong style="color:#fff;">Rent2Ride</strong><span>Motorcycle Rental</span></span>
         </div>
         <p data-i18n="footer_about">Location de motos premium sur la Costa del Sol.</p>
+        <div class="social-row">
+          <a href="#" aria-label="Instagram" style="border-color:rgba(255,255,255,.2); color:#fff;">&#128247;</a>
+          <a href="#" aria-label="Facebook" style="border-color:rgba(255,255,255,.2); color:#fff;">&#102;</a>
+          <a href="#" aria-label="YouTube" style="border-color:rgba(255,255,255,.2); color:#fff;">&#9654;</a>
+        </div>
       </div>
       <div>
         <h5 data-i18n="footer_nav_h">Navigation</h5>
@@ -235,6 +252,7 @@
   </div>
 </footer>
 
+<!-- ================= WHATSAPP WIDGET ================= -->
 <div class="whatsapp-fab">
   <div class="whatsapp-panel" id="whatsappPanel">
     <div class="whatsapp-panel-head">
@@ -255,7 +273,6 @@
     <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.42-1.36c1.36.74 2.92 1.16 4.621.16h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01c-1.5 0-2.97-.4-4.25-1.16l-.3-.18-3.16.79.84-3.08-.2-.32a8.07 8.07 0 0 1-1.24-4.3c0-4.49 3.65-8.14 8.14-8.14 2.17 0 4.21.85 5.75 2.39a8.07 8.07 0 0 1 2.38 5.75c0 4.49-3.65 8.14-8.14 8.14zm4.47-6.1c-.25-.12-1.45-.72-1.68-.8-.22-.08-.39-.12-.55.12-.16.25-.63.8-.77.96-.14.16-.28.18-.53.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.28.37-.42.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.55-1.32-.75-1.81-.2-.48-.4-.41-.55-.42h-.47c-.16 0-.43.06-.65.31-.22.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.16 1.73 2.64 4.19 3.7.58.25 1.04.4 1.4.51.59.19 1.12.16 1.55.1.47-.07 1.45-.59 1.65-1.16.2-.57.2-1.06.14-1.16-.06-.1-.22-.16-.47-.28z"/></svg>
   </button>
 </div>
-
 
 <!-- ================= CART OVERLAY + DRAWER ================= -->
 <div class="cart-overlay" id="cartOverlay"></div>

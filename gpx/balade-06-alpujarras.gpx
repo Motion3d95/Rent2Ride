@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rent2Ride" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Les Alpujarras</name>
+    <desc>Lanjaron - Orgiva - Pampaneira - Capileira - Trevelez, 110 km</desc>
+  </metadata>
+  <wpt lat="36.9214" lon="-3.4842"><name>Lanjaron</name></wpt>
+  <wpt lat="36.8998" lon="-3.4198"><name>Orgiva</name></wpt>
+  <wpt lat="36.8994" lon="-3.3496"><name>Pampaneira</name></wpt>
+  <wpt lat="36.9161" lon="-3.3479"><name>Capileira</name></wpt>
+  <wpt lat="36.9598" lon="-3.2664"><name>Trevelez</name></wpt>
+  <trk>
+    <name>Les Alpujarras</name>
+    <trkseg>
+      <trkpt lat="36.9214" lon="-3.4842"><name>Lanjaron</name></trkpt>
+      <trkpt lat="36.8998" lon="-3.4198"><name>Orgiva</name></trkpt>
+      <trkpt lat="36.8994" lon="-3.3496"><name>Pampaneira</name></trkpt>
+      <trkpt lat="36.9161" lon="-3.3479"><name>Capileira</name></trkpt>
+      <trkpt lat="36.9598" lon="-3.2664"><name>Trevelez</name></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

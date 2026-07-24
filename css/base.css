@@ -44,7 +44,7 @@
 }
 
 *{ box-sizing:border-box; }
-html{ scroll-behavior:smooth; }
+html{ scroll-behavior:smooth; max-width:100%; overflow-x:hidden; }
 body{
   margin:0;
   font-family:var(--f-body);
@@ -191,4 +191,19 @@ button{ font-family:inherit; }
   .logo-text strong{ font-size:1rem; }
   .logo-text span{ font-size:.56rem; }
   .lang-switch button{ padding:5px 8px; font-size:.72rem; }
+}
+
+/* =========================================================
+   AJUSTEMENTS MOBILE / TABLETTE — confort de lecture et de saisie
+   ========================================================= */
+@media (max-width:640px){
+  /* Empêche le zoom automatique iOS Safari quand on touche un champ
+     (déclenché par tout champ dont la police fait moins de 16px) */
+  .field select, .field input, .field textarea,
+  .checkout-form input, .checkout-form textarea{
+    font-size:16px;
+  }
+  /* Cibles tactiles un peu plus généreuses sur petit écran */
+  .qty-btn{ width:30px; height:30px; }
+  .lang-switch button{ padding:7px 10px; }
 }

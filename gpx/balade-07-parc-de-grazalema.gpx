@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rent2Ride" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Parc de Grazalema</name>
+    <desc>Ronda - Parc naturel Sierra de Grazalema - Grazalema, 130 km aller-retour</desc>
+  </metadata>
+  <wpt lat="36.7213" lon="-5.1636"><name>Depart - Ronda</name></wpt>
+  <wpt lat="36.744" lon="-5.236"><name>Montejaque</name></wpt>
+  <wpt lat="36.7311" lon="-5.2593"><name>Benaojan</name></wpt>
+  <wpt lat="36.758" lon="-5.3646"><name>Grazalema</name></wpt>
+  <trk>
+    <name>Parc de Grazalema</name>
+    <trkseg>
+      <trkpt lat="36.7213" lon="-5.1636"><name>Depart - Ronda</name></trkpt>
+      <trkpt lat="36.744" lon="-5.236"><name>Montejaque</name></trkpt>
+      <trkpt lat="36.7311" lon="-5.2593"><name>Benaojan</name></trkpt>
+      <trkpt lat="36.758" lon="-5.3646"><name>Grazalema</name></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

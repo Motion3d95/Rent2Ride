@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rent2Ride" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Cabo de Gata</name>
+    <desc>Almeria - Parc naturel de Cabo de Gata, 160 km aller-retour</desc>
+  </metadata>
+  <wpt lat="36.8381" lon="-2.4597"><name>Depart - Almeria</name></wpt>
+  <wpt lat="36.7677" lon="-2.1058"><name>San Jose</name></wpt>
+  <wpt lat="36.7743" lon="-2.0396"><name>Los Escullos</name></wpt>
+  <wpt lat="36.8848" lon="-2.0563"><name>Rodalquilar</name></wpt>
+  <wpt lat="36.8381" lon="-2.4597"><name>Retour - Almeria</name></wpt>
+  <trk>
+    <name>Cabo de Gata</name>
+    <trkseg>
+      <trkpt lat="36.8381" lon="-2.4597"><name>Depart - Almeria</name></trkpt>
+      <trkpt lat="36.7677" lon="-2.1058"><name>San Jose</name></trkpt>
+      <trkpt lat="36.7743" lon="-2.0396"><name>Los Escullos</name></trkpt>
+      <trkpt lat="36.8848" lon="-2.0563"><name>Rodalquilar</name></trkpt>
+      <trkpt lat="36.8381" lon="-2.4597"><name>Retour - Almeria</name></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

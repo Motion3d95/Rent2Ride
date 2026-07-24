@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rent2Ride" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Corniche de la Costa del Sol</name>
+    <desc>Malaga - Estepona via N-340, 120 km</desc>
+  </metadata>
+  <wpt lat="36.7213" lon="-4.4214"><name>Depart - Malaga</name></wpt>
+  <wpt lat="36.5988" lon="-4.5054"><name>Benalmadena</name></wpt>
+  <wpt lat="36.5411" lon="-4.6247"><name>Fuengirola</name></wpt>
+  <wpt lat="36.51" lon="-4.8826"><name>Marbella / Puerto Banus</name></wpt>
+  <wpt lat="36.4285" lon="-5.1449"><name>Arrivee - Estepona</name></wpt>
+  <trk>
+    <name>Corniche de la Costa del Sol</name>
+    <trkseg>
+      <trkpt lat="36.7213" lon="-4.4214"><name>Depart - Malaga</name></trkpt>
+      <trkpt lat="36.5988" lon="-4.5054"><name>Benalmadena</name></trkpt>
+      <trkpt lat="36.5411" lon="-4.6247"><name>Fuengirola</name></trkpt>
+      <trkpt lat="36.51" lon="-4.8826"><name>Marbella / Puerto Banus</name></trkpt>
+      <trkpt lat="36.4285" lon="-5.1449"><name>Arrivee - Estepona</name></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

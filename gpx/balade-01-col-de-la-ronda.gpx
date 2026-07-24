@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rent2Ride" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Col de la Ronda</name>
+    <desc>San Pedro de Alcantara - Ronda via A-397, 80 km</desc>
+  </metadata>
+  <wpt lat="36.4848" lon="-4.997"><name>Depart - San Pedro de Alcantara</name></wpt>
+  <wpt lat="36.5721" lon="-5.0398"><name>A-397 - montee vers le col</name></wpt>
+  <wpt lat="36.652" lon="-5.087"><name>Puerto del Viento</name></wpt>
+  <wpt lat="36.7213" lon="-5.1636"><name>Arrivee - Ronda</name></wpt>
+  <trk>
+    <name>Col de la Ronda</name>
+    <trkseg>
+      <trkpt lat="36.4848" lon="-4.997"><name>Depart - San Pedro de Alcantara</name></trkpt>
+      <trkpt lat="36.5721" lon="-5.0398"><name>A-397 - montee vers le col</name></trkpt>
+      <trkpt lat="36.652" lon="-5.087"><name>Puerto del Viento</name></trkpt>
+      <trkpt lat="36.7213" lon="-5.1636"><name>Arrivee - Ronda</name></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

@@ -29,7 +29,40 @@ const PRICING = {
 
 /* WhatsApp business number, international format, no spaces or symbols.
    Example shown is a PLACEHOLDER — replace with your real number. */
-const WHATSAPP_NUMBER = "34911459813";
+const WHATSAPP_NUMBER = "33688133895";
+
+/* =========================================================
+   NOTIFICATION TELEGRAM AUTOMATIQUE — COMMANDES BOUTIQUE
+   ---------------------------------------------------------
+   Remplissez ces deux valeurs avec celles données par @BotFather
+   (le token) et par l'appel getUpdates (le chat_id du groupe).
+   Tant qu'elles sont vides, la notification Telegram est
+   simplement ignorée — WhatsApp et l'e-mail continuent de
+   fonctionner normalement sans elle.
+
+   ⚠️ Ce token sera visible dans le code source public du site
+   (n'importe qui peut l'y trouver en regardant le code de la
+   page). Le risque réel est limité : ce bot ne sait faire qu'une
+   chose, envoyer des messages dans CE groupe précis. Le pire cas
+   est que quelqu'un de malveillant y envoie du spam — gênant,
+   mais sans accès à vos données, vos comptes ou votre argent. Si
+   ça arrivait, il suffit de régénérer un nouveau token via
+   @BotFather (/revoke) pour couper l'accès à l'ancien.
+   ========================================================= */
+const TELEGRAM_BOT_TOKEN = "8829634456:AAFhfclUyKdM8zH1r4R5ylZvyHZ-0gAHjxQ";
+const TELEGRAM_CHAT_ID = "-1004485459396";
+
+function sendTelegramNotification(text){
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return; // pas encore configuré
+  fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text: `🛍️ Nouvelle commande boutique\n\n${text}`,
+    }),
+  }).catch(err => console.error("Erreur envoi Telegram:", err));
+}
 
 /* Momoven listing URL — replace with your real listing once published. */
 const MOMOVEN_URL = "https://www.momoven.com";
@@ -84,6 +117,8 @@ function applyTranslations(lang){
   if (typeof updateWhatsAppLink === "function") updateWhatsAppLink();
 
   if (typeof refreshAvailabilityBadges === "function") refreshAvailabilityBadges();
+
+  if (typeof renderCartDrawer === "function") renderCartDrawer();
 }
 
 function setLang(lang){
@@ -504,6 +539,556 @@ function clearAllBookings(){
   refreshAvailabilityBadges();
 }
 
+/* =========================================================
+   10. BOUTIQUE — PANIER (SHOPPING CART)
+   ---------------------------------------------------------
+   Catalogue produit ci-dessous : c'est LA seule source de vérité
+   pour les prix. Pour changer un prix ou ajouter un produit,
+   modifiez uniquement cet objet SHOP_PRODUCTS.
+
+   Le panier est stocké en localStorage (comme les réservations
+   plus haut) : il persiste pour un même visiteur/navigateur, mais
+   n'est PAS partagé entre appareils ni synchronisé sur un serveur.
+
+   ⚠️ PAIEMENT EN LIGNE : il n'y a pas encore de paiement par carte
+   bancaire branché ici (Stripe, PayPal...). C'est volontaire : un
+   vrai paiement carte nécessite un petit serveur (Stripe Checkout
+   Session côté back-end) qu'on ne peut pas faire de façon sécurisée
+   en pur HTML/JS statique sur GitHub Pages. Le circuit actuel
+   (WhatsApp / e-mail) permet de prendre des commandes réelles dès
+   maintenant. Quand vous serez prêt à brancher Stripe, il faudra :
+   1. Un compte Stripe + une petite fonction serverless
+      (Vercel/Netlify Functions, Supabase Edge Function...)
+      qui crée une "Checkout Session" à partir du panier envoyé.
+   2. Remplacer la fonction handleCheckoutSubmit() ci-dessous par un
+      fetch() vers cette fonction, puis rediriger vers l'URL Stripe
+      retournée (session.url).
+   Le repère "STRIPE INTEGRATION POINT" ci-dessous marque l'endroit exact.
+   ========================================================= */
+
+const SHOP_PRODUCTS = {
+  tshirt: {
+    price: 24.90,
+    nameKey: "prod_tshirt_name",
+    descKey: "prod_tshirt_desc",
+    sizes: ["S","M","L","XL","XXL"],
+    colors: ["black","white","red","grey"],
+  },
+  hoodie: {
+    price: 44.90,
+    nameKey: "prod_hoodie_name",
+    descKey: "prod_hoodie_desc",
+    sizes: ["S","M","L","XL","XXL"],
+    colors: ["black","white","red","grey"],
+  },
+  cap: {
+    price: 19.90,
+    nameKey: "prod_cap_name",
+    descKey: "prod_cap_desc",
+    sizes: null,
+    colors: ["black","white","red","grey"],
+  },
+  stickers: {
+    price: 6.90,
+    nameKey: "prod_stickers_name",
+    descKey: "prod_stickers_desc",
+    sizes: null,
+    colors: null,
+  },
+};
+
+/* =========================================================
+   STOCK DE DISPONIBILITÉ
+   ---------------------------------------------------------
+   C'est ICI que vous gérez le stock. Chaque ligne correspond à
+   une combinaison produit + taille + couleur (mettez "-" pour
+   les produits sans taille ou sans couleur). Le nombre est la
+   quantité restante en stock.
+
+   ⚠️ Ce stock est un simple compteur affiché sur le site — il
+   n'est PAS décrémenté automatiquement quand une commande arrive
+   par WhatsApp/e-mail (il n'y a pas de base de données derrière).
+   Après chaque vente réelle, pensez à revenir ici et à baisser le
+   chiffre à la main pour que le site reste à jour. Le seul rôle
+   du code JS est d'empêcher un client d'ajouter au panier plus
+   d'exemplaires que ce qui est indiqué ci-dessous.
+   ========================================================= */
+const SHOP_STOCK = {
+  "tshirt|S|black": 6,   "tshirt|S|white": 5,   "tshirt|S|red": 4,   "tshirt|S|grey": 4,
+  "tshirt|M|black": 8,   "tshirt|M|white": 7,   "tshirt|M|red": 6,   "tshirt|M|grey": 6,
+  "tshirt|L|black": 8,   "tshirt|L|white": 6,   "tshirt|L|red": 5,   "tshirt|L|grey": 5,
+  "tshirt|XL|black": 4,  "tshirt|XL|white": 3,  "tshirt|XL|red": 3,  "tshirt|XL|grey": 2,
+  "tshirt|XXL|black": 2, "tshirt|XXL|white": 0, "tshirt|XXL|red": 2, "tshirt|XXL|grey": 0,
+
+  "hoodie|S|black": 3,   "hoodie|S|white": 2,   "hoodie|S|red": 2,   "hoodie|S|grey": 2,
+  "hoodie|M|black": 5,   "hoodie|M|white": 4,   "hoodie|M|red": 3,   "hoodie|M|grey": 3,
+  "hoodie|L|black": 5,   "hoodie|L|white": 3,   "hoodie|L|red": 3,   "hoodie|L|grey": 2,
+  "hoodie|XL|black": 2,  "hoodie|XL|white": 2,  "hoodie|XL|red": 1,  "hoodie|XL|grey": 1,
+  "hoodie|XXL|black": 1, "hoodie|XXL|white": 0,  "hoodie|XXL|red": 1, "hoodie|XXL|grey": 0,
+
+  "cap|-|black": 10, "cap|-|white": 6, "cap|-|red": 6, "cap|-|grey": 4,
+
+  "stickers|-|-": 40,
+};
+
+const STOCK_LOW_THRESHOLD = 3;
+
+/* =========================================================
+   PHOTOS PRODUIT — par couleur + vue (recto/verso)
+   ---------------------------------------------------------
+   Pour ajouter/remplacer une photo : mettez le fichier dans
+   images/ puis indiquez son chemin ici. Laissez `back: null`
+   tant que vous n'avez pas de photo de dos — le bouton "Verso"
+   ne s'affichera tout simplement pas pour ce produit/couleur.
+   ========================================================= */
+const SHOP_IMAGES = {
+  tshirt: {
+    black: { front: "./images/shop-tshirt-black-front.jpg", back: "./images/shop-tshirt-black-back.jpg" },
+    white: { front: "./images/shop-tshirt-white-front.jpg", back: "./images/shop-tshirt-white-back.jpg" },
+    red:   { front: "./images/shop-tshirt-red-front.jpg",   back: "./images/shop-tshirt-red-back.jpg" },
+    grey:  { front: "./images/shop-tshirt-grey-front.jpg",  back: "./images/shop-tshirt-grey-back.jpg" },
+  },
+  hoodie: {
+    black: { front: "./images/shop-hoodie-black-front.jpg", back: "./images/shop-hoodie-black-back.jpg" },
+    white: { front: "./images/shop-hoodie-white-front.jpg", back: "./images/shop-hoodie-white-back.jpg" },
+    red:   { front: "./images/shop-hoodie-red-front.jpg",   back: "./images/shop-hoodie-red-back.jpg" },
+    grey:  { front: "./images/shop-hoodie-grey-front.jpg",  back: "./images/shop-hoodie-grey-back.jpg" },
+  },
+  cap: {
+    black: { front: "./images/shop-cap-black-front.jpg", back: "./images/shop-cap-black-back.jpg" },
+    white: { front: "./images/shop-cap-white-front.jpg", back: "./images/shop-cap-white-back.jpg" },
+    red:   { front: "./images/shop-cap-red-front.jpg",   back: "./images/shop-cap-red-back.jpg" },
+    grey:  { front: "./images/shop-cap-grey-front.jpg",  back: "./images/shop-cap-grey-back.jpg" },
+  },
+  stickers: {
+    default: { front: "./images/shop-stickers-white.jpg", back: null },
+  },
+};
+
+/* Photo affichée par défaut tant que la photo spécifique à la
+   couleur (ci-dessus) n'existe pas encore sur le serveur. */
+const SHOP_IMAGE_FALLBACK = {
+  tshirt: "./images/shop-tshirt.jpg",
+  hoodie: "./images/shop-hoodie.jpg",
+  cap: "./images/shop-cap.jpg",
+  stickers: "./images/shop-stickers.jpg",
+};
+
+/* Vérifie si une image existe réellement sur le serveur avant de
+   l'utiliser, pour ne jamais afficher une image cassée (404) si
+   la photo n'a pas encore été envoyée. Résultat mis en cache. */
+const _imageExistsCache = {};
+function imageExists(url){
+  return new Promise(resolve => {
+    if (url in _imageExistsCache) return resolve(_imageExistsCache[url]);
+    const img = new Image();
+    img.onload = () => { _imageExistsCache[url] = true; resolve(true); };
+    img.onerror = () => { _imageExistsCache[url] = false; resolve(false); };
+    img.src = url;
+  });
+}
+
+function getStockFor(productId, size, color){
+  const key = cartLineId(productId, size, color);
+  const val = SHOP_STOCK[key];
+  return typeof val === "number" ? val : 0;
+}
+
+/* Stock restant compte tenu de ce qui est déjà dans le panier
+   du visiteur (pour éviter qu'il n'ajoute plus que ce qui existe). */
+function getStockRemaining(productId, size, color){
+  const total = getStockFor(productId, size, color);
+  const lineId = cartLineId(productId, size, color);
+  const inCart = getCart().find(i => i.lineId === lineId);
+  return total - (inCart ? inCart.qty : 0);
+}
+
+const CART_STORAGE_KEY = "rent2ride_cart";
+
+function getCart(){
+  try { return JSON.parse(localStorage.getItem(CART_STORAGE_KEY) || "[]"); }
+  catch(e){ return []; }
+}
+
+function saveCart(cart){
+  localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+  updateCartBadge();
+}
+
+/* Un item de panier est identifié par produit + taille + couleur,
+   pour que "T-shirt M noir" et "T-shirt L blanc" restent des lignes
+   distinctes même si c'est le même produit de base. */
+function cartLineId(productId, size, color){
+  return [productId, size || "-", color || "-"].join("|");
+}
+
+function addToCart(productId, size, color, qty = 1){
+  const product = SHOP_PRODUCTS[productId];
+  if (!product) return;
+  const cart = getCart();
+  const lineId = cartLineId(productId, size, color);
+  const existing = cart.find(i => i.lineId === lineId);
+  if (existing){
+    existing.qty += qty;
+  } else {
+    cart.push({ lineId, productId, size: size || null, color: color || null, qty, price: product.price });
+  }
+  saveCart(cart);
+  renderCartDrawer();
+}
+
+function updateCartLineQty(lineId, qty){
+  let cart = getCart();
+  if (qty <= 0){
+    cart = cart.filter(i => i.lineId !== lineId);
+  } else {
+    const line = cart.find(i => i.lineId === lineId);
+    if (line) line.qty = qty;
+  }
+  saveCart(cart);
+  renderCartDrawer();
+}
+
+function removeCartLine(lineId){
+  updateCartLineQty(lineId, 0);
+}
+
+function cartCount(){
+  return getCart().reduce((sum, i) => sum + i.qty, 0);
+}
+
+function cartTotal(){
+  return getCart().reduce((sum, i) => sum + i.qty * i.price, 0);
+}
+
+function formatPrice(n){
+  return n.toFixed(2).replace(".", ",") + " €";
+}
+
+function updateCartBadge(){
+  document.querySelectorAll(".cart-badge").forEach(el => {
+    const count = cartCount();
+    el.textContent = count;
+    el.classList.toggle("is-visible", count > 0);
+  });
+}
+
+function colorLabel(color, lang){
+  const key = { black: "shop_color_black", white: "shop_color_white", sand: "shop_color_sand", red: "shop_color_red", grey: "shop_color_grey" }[color];
+  return key ? TRANSLATIONS[key][lang] : "";
+}
+
+function renderCartDrawer(){
+  const list = document.getElementById("cartItems");
+  const emptyEl = document.getElementById("cartEmpty");
+  const footerEl = document.getElementById("cartFooter");
+  if (!list) return; /* le tiroir panier n'existe pas sur cette page */
+
+  const cart = getCart();
+  const lang = getCurrentLang();
+  list.innerHTML = "";
+
+  if (cart.length === 0){
+    if (emptyEl) emptyEl.style.display = "flex";
+    if (footerEl) footerEl.style.display = "none";
+    refreshAllStockDisplays();
+    return;
+  }
+  if (emptyEl) emptyEl.style.display = "none";
+  if (footerEl) footerEl.style.display = "block";
+
+  cart.forEach(item => {
+    const product = SHOP_PRODUCTS[item.productId];
+    if (!product) return;
+    const name = TRANSLATIONS[product.nameKey][lang];
+    const variantBits = [];
+    if (item.size) variantBits.push(item.size);
+    if (item.color) variantBits.push(colorLabel(item.color, lang));
+
+    const row = document.createElement("div");
+    row.className = "cart-item";
+    row.innerHTML = `
+      <div class="cart-item-thumb" data-color="${item.color || ''}"><img src="./images/logo-badge.png" alt=""></div>
+      <div class="cart-item-info">
+        <strong>${name}</strong>
+        ${variantBits.length ? `<span class="cart-item-variant">${variantBits.join(" · ")}</span>` : ""}
+        <div class="cart-item-qty">
+          <button type="button" class="qty-btn" data-action="dec">−</button>
+          <span>${item.qty}</span>
+          <button type="button" class="qty-btn" data-action="inc">+</button>
+          <button type="button" class="cart-item-remove" data-i18n="cart_remove">${TRANSLATIONS.cart_remove[lang]}</button>
+        </div>
+      </div>
+      <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
+    `;
+    row.querySelector('[data-action="dec"]').addEventListener("click", () => updateCartLineQty(item.lineId, item.qty - 1));
+    row.querySelector('[data-action="inc"]').addEventListener("click", () => {
+      const totalStock = getStockFor(item.productId, item.size, item.color);
+      if (item.qty + 1 > totalStock) return; /* on ne dépasse pas le stock */
+      updateCartLineQty(item.lineId, item.qty + 1);
+    });
+    row.querySelector(".cart-item-remove").addEventListener("click", () => removeCartLine(item.lineId));
+    list.appendChild(row);
+  });
+
+  const totalEl = document.getElementById("cartTotal");
+  if (totalEl) totalEl.textContent = formatPrice(cartTotal());
+
+  refreshAllStockDisplays();
+}
+
+function openCartDrawer(){
+  const drawer = document.getElementById("cartDrawer");
+  if (!drawer) return;
+  renderCartDrawer();
+  drawer.classList.add("open");
+  document.body.classList.add("cart-open");
+}
+
+function closeCartDrawer(){
+  const drawer = document.getElementById("cartDrawer");
+  if (!drawer) return;
+  drawer.classList.remove("open");
+  document.body.classList.remove("cart-open");
+}
+
+function openCheckoutPanel(){
+  const drawer = document.getElementById("cartDrawer");
+  const cartView = document.getElementById("cartView");
+  const checkoutView = document.getElementById("checkoutView");
+  if (!drawer || getCart().length === 0) return;
+  if (cartView) cartView.style.display = "none";
+  if (checkoutView) checkoutView.style.display = "flex";
+}
+
+function backToCartView(){
+  const cartView = document.getElementById("cartView");
+  const checkoutView = document.getElementById("checkoutView");
+  if (cartView) cartView.style.display = "flex";
+  if (checkoutView) checkoutView.style.display = "none";
+}
+
+function buildOrderSummaryText(name, contact, address, note){
+  const lang = getCurrentLang();
+  const cart = getCart();
+  const lines = cart.map(item => {
+    const product = SHOP_PRODUCTS[item.productId];
+    const pname = TRANSLATIONS[product.nameKey][lang];
+    const variantBits = [];
+    if (item.size) variantBits.push(item.size);
+    if (item.color) variantBits.push(colorLabel(item.color, lang));
+    const variant = variantBits.length ? ` (${variantBits.join(", ")})` : "";
+    return `• ${item.qty} x ${pname}${variant} — ${formatPrice(item.price * item.qty)}`;
+  });
+  let text = `Commande boutique Rent2Ride\n\n${lines.join("\n")}\n\nTotal : ${formatPrice(cartTotal())}\n\nNom : ${name}`;
+  if (contact) text += `\nContact : ${contact}`;
+  if (address) text += `\nAdresse de livraison : ${address}`;
+  if (note) text += `\nNote : ${note}`;
+  return text;
+}
+
+function handleCheckoutSubmit(){
+  const nameEl = document.getElementById("checkoutName");
+  const emailEl = document.getElementById("checkoutEmail");
+  const phoneEl = document.getElementById("checkoutPhone");
+  const addressEl = document.getElementById("checkoutAddress");
+  const noteEl = document.getElementById("checkoutNote");
+  const errorEl = document.getElementById("checkoutError");
+
+  const name = (nameEl?.value || "").trim();
+  const email = (emailEl?.value || "").trim();
+  const phone = (phoneEl?.value || "").trim();
+  const address = (addressEl?.value || "").trim();
+  const note = (noteEl?.value || "").trim();
+
+  if (!name || (!email && !phone)){
+    if (errorEl) errorEl.style.display = "block";
+    return;
+  }
+  if (errorEl) errorEl.style.display = "none";
+
+  const contact = [email, phone].filter(Boolean).join(" / ");
+  const summary = buildOrderSummaryText(name, contact, address, note);
+
+  /* ============ STRIPE INTEGRATION POINT ============
+     Ici, à terme, on remplacera le code WhatsApp/e-mail ci-dessous
+     par quelque chose comme :
+
+     const res = await fetch("https://votre-backend/create-checkout-session", {
+       method: "POST",
+       headers: { "Content-Type": "application/json" },
+       body: JSON.stringify({ cart: getCart(), name, email, phone, address, note })
+     });
+     const session = await res.json();
+     window.location.href = session.url; // redirige vers le paiement Stripe
+     ===================================================== */
+
+  /* 1. Notifie automatiquement le groupe Telegram — aucune action du
+        client requise, ça part tout seul en arrière-plan. */
+  sendTelegramNotification(summary);
+
+  /* 2. Ouvre WhatsApp dans un nouvel onglet avec le récap pré-rempli */
+  const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`;
+  window.open(waUrl, "_blank", "noopener");
+
+  /* 3. Prépare l'e-mail — léger délai pour laisser le temps à l'onglet
+        WhatsApp de s'ouvrir avant de faire naviguer l'onglet actuel */
+  const subject = encodeURIComponent("Commande boutique Rent2Ride");
+  const body = encodeURIComponent(summary);
+  const mailtoUrl = `mailto:info@rent2ride.com?subject=${subject}&body=${body}`;
+  setTimeout(() => { window.location.href = mailtoUrl; }, 400);
+}
+
+function getSelectedVariant(card, productId){
+  const sizeInput = card.querySelector('input[name="size-' + productId + '"]:checked');
+  const colorInput = card.querySelector('input[name="color-' + productId + '"]:checked');
+  return { size: sizeInput ? sizeInput.value : null, color: colorInput ? colorInput.value : null };
+}
+
+async function updateProductImage(card){
+  const productId = card.dataset.product;
+  const imgEl = card.querySelector(".product-main-img");
+  const toggle = card.querySelector("[data-view-toggle]");
+  if (!imgEl) return;
+
+  const { color } = getSelectedVariant(card, productId);
+  const colorKey = color || "default";
+  const views = (SHOP_IMAGES[productId] && SHOP_IMAGES[productId][colorKey]) || null;
+
+  let view = card.dataset.currentView || "front";
+  const frontUrl = views ? views.front : null;
+  const backUrl = views ? views.back : null;
+  const targetUrl = (view === "back" && backUrl) ? backUrl : frontUrl;
+
+  const finalUrl = (targetUrl && await imageExists(targetUrl))
+    ? targetUrl
+    : SHOP_IMAGE_FALLBACK[productId];
+
+  imgEl.src = finalUrl;
+  card.dataset.currentView = (view === "back" && backUrl) ? "back" : "front";
+
+  if (toggle){
+    const hasBack = backUrl && await imageExists(backUrl);
+    toggle.style.display = hasBack ? "flex" : "none";
+    toggle.querySelectorAll("button").forEach(b => {
+      b.classList.toggle("active", b.dataset.view === card.dataset.currentView);
+    });
+  }
+}
+
+function initProductGalleries(){
+  document.querySelectorAll(".product-card").forEach(card => {
+    card.dataset.currentView = "front";
+    updateProductImage(card);
+
+    card.querySelectorAll('input[name^="color-"]').forEach(input => {
+      input.addEventListener("change", () => updateProductImage(card));
+    });
+
+    const toggle = card.querySelector("[data-view-toggle]");
+    if (toggle){
+      toggle.querySelectorAll("button").forEach(btn => {
+        btn.addEventListener("click", () => {
+          card.dataset.currentView = btn.dataset.view;
+          updateProductImage(card);
+        });
+      });
+    }
+  });
+}
+
+function updateStockDisplay(card){
+  const productId = card.dataset.product;
+  const badge = card.querySelector(".stock-badge");
+  const addBtn = card.querySelector(".product-add");
+  if (!badge || !addBtn) return;
+
+  const { size, color } = getSelectedVariant(card, productId);
+  const remaining = getStockRemaining(productId, size, color);
+  const lang = getCurrentLang();
+
+  badge.classList.remove("stock-in", "stock-low", "stock-out");
+
+  if (remaining <= 0){
+    badge.textContent = TRANSLATIONS.stock_out[lang];
+    badge.classList.add("stock-out");
+    addBtn.disabled = true;
+  } else if (remaining <= STOCK_LOW_THRESHOLD){
+    badge.textContent = TRANSLATIONS.stock_low[lang].replace("{n}", remaining);
+    badge.classList.add("stock-low");
+    addBtn.disabled = false;
+  } else {
+    badge.textContent = TRANSLATIONS.stock_in[lang];
+    badge.classList.add("stock-in");
+    addBtn.disabled = false;
+  }
+}
+
+function refreshAllStockDisplays(){
+  document.querySelectorAll(".product-card").forEach(updateStockDisplay);
+}
+
+function initShopProductCards(){
+  document.querySelectorAll(".product-card").forEach(card => {
+    const productId = card.dataset.product;
+    const addBtn = card.querySelector(".product-add");
+    if (!addBtn) return;
+
+    /* Recalcule le stock affiché à chaque changement de taille/couleur */
+    card.querySelectorAll('input[type="radio"]').forEach(input => {
+      input.addEventListener("change", () => updateStockDisplay(card));
+    });
+    updateStockDisplay(card);
+
+    addBtn.addEventListener("click", () => {
+      const { size, color } = getSelectedVariant(card, productId);
+      const remaining = getStockRemaining(productId, size, color);
+      if (remaining <= 0){
+        updateStockDisplay(card);
+        return;
+      }
+
+      addToCart(productId, size, color, 1);
+      updateStockDisplay(card);
+
+      const lang = getCurrentLang();
+      const original = TRANSLATIONS.shop_add_cart[lang];
+      addBtn.textContent = TRANSLATIONS.shop_added[lang];
+      addBtn.classList.add("is-added");
+      setTimeout(() => {
+        if (!addBtn.disabled) addBtn.textContent = original;
+        addBtn.classList.remove("is-added");
+      }, 1400);
+
+      openCartDrawer();
+    });
+  });
+}
+
+function initCart(){
+  const cartToggleBtns = document.querySelectorAll(".cart-toggle");
+  cartToggleBtns.forEach(btn => btn.addEventListener("click", openCartDrawer));
+
+  const closeBtn = document.getElementById("cartClose");
+  if (closeBtn) closeBtn.addEventListener("click", closeCartDrawer);
+
+  const overlay = document.getElementById("cartOverlay");
+  if (overlay) overlay.addEventListener("click", closeCartDrawer);
+
+  const checkoutBtn = document.getElementById("cartCheckoutBtn");
+  if (checkoutBtn) checkoutBtn.addEventListener("click", openCheckoutPanel);
+
+  const backBtn = document.getElementById("checkoutBackBtn");
+  if (backBtn) backBtn.addEventListener("click", backToCartView);
+
+  const sendBtn = document.getElementById("checkoutSendBtn");
+  if (sendBtn) sendBtn.addEventListener("click", () => handleCheckoutSubmit());
+
+  initShopProductCards();
+  initProductGalleries();
+  updateCartBadge();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   initLangSwitcher();
   initMobileNav();
@@ -517,4 +1102,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initWhatsAppWidget();
   initMomovenLinks();
   refreshAvailabilityBadges();
+  initCart();
 });

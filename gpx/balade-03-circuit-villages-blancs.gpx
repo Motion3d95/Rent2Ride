@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rent2Ride" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Circuit des villages blancs</name>
+    <desc>Boucle Mijas - Ojen - Istan - Coin - Monda, 95 km</desc>
+  </metadata>
+  <wpt lat="36.5959" lon="-4.6372"><name>Mijas</name></wpt>
+  <wpt lat="36.5537" lon="-4.8523"><name>Ojen</name></wpt>
+  <wpt lat="36.5892" lon="-4.8511"><name>Istan</name></wpt>
+  <wpt lat="36.6598" lon="-4.7565"><name>Coin</name></wpt>
+  <wpt lat="36.6002" lon="-4.7469"><name>Monda</name></wpt>
+  <wpt lat="36.5959" lon="-4.6372"><name>Retour - Mijas</name></wpt>
+  <trk>
+    <name>Circuit des villages blancs</name>
+    <trkseg>
+      <trkpt lat="36.5959" lon="-4.6372"><name>Mijas</name></trkpt>
+      <trkpt lat="36.5537" lon="-4.8523"><name>Ojen</name></trkpt>
+      <trkpt lat="36.5892" lon="-4.8511"><name>Istan</name></trkpt>
+      <trkpt lat="36.6598" lon="-4.7565"><name>Coin</name></trkpt>
+      <trkpt lat="36.6002" lon="-4.7469"><name>Monda</name></trkpt>
+      <trkpt lat="36.5959" lon="-4.6372"><name>Retour - Mijas</name></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

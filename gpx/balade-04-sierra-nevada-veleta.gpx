@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Rent2Ride" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Sierra Nevada - Veleta</name>
+    <desc>Granada - Pradollano - Veleta, 180 km aller-retour</desc>
+  </metadata>
+  <wpt lat="37.1773" lon="-3.5986"><name>Depart - Granada</name></wpt>
+  <wpt lat="37.1" lon="-3.47"><name>Route de la Sierra Nevada</name></wpt>
+  <wpt lat="37.0967" lon="-3.3961"><name>Pradollano</name></wpt>
+  <wpt lat="37.0542" lon="-3.3661"><name>Pico Veleta - point haut ~3300m</name></wpt>
+  <trk>
+    <name>Sierra Nevada - Veleta</name>
+    <trkseg>
+      <trkpt lat="37.1773" lon="-3.5986"><name>Depart - Granada</name></trkpt>
+      <trkpt lat="37.1" lon="-3.47"><name>Route de la Sierra Nevada</name></trkpt>
+      <trkpt lat="37.0967" lon="-3.3961"><name>Pradollano</name></trkpt>
+      <trkpt lat="37.0542" lon="-3.3661"><name>Pico Veleta - point haut ~3300m</name></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

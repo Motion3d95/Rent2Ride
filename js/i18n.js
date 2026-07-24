@@ -18,6 +18,7 @@ const TRANSLATIONS = {
   nav_faq:        { fr: "FAQ",              es: "Preguntas frecuentes",en: "FAQ" },
   nav_contact:    { fr: "Contact",          es: "Contacto",            en: "Contact" },
   nav_book:       { fr: "Réserver",         es: "Reservar",            en: "Book now" },
+  nav_shop:       { fr: "Boutique",         es: "Tienda",              en: "Shop" },
 
   /* ---------------- HERO (home) ---------------- */
   hero_pill:      { fr: "★ 4,9/5 · +1200 locations", es: "★ 4,9/5 · +1200 alquileres", en: "★ 4.9/5 · 1,200+ rentals" },
@@ -461,6 +462,8 @@ const TRANSLATIONS = {
   label_diff:   { fr: "Niveau", es: "Nivel", en: "Level" },
   label_best:   { fr: "Meilleure saison", es: "Mejor temporada", en: "Best season" },
   label_book:   { fr: "Réserver cette moto", es: "Reservar esta moto", en: "Book this bike" },
+  label_gpx:    { fr: "Télécharger le GPX", es: "Descargar el GPX", en: "Download GPX" },
+  label_map:    { fr: "Voir l'itinéraire", es: "Ver la ruta", en: "View route" },
   label_highlights: { fr: "Points forts", es: "Puntos destacados", en: "Highlights" },
 
   /* Ride 1 — Ronda */
@@ -585,6 +588,96 @@ const TRANSLATIONS = {
   page_contact_sub:   { fr: "Une question sur une route, un modèle ou une réservation ? Écrivez-nous.",
                          es: "¿Alguna duda sobre una ruta, un modelo o una reserva? Escríbanos.",
                          en: "A question about a route, a model or a booking? Write to us." },
+
+  /* ---------------- ÉQUIPE ---------------- */
+  team_eyebrow:  { fr: "L'ÉQUIPE", es: "EL EQUIPO", en: "THE TEAM" },
+  team_title:    { fr: "Derrière chaque location, deux visages", es: "Detrás de cada alquiler, dos caras", en: "Behind every rental, two faces" },
+  team_sub:      { fr: "Pas de centre d'appel anonyme : vous parlez directement à nous.",
+                    es: "Nada de centralita anónima: hablas directamente con nosotros.",
+                    en: "No anonymous call centre — you speak directly to us." },
+  team_rico_name:{ fr: "Eric", es: "Eric", en: "Eric" },
+  team_rico_role:{ fr: "Fondateur", es: "Fundador", en: "Founder" },
+  team_rico_bio: { fr: "À l'origine du projet Rent2Ride, passionné de moto et de road trips sur la Costa del Sol.",
+                    es: "En el origen del proyecto Rent2Ride, apasionado de la moto y las rutas por la Costa del Sol.",
+                    en: "The founder behind Rent2Ride, passionate about motorcycles and road trips on the Costa del Sol." },
+  team_eloy_name:{ fr: "Eloy", es: "Eloy", en: "Eloy" },
+  team_eloy_role:{ fr: "Responsable opérations, Espagne", es: "Responsable de operaciones, España", en: "Operations manager, Spain" },
+  team_eloy_bio: { fr: "Sur place à Málaga, il prépare chaque moto et accueille les clients en personne.",
+                    es: "En Málaga, prepara cada moto y recibe a los clientes en persona.",
+                    en: "Based in Málaga, he prepares every bike and welcomes clients in person." },
+
+  /* ---------------- BOUTIQUE (shop) ---------------- */
+  title_shop:      { fr: "Boutique — Rent2Ride", es: "Tienda — Rent2Ride", en: "Shop — Rent2Ride" },
+  shop_eyebrow:    { fr: "LA BOUTIQUE", es: "LA TIENDA", en: "THE SHOP" },
+  shop_title:      { fr: "Les goodies Rent2Ride", es: "Los productos Rent2Ride", en: "Rent2Ride goodies" },
+  shop_sub:        { fr: "Emportez un souvenir de la Costa del Sol. Textile et accessoires officiels Rent2Ride, en édition limitée.",
+                      es: "Llévate un recuerdo de la Costa del Sol. Textil y accesorios oficiales Rent2Ride, edición limitada.",
+                      en: "Take home a piece of the Costa del Sol. Official Rent2Ride apparel and accessories, limited run." },
+
+  shop_size_label:  { fr: "Taille", es: "Talla", en: "Size" },
+  shop_color_label: { fr: "Couleur", es: "Color", en: "Color" },
+  shop_add_cart:    { fr: "Ajouter au panier", es: "Añadir al carrito", en: "Add to cart" },
+  shop_added:       { fr: "Ajouté ✓", es: "Añadido ✓", en: "Added ✓" },
+  shop_color_black: { fr: "Noir", es: "Negro", en: "Black" },
+  shop_color_white: { fr: "Blanc", es: "Blanco", en: "White" },
+  shop_color_sand:  { fr: "Sable", es: "Arena", en: "Sand" },
+  shop_color_red:   { fr: "Rouge", es: "Rojo", en: "Red" },
+  shop_color_grey:  { fr: "Gris", es: "Gris", en: "Grey" },
+  shop_view_front:  { fr: "Recto", es: "Frente", en: "Front" },
+  shop_view_back:   { fr: "Verso", es: "Reverso", en: "Back" },
+
+  stock_in:   { fr: "En stock", es: "En stock", en: "In stock" },
+  stock_low:  { fr: "Plus que {n} en stock", es: "Solo quedan {n}", en: "Only {n} left" },
+  stock_out:  { fr: "Rupture de stock", es: "Agotado", en: "Out of stock" },
+
+  /* Products */
+  prod_tshirt_name: { fr: "T-shirt Rent2Ride", es: "Camiseta Rent2Ride", en: "Rent2Ride T-shirt" },
+  prod_tshirt_desc: { fr: "Coton bio 180g, logo brodé Rent2Ride sur la poitrine.",
+                       es: "Algodón orgánico 180g, logo Rent2Ride bordado en el pecho.",
+                       en: "180g organic cotton, embroidered Rent2Ride logo on the chest." },
+
+  prod_hoodie_name: { fr: "Sweat à capuche Rent2Ride", es: "Sudadera con capucha Rent2Ride", en: "Rent2Ride Hoodie" },
+  prod_hoodie_desc: { fr: "Molleton épais 320g, doublure douce, logo dos + poitrine.",
+                       es: "Felpa gruesa 320g, forro suave, logo en espalda y pecho.",
+                       en: "Heavy 320g fleece, soft lining, back + chest logo." },
+
+  prod_cap_name:    { fr: "Casquette Rent2Ride", es: "Gorra Rent2Ride", en: "Rent2Ride Cap" },
+  prod_cap_desc:    { fr: "Casquette ajustable, broderie 3D, visière courbée.",
+                       es: "Gorra ajustable, bordado 3D, visera curvada.",
+                       en: "Adjustable cap, 3D embroidery, curved brim." },
+
+  prod_stickers_name:{ fr: "Lot de 5 stickers Rent2Ride", es: "Pack de 5 pegatinas Rent2Ride", en: "Rent2Ride sticker pack (5)" },
+  prod_stickers_desc:{ fr: "Vinyle résistant UV et pluie, à coller sur casque, top-case ou ordinateur.",
+                        es: "Vinilo resistente a UV y lluvia, para pegar en casco, baúl u ordenador.",
+                        en: "UV- and rain-resistant vinyl, for your helmet, top-case or laptop." },
+
+  /* ---------------- CART / PANIER ---------------- */
+  cart_title:        { fr: "Votre panier", es: "Tu carrito", en: "Your cart" },
+  cart_empty:        { fr: "Votre panier est vide.", es: "Tu carrito está vacío.", en: "Your cart is empty." },
+  cart_empty_cta:    { fr: "Voir la boutique", es: "Ver la tienda", en: "Browse the shop" },
+  cart_subtotal:     { fr: "Sous-total", es: "Subtotal", en: "Subtotal" },
+  cart_shipping_note:{ fr: "Frais de livraison calculés à la confirmation.", es: "Gastos de envío calculados al confirmar.", en: "Shipping costs calculated on confirmation." },
+  cart_checkout:     { fr: "Passer la commande", es: "Finalizar pedido", en: "Checkout" },
+  cart_continue:     { fr: "Continuer mes achats", es: "Seguir comprando", en: "Continue shopping" },
+  cart_remove:       { fr: "Retirer", es: "Quitar", en: "Remove" },
+  cart_close:        { fr: "Fermer", es: "Cerrar", en: "Close" },
+
+  /* ---------------- CHECKOUT ---------------- */
+  checkout_title:      { fr: "Finaliser la commande", es: "Finalizar el pedido", en: "Complete your order" },
+  checkout_name:       { fr: "Nom complet", es: "Nombre completo", en: "Full name" },
+  checkout_email:      { fr: "E-mail", es: "Correo electrónico", en: "Email" },
+  checkout_phone:      { fr: "Téléphone", es: "Teléfono", en: "Phone" },
+  checkout_address:    { fr: "Adresse de livraison", es: "Dirección de envío", en: "Shipping address" },
+  checkout_note:       { fr: "Note (optionnel)", es: "Nota (opcional)", en: "Note (optional)" },
+  checkout_note_ph:    { fr: "Précisions sur votre commande…", es: "Detalles sobre tu pedido…", en: "Details about your order…" },
+  checkout_payment_note:{ fr: "Le paiement en ligne sécurisé arrive bientôt. Pour l'instant, on confirme votre commande et le règlement ensemble.",
+                           es: "El pago en línea seguro llega pronto. Por ahora, confirmamos tu pedido y el pago juntos.",
+                           en: "Secure online payment is coming soon. For now, we confirm your order and payment together." },
+  checkout_send_both:  { fr: "Envoyer ma commande", es: "Enviar mi pedido", en: "Send my order" },
+  checkout_back_cart:   { fr: "Retour au panier", es: "Volver al carrito", en: "Back to cart" },
+  checkout_required:    { fr: "Merci de renseigner au moins votre nom et un moyen de vous contacter (e-mail ou téléphone).",
+                           es: "Indica al menos tu nombre y un medio de contacto (correo o teléfono).",
+                           en: "Please enter at least your name and a way to reach you (email or phone)." },
 };
 
 /* Months & days of week — used by the booking calendar */
