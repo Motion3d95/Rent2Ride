@@ -472,6 +472,8 @@ table.price-table tbody tr:hover{ background:var(--c-bg-cream); }
   display:flex; align-items:center; justify-content:center; font-size:1.05rem;
   transition:border-color .2s, color .2s;
 }
+.social-row a.social-icon{ border-color:rgba(255,255,255,.2); color:#fff; }
+.social-row a svg{ width:18px; height:18px; }
 .social-row a:hover{ border-color:var(--c-accent); color:var(--c-accent); }
 
 /* =========================================================
