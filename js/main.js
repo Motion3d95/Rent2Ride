@@ -798,14 +798,26 @@ function initPriceCalculator(){
    ne s'affichera tout simplement pas pour ce produit/couleur.
    ========================================================= */
 const SHOP_IMAGES = {
-  /* Dès que vous m'envoyez une vraie photo pour une couleur/vue
-     précise, j'ajoute la ligne correspondante ici, par exemple :
-     tshirt: { black: { front: "./images/shop-tshirt-black-front.jpg", back: null } }
-     Tant qu'une couleur n'a pas d'entrée ici, la photo de base
-     (SHOP_IMAGE_FALLBACK ci-dessous) est utilisée à sa place. */
-  tshirt: {},
-  hoodie: {},
-  cap: {},
+  tshirt: {
+    black: { front: "./images/shop-tshirt-black-front.jpg", back: "./images/shop-tshirt-black-back.jpg" },
+    white: { front: "./images/shop-tshirt-white-front.jpg", back: "./images/shop-tshirt-white-back.jpg" },
+    red:   { front: "./images/shop-tshirt-red-front.jpg",   back: "./images/shop-tshirt-red-back.jpg" },
+    grey:  { front: "./images/shop-tshirt-grey-front.jpg",  back: "./images/shop-tshirt-grey-back.jpg" },
+  },
+  hoodie: {
+    black: { front: "./images/shop-hoodie-black-front.jpg", back: "./images/shop-hoodie-black-back.jpg" },
+    white: { front: "./images/shop-hoodie-white-front.jpg", back: "./images/shop-hoodie-white-back.jpg" },
+    red:   { front: "./images/shop-hoodie-red-front.jpg",   back: "./images/shop-hoodie-red-back.jpg" },
+    grey:  { front: "./images/shop-hoodie-grey-front.jpg",  back: "./images/shop-hoodie-grey-back.jpg" },
+  },
+  cap: {
+    /* Pas de photo de dos pour la casquette pour l'instant -> back: null,
+       le bouton "Verso" restera simplement masqué pour ce produit. */
+    black: { front: "./images/shop-cap-black-front.jpg", back: null },
+    white: { front: "./images/shop-cap-white-front.jpg", back: null },
+    red:   { front: "./images/shop-cap-red-front.jpg",   back: null },
+    grey:  { front: "./images/shop-cap-grey-front.jpg",  back: null },
+  },
   stickers: {},
 };
 
