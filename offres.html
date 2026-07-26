@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="title_packs">Offres & Packs — Rent2Ride</title>
 <meta name="description" content="Découvrez nos packs de location moto : Explorer, Weekend Escape, Costa Ride, Freedom, Adventure Week, Grand Tour. Kilométrage illimité, tarifs transparents.">
+<link rel="canonical" href="https://motion3d95.github.io/Rent2Ride/offres.html">
+<meta property="og:title" content="Offres & Packs — Rent2Ride">
+<meta property="og:description" content="Découvrez nos packs de location moto : Explorer, Weekend Escape, Costa Ride, Freedom, Adventure Week, Grand Tour. Kilométrage illimité, tarifs transparents.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://motion3d95.github.io/Rent2Ride/offres.html">
+<meta property="og:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Offres & Packs — Rent2Ride">
+<meta name="twitter:description" content="Découvrez nos packs de location moto : Explorer, Weekend Escape, Costa Ride, Freedom, Adventure Week, Grand Tour. Kilométrage illimité, tarifs transparents.">
+<meta name="twitter:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -85,6 +96,22 @@
         <h2 style="font-family:var(--f-display); font-size:clamp(1.8rem,3.5vw,2.6rem); margin:0 0 10px;">Choisissez votre formule</h2>
         <p style="color:var(--c-ink-soft);">Tous les tarifs sont indicatifs pour la Yamaha MT-07 — ajustés selon le modèle choisi.</p>
       </div>
+    </div>
+
+    <div class="price-calc">
+      <div class="price-calc-inputs">
+        <label for="calcDays" data-i18n="calc_label">Combien de jours souhaitez-vous rouler ?</label>
+        <div class="price-calc-slider-row">
+          <input type="range" id="calcDays" min="1" max="14" value="3" step="1">
+          <span class="price-calc-days-value"><span id="calcDaysValue">3</span> <span data-i18n="calc_days_unit">jours</span></span>
+        </div>
+      </div>
+      <div class="price-calc-result">
+        <span class="price-calc-from" data-i18n="pack_from">À partir de</span>
+        <span class="price-calc-amount" id="calcAmount">239 €</span>
+        <a href="reservation.html#booking" class="btn btn-primary" data-i18n="calc_cta">Réserver ces dates</a>
+      </div>
+      <p class="price-calc-note" data-i18n="calc_note">Estimation indicative pour la Yamaha MT-07, hors options. Le tarif exact dépend du modèle choisi et sera confirmé à la réservation.</p>
     </div>
 
     <div class="packs-grid">
@@ -335,8 +362,8 @@
         <h5 data-i18n="footer_legal_h">Informations légales</h5>
         <ul>
           <li><a href="conditions.html" data-i18n="footer_legal_terms">Conditions de location</a></li>
-          <li><a href="#" data-i18n="footer_legal_privacy">Confidentialité</a></li>
-          <li><a href="#" data-i18n="footer_legal_cookies">Cookies</a></li>
+          <li><a href="confidentialite.html" data-i18n="footer_legal_privacy">Confidentialité</a></li>
+          <li><a href="confidentialite.html#cookies" data-i18n="footer_legal_cookies">Cookies</a></li>
         </ul>
       </div>
       <div>
@@ -344,7 +371,7 @@
         <ul>
           <li>+33 6 88 13 38 95</li>
           <li>info@rent2ride.com</li>
-          <li>San Pedro de Alcántara, Málaga</li>
+          <li>Barcelone, Espagne</li>
         </ul>
       </div>
     </div>
@@ -436,6 +463,12 @@
   </div>
 
 </aside>
+
+<!-- ================= COOKIE BANNER ================= -->
+<div class="cookie-banner" id="cookieBanner" style="display:none;">
+  <p data-i18n="cookie_text">Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (langue choisie, panier boutique) — aucun cookie publicitaire ni traceur tiers. <a href="confidentialite.html#cookies">En savoir plus</a></p>
+  <button id="cookieAccept" class="btn btn-primary btn-sm" data-i18n="cookie_accept">J'ai compris</button>
+</div>
 
 <script src="./js/i18n.js"></script>
 <script src="./js/main.js"></script>

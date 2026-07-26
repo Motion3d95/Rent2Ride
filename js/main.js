@@ -27,6 +27,20 @@ const PRICING = {
   tracer9:  { day: 89,  week: 549,  month: 1869, deposit: 600, key: "bike_tracer9_name" },
 };
 
+/* =========================================================
+   CODES PROMO
+   ---------------------------------------------------------
+   Ajoutez/modifiez/supprimez librement des lignes ici. La clé
+   est le code tel que le client le tape (majuscule/minuscule
+   n'a pas d'importance, il est normalisé en majuscules), la
+   valeur est le pourcentage de réduction appliqué au total.
+   ========================================================= */
+const PROMO_CODES = {
+  "BIENVENUE10": 10,
+  "PARRAIN15": 15,
+};
+let appliedPromoCode = null;
+
 /* WhatsApp business number, international format, no spaces or symbols.
    Example shown is a PLACEHOLDER — replace with your real number. */
 const WHATSAPP_NUMBER = "33688133895";
@@ -303,10 +317,90 @@ function updateBookingSummary(){
 
   daysOut.textContent = days > 0 ? days : "—";
   rateOut.textContent = `${rate} €`;
-  totalOut.textContent = total > 0 ? `${total} €` : "—";
+
+  const discountRow = document.getElementById("summaryDiscountRow");
+  const discountOut = document.getElementById("summaryDiscount");
+
+  if (appliedPromoCode && total > 0){
+    const pct = PROMO_CODES[appliedPromoCode];
+    const discountAmount = Math.round(total * pct / 100);
+    const finalTotal = total - discountAmount;
+    if (discountRow) discountRow.style.display = "flex";
+    if (discountOut) discountOut.textContent = `-${discountAmount} € (${appliedPromoCode})`;
+    totalOut.textContent = `${finalTotal} €`;
+  } else {
+    if (discountRow) discountRow.style.display = "none";
+    totalOut.textContent = total > 0 ? `${total} €` : "—";
+  }
+}
+
+function initPromoCode(){
+  const input = document.getElementById("promoCodeInput");
+  const btn = document.getElementById("promoCodeApply");
+  const feedback = document.getElementById("promoCodeFeedback");
+  if (!input || !btn) return;
+
+  btn.addEventListener("click", () => {
+    const code = input.value.trim().toUpperCase();
+    const lang = getCurrentLang();
+    if (!code){
+      appliedPromoCode = null;
+      updateBookingSummary();
+      return;
+    }
+    if (PROMO_CODES[code]){
+      appliedPromoCode = code;
+      if (feedback){
+        feedback.textContent = `${TRANSLATIONS.promo_valid[lang]} (-${PROMO_CODES[code]}%)`;
+        feedback.className = "promo-feedback is-valid";
+      }
+    } else {
+      appliedPromoCode = null;
+      if (feedback){
+        feedback.textContent = TRANSLATIONS.promo_invalid[lang];
+        feedback.className = "promo-feedback is-invalid";
+      }
+    }
+    updateBookingSummary();
+  });
+}
+
+function formatBookingDate(d){
+  if (!d) return "";
+  return d.toLocaleDateString("fr-FR", { day: "2-digit", month: "2-digit", year: "numeric" });
+}
+
+function buildBookingSummaryText(form, modelKey){
+  const model = PRICING[modelKey];
+  const modelName = model ? TRANSLATIONS[model.key]["fr"] : modelKey;
+  const days = getNumberOfDays();
+  const { total, rate } = calculateTotal(modelKey, days);
+
+  const name = form.querySelector("#fullName")?.value.trim() || "";
+  const email = form.querySelector("#email")?.value.trim() || "";
+  const phone = form.querySelector("#phone")?.value.trim() || "";
+
+  let finalTotal = total;
+  let discountLine = "";
+  if (appliedPromoCode && PROMO_CODES[appliedPromoCode] && total > 0){
+    const pct = PROMO_CODES[appliedPromoCode];
+    const discountAmount = Math.round(total * pct / 100);
+    finalTotal = total - discountAmount;
+    discountLine = `\nCode promo : ${appliedPromoCode} (-${discountAmount} €)`;
+  }
+
+  return `Demande de réservation Rent2Ride\n\n` +
+    `Moto : ${modelName}\n` +
+    `Du ${formatBookingDate(selectedRange.start)} au ${formatBookingDate(selectedRange.end)} (${days} jours)\n` +
+    `Tarif journalier : ${rate} €${discountLine}\n` +
+    `Total estimé : ${finalTotal} €\n\n` +
+    `Nom : ${name}\n` +
+    `Contact : ${[email, phone].filter(Boolean).join(" / ")}`;
 }
 
 function initBookingForm(){
+
+
   const form = document.getElementById("bookingForm");
   if (!form) return;
 
@@ -345,16 +439,29 @@ function initBookingForm(){
     saveBooking(modelSelect.value, selectedRange.start, selectedRange.end);
 
     /* ---------------------------------------------------
-       WHERE TO SEND THE BOOKING DATA
-       This demo just shows a success message. To actually
-       receive bookings, replace this block with either:
-       (a) fetch() to your own backend / serverless function
-       (b) a form service like Formspree/Getform (set the
-           form's "action" attribute and remove preventDefault)
+       Envoi de la demande — même circuit que la boutique :
+       Telegram (automatique, silencieux) + WhatsApp + e-mail
+       (le client doit confirmer l'envoi de son côté pour ces
+       deux derniers, c'est une limite de WhatsApp/mailto, pas
+       du code).
        --------------------------------------------------- */
+    const summary = buildBookingSummaryText(form, modelSelect.value);
+    sendTelegramNotification(summary);
+
+    const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(summary)}`;
+    window.open(waUrl, "_blank", "noopener");
+
+    const subject = encodeURIComponent("Demande de réservation Rent2Ride");
+    const body = encodeURIComponent(summary);
+    const mailtoUrl = `mailto:info@rent2ride.com?subject=${subject}&body=${body}`;
+    setTimeout(() => { window.location.href = mailtoUrl; }, 400);
+
     if (success) success.classList.add("show");
     form.reset();
     selectedRange = { start: null, end: null };
+    appliedPromoCode = null;
+    const promoFeedback = document.getElementById("promoCodeFeedback");
+    if (promoFeedback) promoFeedback.textContent = "";
     syncDateInputs();
     renderCalendar();
     updateBookingSummary();
@@ -634,6 +741,55 @@ const SHOP_STOCK = {
 const STOCK_LOW_THRESHOLD = 3;
 
 /* =========================================================
+   CALCULATEUR DE PRIX (page Nos offres)
+   ---------------------------------------------------------
+   Reprend les mêmes paliers que les 6 formules affichées plus bas.
+   Si vous changez un prix de formule dans le HTML, pensez à
+   changer aussi le chiffre correspondant ici pour rester cohérent.
+   ========================================================= */
+const PRICE_TIERS = [
+  { days: 1,  price: 89  },
+  { days: 2,  price: 169 },
+  { days: 3,  price: 239 },
+  { days: 5,  price: 379 },
+  { days: 7,  price: 499 },
+  { days: 14, price: 949 },
+];
+
+function estimatePrice(days){
+  if (days <= PRICE_TIERS[0].days) return PRICE_TIERS[0].price;
+  const last = PRICE_TIERS[PRICE_TIERS.length - 1];
+  if (days >= last.days){
+    const prevTier = PRICE_TIERS[PRICE_TIERS.length - 2];
+    const dailyRate = (last.price - prevTier.price) / (last.days - prevTier.days);
+    return Math.round(last.price + (days - last.days) * dailyRate);
+  }
+  for (let i = 0; i < PRICE_TIERS.length - 1; i++){
+    const a = PRICE_TIERS[i], b = PRICE_TIERS[i + 1];
+    if (days >= a.days && days <= b.days){
+      const ratio = (days - a.days) / (b.days - a.days);
+      return Math.round(a.price + ratio * (b.price - a.price));
+    }
+  }
+  return PRICE_TIERS[0].price;
+}
+
+function initPriceCalculator(){
+  const slider = document.getElementById("calcDays");
+  const daysLabel = document.getElementById("calcDaysValue");
+  const amountEl = document.getElementById("calcAmount");
+  if (!slider) return;
+
+  function render(){
+    const days = parseInt(slider.value, 10);
+    daysLabel.textContent = days;
+    amountEl.textContent = estimatePrice(days) + " €";
+  }
+  slider.addEventListener("input", render);
+  render();
+}
+
+/* =========================================================
    PHOTOS PRODUIT — par couleur + vue (recto/verso)
    ---------------------------------------------------------
    Pour ajouter/remplacer une photo : mettez le fichier dans
@@ -642,27 +798,15 @@ const STOCK_LOW_THRESHOLD = 3;
    ne s'affichera tout simplement pas pour ce produit/couleur.
    ========================================================= */
 const SHOP_IMAGES = {
-  tshirt: {
-    black: { front: "./images/shop-tshirt-black-front.jpg", back: "./images/shop-tshirt-black-back.jpg" },
-    white: { front: "./images/shop-tshirt-white-front.jpg", back: "./images/shop-tshirt-white-back.jpg" },
-    red:   { front: "./images/shop-tshirt-red-front.jpg",   back: "./images/shop-tshirt-red-back.jpg" },
-    grey:  { front: "./images/shop-tshirt-grey-front.jpg",  back: "./images/shop-tshirt-grey-back.jpg" },
-  },
-  hoodie: {
-    black: { front: "./images/shop-hoodie-black-front.jpg", back: "./images/shop-hoodie-black-back.jpg" },
-    white: { front: "./images/shop-hoodie-white-front.jpg", back: "./images/shop-hoodie-white-back.jpg" },
-    red:   { front: "./images/shop-hoodie-red-front.jpg",   back: "./images/shop-hoodie-red-back.jpg" },
-    grey:  { front: "./images/shop-hoodie-grey-front.jpg",  back: "./images/shop-hoodie-grey-back.jpg" },
-  },
-  cap: {
-    black: { front: "./images/shop-cap-black-front.jpg", back: "./images/shop-cap-black-back.jpg" },
-    white: { front: "./images/shop-cap-white-front.jpg", back: "./images/shop-cap-white-back.jpg" },
-    red:   { front: "./images/shop-cap-red-front.jpg",   back: "./images/shop-cap-red-back.jpg" },
-    grey:  { front: "./images/shop-cap-grey-front.jpg",  back: "./images/shop-cap-grey-back.jpg" },
-  },
-  stickers: {
-    default: { front: "./images/shop-stickers-white.jpg", back: null },
-  },
+  /* Dès que vous m'envoyez une vraie photo pour une couleur/vue
+     précise, j'ajoute la ligne correspondante ici, par exemple :
+     tshirt: { black: { front: "./images/shop-tshirt-black-front.jpg", back: null } }
+     Tant qu'une couleur n'a pas d'entrée ici, la photo de base
+     (SHOP_IMAGE_FALLBACK ci-dessous) est utilisée à sa place. */
+  tshirt: {},
+  hoodie: {},
+  cap: {},
+  stickers: {},
 };
 
 /* Photo affichée par défaut tant que la photo spécifique à la
@@ -673,20 +817,6 @@ const SHOP_IMAGE_FALLBACK = {
   cap: "./images/shop-cap.jpg",
   stickers: "./images/shop-stickers.jpg",
 };
-
-/* Vérifie si une image existe réellement sur le serveur avant de
-   l'utiliser, pour ne jamais afficher une image cassée (404) si
-   la photo n'a pas encore été envoyée. Résultat mis en cache. */
-const _imageExistsCache = {};
-function imageExists(url){
-  return new Promise(resolve => {
-    if (url in _imageExistsCache) return resolve(_imageExistsCache[url]);
-    const img = new Image();
-    img.onload = () => { _imageExistsCache[url] = true; resolve(true); };
-    img.onerror = () => { _imageExistsCache[url] = false; resolve(false); };
-    img.src = url;
-  });
-}
 
 function getStockFor(productId, size, color){
   const key = cartLineId(productId, size, color);
@@ -945,7 +1075,7 @@ function getSelectedVariant(card, productId){
   return { size: sizeInput ? sizeInput.value : null, color: colorInput ? colorInput.value : null };
 }
 
-async function updateProductImage(card){
+function updateProductImage(card){
   const productId = card.dataset.product;
   const imgEl = card.querySelector(".product-main-img");
   const toggle = card.querySelector("[data-view-toggle]");
@@ -956,19 +1086,14 @@ async function updateProductImage(card){
   const views = (SHOP_IMAGES[productId] && SHOP_IMAGES[productId][colorKey]) || null;
 
   let view = card.dataset.currentView || "front";
-  const frontUrl = views ? views.front : null;
-  const backUrl = views ? views.back : null;
-  const targetUrl = (view === "back" && backUrl) ? backUrl : frontUrl;
-
-  const finalUrl = (targetUrl && await imageExists(targetUrl))
-    ? targetUrl
-    : SHOP_IMAGE_FALLBACK[productId];
+  const hasBack = !!(views && views.back);
+  const finalUrl = (views && (view === "back" && hasBack ? views.back : views.front))
+    || SHOP_IMAGE_FALLBACK[productId];
 
   imgEl.src = finalUrl;
-  card.dataset.currentView = (view === "back" && backUrl) ? "back" : "front";
+  card.dataset.currentView = (view === "back" && hasBack) ? "back" : "front";
 
   if (toggle){
-    const hasBack = backUrl && await imageExists(backUrl);
     toggle.style.display = hasBack ? "flex" : "none";
     toggle.querySelectorAll("button").forEach(b => {
       b.classList.toggle("active", b.dataset.view === card.dataset.currentView);
@@ -1065,6 +1190,25 @@ function initShopProductCards(){
   });
 }
 
+const COOKIE_CONSENT_KEY = "rent2ride_cookie_consent";
+
+function initCookieBanner(){
+  const banner = document.getElementById("cookieBanner");
+  if (!banner) return;
+  if (localStorage.getItem(COOKIE_CONSENT_KEY)){
+    banner.style.display = "none";
+    return;
+  }
+  banner.style.display = "flex";
+  const acceptBtn = document.getElementById("cookieAccept");
+  if (acceptBtn){
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem(COOKIE_CONSENT_KEY, "accepted");
+      banner.style.display = "none";
+    });
+  }
+}
+
 function initCart(){
   const cartToggleBtns = document.querySelectorAll(".cart-toggle");
   cartToggleBtns.forEach(btn => btn.addEventListener("click", openCartDrawer));
@@ -1095,6 +1239,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initCalendarNav();
   renderCalendar();
   initBookingForm();
+  initPromoCode();
   initContactForm();
   syncDateInputs();
   initFaqAccordion();
@@ -1103,4 +1248,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initMomovenLinks();
   refreshAvailabilityBadges();
   initCart();
+  initPriceCalculator();
+  initCookieBanner();
 });

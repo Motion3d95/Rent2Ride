@@ -5,15 +5,41 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="title_home">Rent2Ride — Location de motos Costa del Sol</title>
 <meta name="description" content="Location de motos premium sur la Costa del Sol. Yamaha MT-07, MT-09, Tracer 7, Tracer 9. Réservation en ligne, assurance incluse, assistance 24/7.">
+<link rel="canonical" href="https://motion3d95.github.io/Rent2Ride/">
 <meta property="og:title" content="Rent2Ride — Location de motos Costa del Sol">
-<meta property="og:description" content="Location de motos premium sur la Costa del Sol. Réservation en ligne, assurance incluse.">
+<meta property="og:description" content="Location de motos premium sur la Costa del Sol. Yamaha MT-07, MT-09, Tracer 7, Tracer 9. Réservation en ligne, assurance incluse, assistance 24/7.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://motion3d95.github.io/Rent2Ride/">
+<meta property="og:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rent2Ride — Location de motos Costa del Sol">
+<meta name="twitter:description" content="Location de motos premium sur la Costa del Sol. Yamaha MT-07, MT-09, Tracer 7, Tracer 9. Réservation en ligne, assurance incluse, assistance 24/7.">
+<meta name="twitter:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./css/base.css">
 <link rel="stylesheet" href="./css/components.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MotorcycleRental",
+  "name": "Rent2Ride",
+  "description": "Location de motos premium sur la Costa del Sol. Yamaha MT-07, MT-09, Tracer 7, Tracer 9. Assurance incluse, kilométrage illimité, assistance 24/7.",
+  "url": "https://motion3d95.github.io/Rent2Ride/",
+  "telephone": "+33688133895",
+  "email": "info@rent2ride.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Barcelone",
+    "addressCountry": "ES"
+  },
+  "priceRange": "89€ - 949€",
+  "openingHours": "Mo-Su 09:00-19:00"
+}
+</script>
 </head>
 <body>
 
@@ -371,8 +397,8 @@
         <h5 data-i18n="footer_legal_h">Informations légales</h5>
         <ul>
           <li><a href="conditions.html" data-i18n="footer_legal_terms">Conditions de location</a></li>
-          <li><a href="#" data-i18n="footer_legal_privacy">Confidentialité</a></li>
-          <li><a href="#" data-i18n="footer_legal_cookies">Cookies</a></li>
+          <li><a href="confidentialite.html" data-i18n="footer_legal_privacy">Confidentialité</a></li>
+          <li><a href="confidentialite.html#cookies" data-i18n="footer_legal_cookies">Cookies</a></li>
         </ul>
       </div>
       <div>
@@ -473,9 +499,13 @@
 
 </aside>
 
+<!-- ================= COOKIE BANNER ================= -->
+<div class="cookie-banner" id="cookieBanner" style="display:none;">
+  <p data-i18n="cookie_text">Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (langue choisie, panier boutique) — aucun cookie publicitaire ni traceur tiers. <a href="confidentialite.html#cookies">En savoir plus</a></p>
+  <button id="cookieAccept" class="btn btn-primary btn-sm" data-i18n="cookie_accept">J'ai compris</button>
+</div>
+
 <script src="./js/i18n.js"></script>
 <script src="./js/main.js"></script>
-
-    <script src="http://code.tidio.co/r3fqwm6lkn8gfqhqkstd36szyk2iy7pt.js" async></script>
 </body>
 </html>

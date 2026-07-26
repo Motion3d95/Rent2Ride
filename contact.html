@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title data-i18n="title_contact">Contact — Rent2Ride</title>
 <meta name="description" content="Contactez Rent2Ride pour toute question sur la location de moto, par téléphone, WhatsApp ou e-mail.">
+<link rel="canonical" href="https://motion3d95.github.io/Rent2Ride/contact.html">
+<meta property="og:title" content="Contact — Rent2Ride">
+<meta property="og:description" content="Contactez Rent2Ride pour toute question sur la location de moto, par téléphone, WhatsApp ou e-mail.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://motion3d95.github.io/Rent2Ride/contact.html">
+<meta property="og:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — Rent2Ride">
+<meta name="twitter:description" content="Contactez Rent2Ride pour toute question sur la location de moto, par téléphone, WhatsApp ou e-mail.">
+<meta name="twitter:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -159,7 +170,7 @@
     <div style="border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--c-border); aspect-ratio:16/6;">
       <!-- MAP SLOT: replace this iframe src with your real Google Maps embed -->
       <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d114612.31644159506!2d2.0577886475879446!3d41.392767442387516!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a49816718e30e5%3A0x44b0fb3d4f47660a!2sBarcelone%2C%20Espagne!5e1!3m2!1sfr!2sfr!4v1784966906221!5m2!1sfr!2sfr"
+        src="https://www.google.com/maps?q=San+Pedro+de+Alc%C3%A1ntara,+M%C3%A1laga,+Spain&output=embed"
         width="100%" height="100%" style="border:0;"
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"
         title="Rent2Ride location">
@@ -195,8 +206,8 @@
         <h5 data-i18n="footer_legal_h">Informations légales</h5>
         <ul>
           <li><a href="conditions.html" data-i18n="footer_legal_terms">Conditions de location</a></li>
-          <li><a href="#" data-i18n="footer_legal_privacy">Confidentialité</a></li>
-          <li><a href="#" data-i18n="footer_legal_cookies">Cookies</a></li>
+          <li><a href="confidentialite.html" data-i18n="footer_legal_privacy">Confidentialité</a></li>
+          <li><a href="confidentialite.html#cookies" data-i18n="footer_legal_cookies">Cookies</a></li>
         </ul>
       </div>
       <div>
@@ -282,7 +293,7 @@
         <input type="tel" id="checkoutPhone" autocomplete="tel" placeholder="+33 6 12 34 56 78">
       </label>
       <label><span data-i18n="checkout_address">Adresse de livraison</span>
-        <input type="text" id="checkoutAddress" autocomplete="street-address" placeholder="Ex: Carrer de Mallorca, 08013 Barcelona">
+        <input type="text" id="checkoutAddress" autocomplete="street-address" placeholder="12 rue de la Paix, 75002 Paris">
       </label>
       <label><span data-i18n="checkout_note">Note (optionnel)</span>
         <textarea id="checkoutNote" data-i18n-placeholder="checkout_note_ph" placeholder="Précisions sur votre commande…"></textarea>
@@ -295,6 +306,12 @@
   </div>
 
 </aside>
+
+<!-- ================= COOKIE BANNER ================= -->
+<div class="cookie-banner" id="cookieBanner" style="display:none;">
+  <p data-i18n="cookie_text">Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (langue choisie, panier boutique) — aucun cookie publicitaire ni traceur tiers. <a href="confidentialite.html#cookies">En savoir plus</a></p>
+  <button id="cookieAccept" class="btn btn-primary btn-sm" data-i18n="cookie_accept">J'ai compris</button>
+</div>
 
 <script src="./js/i18n.js"></script>
 <script src="./js/main.js"></script>

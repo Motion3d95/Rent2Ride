@@ -472,7 +472,7 @@ table.price-table tbody tr:hover{ background:var(--c-bg-cream); }
   display:flex; align-items:center; justify-content:center; font-size:1.05rem;
   transition:border-color .2s, color .2s;
 }
-.social-row a.social-icon{ border-color:rgba(255,255,255,.2); color:#beb4b4; }
+.social-row a.social-icon{ border-color:rgba(255,255,255,.2); color:#fff; }
 .social-row a svg{ width:18px; height:18px; }
 .social-row a:hover{ border-color:var(--c-accent); color:var(--c-accent); }
 
@@ -1157,3 +1157,65 @@ body.cart-open .cart-overlay{ opacity:1; pointer-events:auto; }
   color:var(--c-accent); margin:0 0 12px;
 }
 .team-bio{ font-size:.9rem; color:var(--c-ink-soft); line-height:1.6; max-width:280px; margin:0 auto; }
+
+/* =========================================================
+   CALCULATEUR DE PRIX INTERACTIF (page Nos offres)
+   ========================================================= */
+.price-calc{
+  background:var(--c-bg-cream); border-radius:var(--radius-lg);
+  padding:32px; margin-bottom:48px;
+  display:grid; grid-template-columns:1.3fr 1fr; gap:32px; align-items:center;
+}
+@media (max-width:768px){ .price-calc{ grid-template-columns:1fr; } }
+
+.price-calc-inputs label{
+  display:block; font-weight:600; margin-bottom:16px; font-size:.95rem;
+}
+.price-calc-slider-row{ display:flex; align-items:center; gap:16px; }
+.price-calc-slider-row input[type="range"]{
+  flex:1; accent-color:var(--c-accent); height:6px; cursor:pointer;
+}
+.price-calc-days-value{
+  font-family:var(--f-display); font-weight:600; font-size:1.1rem;
+  white-space:nowrap; min-width:70px; text-align:right;
+}
+
+.price-calc-result{
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  text-align:center; background:#fff; border-radius:var(--radius-md);
+  padding:20px; box-shadow:var(--shadow-card);
+}
+.price-calc-from{ font-size:.78rem; color:var(--c-ink-soft); }
+.price-calc-amount{
+  font-family:var(--f-display); font-size:2.1rem; font-weight:600;
+  color:var(--c-accent); margin-bottom:8px;
+}
+
+.price-calc-note{
+  grid-column:1 / -1; font-size:.78rem; color:var(--c-ink-faint); margin:0;
+}
+
+/* =========================================================
+   BANNIÈRE COOKIES (RGPD)
+   ========================================================= */
+.cookie-banner{
+  position:fixed; left:0; right:0; bottom:0; z-index:95;
+  background:var(--c-dark); color:#fff;
+  padding:16px 24px; display:flex; align-items:center; justify-content:center;
+  gap:20px; flex-wrap:wrap;
+  box-shadow:0 -4px 20px rgba(0,0,0,.15);
+}
+.cookie-banner p{ margin:0; font-size:.82rem; max-width:720px; line-height:1.5; color:rgba(255,255,255,.85); }
+.cookie-banner p a{ color:#fff; text-decoration:underline; }
+.cookie-banner .btn-sm{ white-space:nowrap; }
+@media (max-width:600px){ .cookie-banner{ justify-content:flex-start; padding:16px; } }
+
+/* =========================================================
+   CODE PROMO (page Réservation)
+   ========================================================= */
+.promo-row{ display:flex; gap:8px; }
+.promo-row input{ flex:1; }
+.promo-row .btn-sm{ white-space:nowrap; }
+.promo-feedback{ font-size:.78rem; margin:6px 0 0; min-height:1.1em; }
+.promo-feedback.is-valid{ color:var(--c-success); }
+.promo-feedback.is-invalid{ color:var(--c-accent); }

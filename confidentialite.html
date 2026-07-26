@@ -3,19 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="title_gallery">Galerie photos — Rent2Ride</title>
-<meta name="description" content="Découvrez nos motos, nos routes et nos clients en images.">
-<link rel="canonical" href="https://motion3d95.github.io/Rent2Ride/galerie.html">
-<meta property="og:title" content="Galerie photos — Rent2Ride">
-<meta property="og:description" content="Découvrez nos motos, nos routes et nos clients en images.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://motion3d95.github.io/Rent2Ride/galerie.html">
-<meta property="og:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
-<meta property="og:locale" content="fr_FR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Galerie photos — Rent2Ride">
-<meta name="twitter:description" content="Découvrez nos motos, nos routes et nos clients en images.">
-<meta name="twitter:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
+<title data-i18n="title_privacy">Politique de confidentialité — Rent2Ride</title>
+<meta name="description" content="Politique de confidentialité et de gestion des cookies de Rent2Ride.">
+<link rel="canonical" href="https://motion3d95.github.io/Rent2Ride/confidentialite.html">
+<meta name="robots" content="noindex">
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -38,7 +29,7 @@
       <a href="offres.html" data-i18n="nav_packs">Nos offres</a>
       <a href="reservation.html" data-i18n="nav_booking">Réservation</a>
       <a href="balades.html" data-i18n="nav_rides">Balades</a>
-      <a href="galerie.html" class="active" data-i18n="nav_gallery">Galerie</a>
+      <a href="galerie.html" data-i18n="nav_gallery">Galerie</a>
       <a href="avis.html" data-i18n="nav_reviews">Avis clients</a>
       <a href="faq.html" data-i18n="nav_faq">FAQ</a>
       <a href="contact.html" data-i18n="nav_contact">Contact</a>
@@ -60,90 +51,66 @@
   </nav>
 </header>
 
-<section class="page-hero" style="--hero-img:url('../images/route-villages.jpg')">
+<section class="page-hero" style="--hero-img:url('./images/route-coast.jpg')">
   <div class="container">
-    <h1 data-i18n="gallery_title">Nos motos, nos routes, nos clients</h1>
-    <p data-i18n="gallery_sub">Un aperçu de ce qui vous attend sur les routes andalouses.</p>
+    <p class="eyebrow" data-i18n="privacy_eyebrow">VIE PRIVÉE</p>
+    <h1 data-i18n="privacy_title">Politique de confidentialité</h1>
+    <p data-i18n="privacy_sub">Comment Rent2Ride collecte, utilise et protège vos données.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="container">
-    <!-- PHOTO SLOTS — GALERIE UNIQUEMENT : routes, paysages, expériences.
-         Les photos de motos (MT-07, MT-09, Tracer 7, Tracer 9) restent
-         dans catalogue.html. Pour remplacer un placeholder :
-         1. Téléchargez votre photo (Unsplash/Pexels, usage commercial OK)
-         2. Renommez-la exactement comme indiqué ci-dessous
-         3. Glissez-la dans le dossier images/
-         Taille recommandée : 1200×800 minimum, paysage ou carré.         -->
-    <div class="gallery-grid">
+  <div class="container" style="max-width:820px;">
 
-      <!-- Grande photo principale — route côtière au coucher de soleil -->
-      <div class="gallery-item wide tall"
-           style="--gal-img:url('../images/hero.jpg')"
-           data-caption="Costa del Sol au coucher de soleil"></div>
-
-      <!-- Route de montagne — vue aérienne virages -->
-      <div class="gallery-item"
-           style="--gal-img:url('../images/route-ronda.jpg')"
-           data-caption="Col de la Ronda — A-397"></div>
-
-      <!-- Route côtière — corniche -->
-      <div class="gallery-item"
-           style="--gal-img:url('../images/route-coast.jpg')"
-           data-caption="Corniche de la Costa del Sol"></div>
-
-      <!-- Villages blancs — paysage andalou -->
-      <div class="gallery-item wide"
-           style="--gal-img:url('../images/route-villages.jpg')"
-           data-caption="Villages blancs d'Andalousie"></div>
-
-      <!-- PHOTO SLOT 1 — motard sur route (ex: gallery-1.jpg) -->
-      <div class="gallery-item tall"
-           style="--gal-img:url('../images/gallery-1.jpg')"
-           data-caption="Sur la route"></div>
-
-      <!-- PHOTO SLOT 2 — paysage Espagne (ex: gallery-2.jpg) -->
-      <div class="gallery-item"
-           style="--gal-img:url('../images/gallery-2.jpg')"
-           data-caption="Paysage andalou"></div>
-
-      <!-- PHOTO SLOT 3 — route sinueuse (ex: gallery-3.jpg) -->
-      <div class="gallery-item"
-           style="--gal-img:url('../images/gallery-3.jpg')"
-           data-caption="Route sinueuse"></div>
-
-      <!-- PHOTO SLOT 4 — vue côtière (ex: gallery-4.jpg) -->
-      <div class="gallery-item wide"
-           style="--gal-img:url('../images/gallery-4.jpg')"
-           data-caption="Vue côtière"></div>
-
-      <!-- PHOTO SLOT 5 — coucher de soleil (ex: gallery-5.jpg) -->
-      <div class="gallery-item"
-           style="--gal-img:url('../images/gallery-5.jpg')"
-           data-caption="Coucher de soleil"></div>
-
-      <!-- PHOTO SLOT 6 — col de montagne (ex: gallery-6.jpg) -->
-      <div class="gallery-item"
-           style="--gal-img:url('../images/gallery-6.jpg')"
-           data-caption="Col de montagne"></div>
-
-      <!-- PHOTO SLOT 7 — paysage vu du guidon (ex: gallery-7.jpg) -->
-      <div class="gallery-item wide"
-           style="--gal-img:url('../images/gallery-7.jpg')"
-           data-caption="Vue depuis le guidon"></div>
-
+    <div style="background:var(--c-bg-cream); border-radius:var(--radius-md); padding:20px 24px; margin-bottom:36px; font-size:.88rem; color:var(--c-ink-soft); line-height:1.6;">
+      <strong>Note :</strong> Rent2Ride est actuellement en phase de lancement, en amont de son immatriculation officielle. Cette page sera mise à jour avec la raison sociale complète, le numéro d'immatriculation et l'adresse du siège social dès que la structure sera enregistrée. En attendant, elle décrit fidèlement quelles données sont collectées via ce site et comment les exercer vos droits.
     </div>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem;">1. Qui sommes-nous</h2>
+    <p>Rent2Ride propose la location de motos sur la Costa del Sol et gère ce site accessible à l'adresse rent2ride.github.io (ou tout domaine qui lui succédera). Pour toute question relative à vos données, contactez-nous à <strong>info@rent2ride.com</strong>.</p>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;">2. Quelles données nous collectons</h2>
+    <p>Nous ne collectons que les données que vous nous transmettez volontairement, via les formulaires du site :</p>
+    <ul style="line-height:1.9;">
+      <li><strong>Formulaire de contact</strong> : nom, e-mail, téléphone, message</li>
+      <li><strong>Formulaire de réservation</strong> : nom, e-mail, téléphone, dates souhaitées, modèle de moto</li>
+      <li><strong>Commande boutique</strong> : nom, e-mail, téléphone, adresse de livraison, contenu de la commande</li>
+    </ul>
+    <p>Nous ne collectons <strong>aucune donnée bancaire</strong> sur ce site : aucun paiement en ligne n'y transite actuellement.</p>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;">3. Pourquoi nous les utilisons</h2>
+    <p>Uniquement pour répondre à votre demande : vous recontacter, traiter votre réservation ou votre commande, ou vous transmettre les informations demandées. Nous ne revendons ni ne partageons vos données à des fins commerciales avec des tiers.</p>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;">4. Avec qui vos données transitent</h2>
+    <p>Selon le formulaire utilisé, vos informations peuvent être transmises via :</p>
+    <ul style="line-height:1.9;">
+      <li><strong>WhatsApp</strong> (Meta) — pour les demandes envoyées via le bouton WhatsApp ou la commande boutique</li>
+      <li><strong>Votre messagerie e-mail</strong> — pour les demandes envoyées par e-mail</li>
+      <li><strong>Telegram</strong> — pour la notification interne de nouvelles commandes à notre équipe</li>
+    </ul>
+    <p>Ces services ont leurs propres politiques de confidentialité, que nous vous invitons à consulter.</p>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;">5. Combien de temps nous les conservons</h2>
+    <p>Vos données sont conservées le temps nécessaire pour traiter votre demande, puis supprimées ou archivées de façon raisonnable, sauf obligation légale contraire (comptabilité, litiges).</p>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;">6. Vos droits</h2>
+    <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition sur vos données personnelles. Pour l'exercer, écrivez-nous à <strong>info@rent2ride.com</strong> — nous répondrons dans un délai raisonnable.</p>
+
+    <h2 id="cookies" style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;">7. Cookies</h2>
+    <p>Ce site utilise uniquement des cookies techniques, nécessaires à son fonctionnement :</p>
+    <ul style="line-height:1.9;">
+      <li><strong>Langue choisie</strong> (FR/ES/EN) — mémorisée pour votre confort</li>
+      <li><strong>Panier boutique</strong> — mémorisé pour ne pas le perdre en changeant de page</li>
+      <li><strong>Consentement cookies</strong> — pour ne pas vous redemander votre accord à chaque visite</li>
+    </ul>
+    <p>Ces informations sont stockées uniquement dans votre navigateur (localStorage), jamais transmises à un serveur. Ce site n'utilise aucun cookie publicitaire ni traceur tiers à ce jour.</p>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;">8. Modifications</h2>
+    <p>Cette politique peut évoluer, notamment lors de l'immatriculation officielle de la société ou de l'ajout de nouveaux services (paiement en ligne, outils d'analyse d'audience...). La date de dernière mise à jour figure ci-dessous.</p>
+    <p style="color:var(--c-ink-faint); font-size:.85rem; margin-top:24px;">Dernière mise à jour : juillet 2026</p>
+
   </div>
 </section>
-
-<!-- Lightbox -->
-<div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Close">&times;</button>
-  <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&#8249;</button>
-  <img id="lightboxImg" src="" alt="">
-  <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&#8250;</button>
-</div>
 
 <footer class="site-footer">
   <div class="container">
