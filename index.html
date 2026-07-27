@@ -89,12 +89,16 @@
      Format recommandé : MP4 (H.264), 1920x1080, durée 15-60s
      La vidéo tourne en boucle, sans son, automatiquement.
      Si la vidéo ne charge pas, la photo hero.jpg s'affiche à la place. -->
-<section class="hero hero-video-section">
-  <!-- Vidéo de fond -->
-  <video class="hero-video-bg" autoplay muted loop playsinline poster="./images/hero.jpg">
-    <source src="./images/hero-video.mp4" type="video/mp4">
-    <!-- Fallback si le navigateur ne supporte pas la vidéo -->
-  </video>
+<section class="hero" id="heroCarousel">
+  <!-- Carrousel de photos en fondu automatique -->
+  <div class="hero-carousel">
+    <div class="hero-slide is-active" style="background-image:url('./images/hero.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('./images/route-coast.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('./images/Corniche-Costa-del-Sol-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('./images/Col-de-la-Ronda-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('./images/Villages-Blancs-1.jpg')"></div>
+    <div class="hero-slide" style="background-image:url('./images/Grazalema-1.jpg')"></div>
+  </div>
   <!-- Overlay sombre pour lisibilité du texte -->
   <div class="hero-video-overlay"></div>
   <!-- Contenu texte -->

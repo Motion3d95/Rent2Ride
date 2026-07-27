@@ -48,8 +48,28 @@
     linear-gradient(180deg, rgba(0,0,0,.05) 0%, rgba(0,0,0,.45) 100%),
     var(--hero-img, linear-gradient(135deg,#3a4750 0%, #8a5a3c 45%, #E0383A 75%, #f0b25f 100%));
   background-size:cover; background-position:center;
+  background-attachment:fixed;
   color:#fff;
 }
+@media (max-width:900px){
+  /* background-attachment:fixed est peu fiable sur mobile (Safari iOS
+     notamment) et peut nuire aux performances de défilement — on
+     repasse en fond classique sous 900px, où l'effet se voit peu
+     de toute façon vu la hauteur d'écran réduite. */
+  .hero{ background-attachment:scroll; }
+}
+
+/* ---- Carrousel de photos en fondu automatique (page d'accueil) ---- */
+.hero-carousel{ position:absolute; inset:0; z-index:0; }
+.hero-slide{
+  position:absolute; inset:0;
+  background-size:cover; background-position:center;
+  background-attachment:fixed;
+  opacity:0;
+  transition:opacity 1.6s ease;
+}
+.hero-slide.is-active{ opacity:1; }
+@media (max-width:900px){ .hero-slide{ background-attachment:scroll; } }
 
 /* ---- Vidéo de fond ---- */
 .hero-video-section{
@@ -62,6 +82,7 @@
   width:100%; height:100%;
   object-fit:cover; object-position:center;
   z-index:0;
+  will-change:transform;
 }
 .hero-video-overlay{
   position:absolute; inset:0; z-index:1;
@@ -550,6 +571,10 @@ table.price-table tbody tr:hover{ background:var(--c-bg-cream); }
     linear-gradient(180deg, rgba(0,0,0,.12), rgba(0,0,0,.45)),
     var(--hero-img, linear-gradient(135deg,#3a4750,#2F5158));
   background-size:cover; background-position:center;
+  background-attachment:fixed;
+}
+@media (max-width:900px){
+  .page-hero{ background-attachment:scroll; }
 }
 .page-hero h1{ font-family:var(--f-display); font-size:clamp(2.1rem,4.6vw,3.1rem); margin:0 0 10px; font-weight:600; text-shadow:0 2px 14px rgba(0,0,0,.35); }
 .page-hero p{ max-width:560px; color:rgba(255,255,255,.92); font-size:1.02rem; line-height:1.6; margin:0; text-shadow:0 1px 8px rgba(0,0,0,.35); }

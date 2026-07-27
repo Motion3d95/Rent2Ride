@@ -1204,6 +1204,51 @@ function initShopProductCards(){
 
 const COOKIE_CONSENT_KEY = "rent2ride_cookie_consent";
 
+/* =========================================================
+   PARALLAX — vidéo de fond de l'accueil
+   ---------------------------------------------------------
+   Le parallax CSS (background-attachment:fixed) gère déjà les
+   bandeaux images de toutes les pages intérieures. La vidéo de
+   fond de l'accueil a besoin d'un petit coup de pouce JS, car
+   cette technique CSS ne fonctionne pas sur une balise <video>.
+   ========================================================= */
+function initVideoParallax(){
+  const video = document.querySelector(".hero-video-bg");
+  const section = document.querySelector(".hero-video-section");
+  if (!video || !section) return;
+  if (window.matchMedia("(max-width: 900px)").matches) return; // désactivé sur mobile
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  let ticking = false;
+  function update(){
+    const rect = section.getBoundingClientRect();
+    // Ne calcule que tant que la section est visible à l'écran (perf)
+    if (rect.bottom > 0 && rect.top < window.innerHeight){
+      const offset = rect.top * 0.25; // la vidéo suit le défilement à 25% de la vitesse
+      video.style.transform = `translateY(${-offset}px) scale(1.15)`;
+    }
+    ticking = false;
+  }
+  window.addEventListener("scroll", () => {
+    if (!ticking){
+      requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
+}
+
+function initHeroCarousel(){
+  const slides = document.querySelectorAll("#heroCarousel .hero-slide");
+  if (!slides.length) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove("is-active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("is-active");
+  }, 5000);
+}
+
 function initCookieBanner(){
   const banner = document.getElementById("cookieBanner");
   if (!banner) return;
@@ -1262,4 +1307,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initCart();
   initPriceCalculator();
   initCookieBanner();
+  initHeroCarousel();
+  initVideoParallax();
 });
