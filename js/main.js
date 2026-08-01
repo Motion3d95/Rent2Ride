@@ -1368,7 +1368,7 @@ function initReferralTool(){
       à s'activer (erreur 401 en attendant, normal).
    Tant que la clé est vide, le widget reste simplement masqué.
    ========================================================= */
-const WEATHER_API_KEY = ""; // ex: "a1b2c3d4e5f6..."
+const WEATHER_API_KEY = "d1e8dd02ae4676330f60c4067310e5b7";
 const WEATHER_CITY = "Malaga,ES";
 
 function initWeatherWidget(){
