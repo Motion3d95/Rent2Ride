@@ -131,6 +131,7 @@ function applyTranslations(lang){
   if (typeof updateWhatsAppLink === "function") updateWhatsAppLink();
 
   if (typeof refreshAvailabilityBadges === "function") refreshAvailabilityBadges();
+  if (typeof updateAvailabilityCounter === "function") updateAvailabilityCounter();
 
   if (typeof renderCartDrawer === "function") renderCartDrawer();
 }
@@ -457,6 +458,11 @@ function initBookingForm(){
     setTimeout(() => { window.location.href = mailtoUrl; }, 400);
 
     if (success) success.classList.add("show");
+    const printBtn = document.getElementById("printConfirmBtn");
+    if (printBtn){
+      printBtn.style.display = "inline-flex";
+      printBtn.onclick = () => window.print();
+    }
     form.reset();
     selectedRange = { start: null, end: null };
     appliedPromoCode = null;
@@ -639,11 +645,25 @@ function refreshAvailabilityBadges(){
   });
 }
 
+/* Compteur global "X modèles disponibles aujourd'hui" (page Catalogue) */
+function updateAvailabilityCounter(){
+  const el = document.getElementById("availabilityCounter");
+  const cards = document.querySelectorAll(".bike-card[data-model]");
+  if (!el || !cards.length) return;
+  const lang = getCurrentLang();
+  let available = 0;
+  cards.forEach(card => { if (!isModelBookedOn(card.dataset.model)) available++; });
+  el.classList.toggle("is-low", available <= 1);
+  const template = TRANSLATIONS.availability_counter[lang];
+  el.textContent = template.replace("{n}", available).replace("{total}", cards.length);
+}
+
 /* Optionnel : permet de vider les réservations de test depuis la
    console du navigateur (F12) en tapant : clearAllBookings() */
 function clearAllBookings(){
   localStorage.removeItem(BOOKINGS_KEY);
   refreshAvailabilityBadges();
+  if (typeof updateAvailabilityCounter === "function") updateAvailabilityCounter();
 }
 
 /* =========================================================
@@ -700,6 +720,13 @@ const SHOP_PRODUCTS = {
     nameKey: "prod_stickers_name",
     descKey: "prod_stickers_desc",
     sizes: null,
+    colors: null,
+  },
+  giftcard: {
+    price: null, // prix variable, voir la fonction addToCart
+    nameKey: "prod_giftcard_name",
+    descKey: "prod_giftcard_desc",
+    sizes: ["50", "100", "150"], // représente le montant en euros, pas une taille
     colors: null,
   },
 };
@@ -867,13 +894,17 @@ function cartLineId(productId, size, color){
 function addToCart(productId, size, color, qty = 1){
   const product = SHOP_PRODUCTS[productId];
   if (!product) return;
+  /* Cas particulier : le bon cadeau a un prix variable selon le montant
+     choisi (porté par le "size", ex. "50" / "100" / "150") plutôt qu'un
+     prix fixe comme les autres produits. */
+  const price = productId === "giftcard" ? parseInt(size, 10) : product.price;
   const cart = getCart();
   const lineId = cartLineId(productId, size, color);
   const existing = cart.find(i => i.lineId === lineId);
   if (existing){
     existing.qty += qty;
   } else {
-    cart.push({ lineId, productId, size: size || null, color: color || null, qty, price: product.price });
+    cart.push({ lineId, productId, size: size || null, color: color || null, qty, price });
   }
   saveCart(cart);
   renderCartDrawer();
@@ -944,7 +975,7 @@ function renderCartDrawer(){
     if (!product) return;
     const name = TRANSLATIONS[product.nameKey][lang];
     const variantBits = [];
-    if (item.size) variantBits.push(item.size);
+    if (item.size) variantBits.push(item.productId === "giftcard" ? `${item.size} €` : item.size);
     if (item.color) variantBits.push(colorLabel(item.color, lang));
 
     const row = document.createElement("div");
@@ -965,8 +996,10 @@ function renderCartDrawer(){
     `;
     row.querySelector('[data-action="dec"]').addEventListener("click", () => updateCartLineQty(item.lineId, item.qty - 1));
     row.querySelector('[data-action="inc"]').addEventListener("click", () => {
-      const totalStock = getStockFor(item.productId, item.size, item.color);
-      if (item.qty + 1 > totalStock) return; /* on ne dépasse pas le stock */
+      if (item.productId !== "giftcard"){
+        const totalStock = getStockFor(item.productId, item.size, item.color);
+        if (item.qty + 1 > totalStock) return; /* on ne dépasse pas le stock */
+      }
       updateCartLineQty(item.lineId, item.qty + 1);
     });
     row.querySelector(".cart-item-remove").addEventListener("click", () => removeCartLine(item.lineId));
@@ -1017,7 +1050,7 @@ function buildOrderSummaryText(name, contact, address, note){
     const product = SHOP_PRODUCTS[item.productId];
     const pname = TRANSLATIONS[product.nameKey][lang];
     const variantBits = [];
-    if (item.size) variantBits.push(item.size);
+    if (item.size) variantBits.push(item.productId === "giftcard" ? `${item.size} €` : item.size);
     if (item.color) variantBits.push(colorLabel(item.color, lang));
     const variant = variantBits.length ? ` (${variantBits.join(", ")})` : "";
     return `• ${item.qty} x ${pname}${variant} — ${formatPrice(item.price * item.qty)}`;
@@ -1140,6 +1173,18 @@ function updateStockDisplay(card){
   const addBtn = card.querySelector(".product-add");
   if (!badge || !addBtn) return;
 
+  /* Les bons cadeaux n'ont pas de stock physique -> pas de badge,
+     toujours disponibles. Le prix affiché suit le montant choisi. */
+  if (productId === "giftcard"){
+    badge.textContent = "";
+    badge.classList.remove("stock-in", "stock-low", "stock-out");
+    addBtn.disabled = false;
+    const { size } = getSelectedVariant(card, productId);
+    const priceEl = document.getElementById("giftcardPriceDisplay");
+    if (priceEl && size) priceEl.textContent = `${size} €`;
+    return;
+  }
+
   const { size, color } = getSelectedVariant(card, productId);
   const remaining = getStockRemaining(productId, size, color);
   const lang = getCurrentLang();
@@ -1179,10 +1224,12 @@ function initShopProductCards(){
 
     addBtn.addEventListener("click", () => {
       const { size, color } = getSelectedVariant(card, productId);
-      const remaining = getStockRemaining(productId, size, color);
-      if (remaining <= 0){
-        updateStockDisplay(card);
-        return;
+      if (productId !== "giftcard"){
+        const remaining = getStockRemaining(productId, size, color);
+        if (remaining <= 0){
+          updateStockDisplay(card);
+          return;
+        }
       }
 
       addToCart(productId, size, color, 1);
@@ -1249,6 +1296,98 @@ function initHeroCarousel(){
   }, 5000);
 }
 
+function initRidePlanner(){
+  const checkboxes = document.querySelectorAll(".ride-plan-input");
+  const bar = document.getElementById("ridePlannerBar");
+  if (!checkboxes.length || !bar) return;
+
+  const countEl = document.getElementById("plannerCount");
+  const kmEl = document.getElementById("plannerKm");
+  const daysEl = document.getElementById("plannerDays");
+  const HOURS_PER_DAY = 4.5; // temps de route raisonnable par jour, hors pauses
+
+  function render(){
+    let totalKm = 0, totalHours = 0, count = 0;
+    checkboxes.forEach(cb => {
+      if (!cb.checked) return;
+      const card = cb.closest(".ride-card");
+      totalKm += parseFloat(card.dataset.km || 0);
+      totalHours += parseFloat(card.dataset.hours || 0);
+      count++;
+    });
+    countEl.textContent = count;
+    kmEl.textContent = `${totalKm} km`;
+    daysEl.textContent = Math.max(1, Math.ceil(totalHours / HOURS_PER_DAY));
+    bar.classList.toggle("is-visible", count > 0);
+  }
+
+  checkboxes.forEach(cb => cb.addEventListener("change", render));
+  render();
+}
+
+function initReferralTool(){
+  const btn = document.getElementById("referralGenerate");
+  const nameInput = document.getElementById("referralName");
+  const result = document.getElementById("referralResult");
+  const messageBox = document.getElementById("referralMessage");
+  const copyBtn = document.getElementById("referralCopy");
+  if (!btn) return;
+
+  btn.addEventListener("click", () => {
+    const name = nameInput.value.trim();
+    const lang = getCurrentLang();
+    const templates = {
+      fr: `${name ? name + " t'invite" : "Je t'invite"} à découvrir Rent2Ride, location de motos sur la Costa del Sol ! Avec le code PARRAIN15, tu as 15% de réduction sur ta première location. Infos et réservation : `,
+      es: `${name ? name + " te invita" : "Te invito"} a descubrir Rent2Ride, alquiler de motos en la Costa del Sol! Con el código PARRAIN15 tienes un 15% de descuento en tu primer alquiler. Info y reserva: `,
+      en: `${name ? name + " invites you" : "I'm inviting you"} to check out Rent2Ride, motorcycle rental on the Costa del Sol! Use code PARRAIN15 for 15% off your first rental. Info and booking: `,
+    };
+    const url = window.location.origin + window.location.pathname.replace(/offres\.html$/, "index.html");
+    messageBox.value = templates[lang] + url;
+    result.style.display = "block";
+  });
+
+  if (copyBtn){
+    copyBtn.addEventListener("click", () => {
+      messageBox.select();
+      navigator.clipboard?.writeText(messageBox.value).catch(() => {});
+      const lang = getCurrentLang();
+      const original = copyBtn.textContent;
+      copyBtn.textContent = TRANSLATIONS.referral_copied[lang];
+      setTimeout(() => { copyBtn.textContent = original; }, 1500);
+    });
+  }
+}
+
+/* =========================================================
+   WIDGET MÉTÉO — page d'accueil
+   ---------------------------------------------------------
+   Gratuit sur openweathermap.org (aucune carte bancaire requise) :
+   1. Créez un compte sur openweathermap.org
+   2. Onglet "API keys" -> copiez la clé générée automatiquement
+   3. Collez-la ci-dessous. Une clé toute neuve met parfois 1-2h
+      à s'activer (erreur 401 en attendant, normal).
+   Tant que la clé est vide, le widget reste simplement masqué.
+   ========================================================= */
+const WEATHER_API_KEY = ""; // ex: "a1b2c3d4e5f6..."
+const WEATHER_CITY = "Malaga,ES";
+
+function initWeatherWidget(){
+  const widget = document.getElementById("weatherWidget");
+  if (!widget || !WEATHER_API_KEY) return;
+
+  fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(WEATHER_CITY)}&units=metric&appid=${WEATHER_API_KEY}`)
+    .then(res => res.ok ? res.json() : Promise.reject(res.status))
+    .then(data => {
+      const temp = Math.round(data.main.temp);
+      const code = data.weather[0].main; // Clear, Clouds, Rain, etc.
+      const icons = { Clear: "☀️", Clouds: "☁️", Rain: "🌧️", Drizzle: "🌦️", Thunderstorm: "⛈️", Snow: "❄️", Mist: "🌫️", Fog: "🌫️", Haze: "🌫️" };
+      document.getElementById("weatherIcon").textContent = icons[code] || "☀️";
+      document.getElementById("weatherTemp").textContent = `${temp}°C`;
+      widget.style.display = "flex";
+    })
+    .catch(() => { widget.style.display = "none"; });
+}
+
 function initCookieBanner(){
   const banner = document.getElementById("cookieBanner");
   if (!banner) return;
@@ -1304,9 +1443,22 @@ document.addEventListener("DOMContentLoaded", () => {
   initWhatsAppWidget();
   initMomovenLinks();
   refreshAvailabilityBadges();
+  if (typeof updateAvailabilityCounter === "function") updateAvailabilityCounter();
   initCart();
   initPriceCalculator();
   initCookieBanner();
   initHeroCarousel();
   initVideoParallax();
+  initRidePlanner();
+  initReferralTool();
+  initWeatherWidget();
 });
+
+/* Enregistrement du service worker — rend le site "installable"
+   (PWA) sur mobile et ordinateur. Sans incidence si le navigateur
+   ne le supporte pas. */
+if ("serviceWorker" in navigator){
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch(() => {});
+  });
+}

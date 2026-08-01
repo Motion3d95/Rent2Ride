@@ -16,6 +16,8 @@
 <meta name="twitter:title" content="Boutique — Rent2Ride">
 <meta name="twitter:description" content="La boutique officielle Rent2Ride : t-shirts, sweat à capuche, casquette et stickers. Livraison partout en Europe.">
 <meta name="twitter:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#E0383A">
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,11 +31,7 @@
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="logo">
-      <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
-      <span class="logo-text">
-        <strong>Rent2Ride</strong>
-        <span>Motorcycle Rental</span>
-      </span>
+      <img src="./images/logo-signature.png" alt="Rent2Ride — Your Ride. Your Freedom." class="logo-full">
     </a>
     <button class="burger" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <div class="nav-links">
@@ -207,6 +205,30 @@
         </div>
       </article>
 
+      <!-- Bon cadeau -->
+      <article class="product-card" data-product="giftcard">
+        <div class="product-photo" style="background:linear-gradient(135deg,#2F5158,#3a4750); display:flex; align-items:center; justify-content:center;">
+          <img src="./images/logo-signature.png" alt="Bon cadeau Rent2Ride" style="width:60%; filter:brightness(0) invert(1); opacity:.92;">
+        </div>
+        <div class="product-body">
+          <h3 class="product-name" data-i18n="prod_giftcard_name">Bon cadeau Rent2Ride</h3>
+          <p class="product-desc" data-i18n="prod_giftcard_desc">Offrez une virée moto. Valable sur toute location, envoyé par e-mail, valable 1 an.</p>
+          <div class="product-price" id="giftcardPriceDisplay">50 €</div>
+          <span class="stock-badge"></span>
+
+          <div class="product-option-group">
+            <span class="product-option-label" data-i18n="giftcard_amount_label">Montant</span>
+            <div class="product-swatches">
+              <input type="radio" name="size-giftcard" id="giftcard-50" value="50" checked><label for="giftcard-50">50 €</label>
+              <input type="radio" name="size-giftcard" id="giftcard-100" value="100"><label for="giftcard-100">100 €</label>
+              <input type="radio" name="size-giftcard" id="giftcard-150" value="150"><label for="giftcard-150">150 €</label>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-primary product-add" data-i18n="shop_add_cart">Ajouter au panier</button>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -217,8 +239,7 @@
     <div class="footer-grid">
       <div>
         <div class="logo" style="margin-bottom:14px;">
-          <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
-          <span class="logo-text"><strong style="color:#fff;">Rent2Ride</strong><span>Motorcycle Rental</span></span>
+          <img src="./images/logo-signature.png" alt="Rent2Ride — Your Ride. Your Freedom." class="logo-full logo-full-white">
         </div>
         <p data-i18n="footer_about">Location de motos premium sur la Costa del Sol.</p>
         <div class="social-row">
@@ -249,6 +270,7 @@
       <div>
         <h5 data-i18n="footer_legal_h">Informations légales</h5>
         <ul>
+          <li><a href="assurance.html" data-i18n="nav_insurance">Assurance &amp; garanties</a></li>
           <li><a href="conditions.html" data-i18n="footer_legal_terms">Conditions de location</a></li>
           <li><a href="confidentialite.html" data-i18n="footer_legal_privacy">Confidentialité</a></li>
           <li><a href="confidentialite.html#cookies" data-i18n="footer_legal_cookies">Cookies</a></li>

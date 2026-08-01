@@ -16,6 +16,8 @@
 <meta name="twitter:title" content="Balades en Andalousie — Rent2Ride">
 <meta name="twitter:description" content="7 itinéraires moto sélectionnés en Andalousie : Ronda, Costa del Sol, Villages blancs, Sierra Nevada, Cabo de Gata, Alpujarras, Grazalema.">
 <meta name="twitter:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#E0383A">
 <link rel="icon" type="image/png" href="./favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,8 +31,7 @@
 <header class="site-header">
   <nav class="nav">
     <a href="index.html" class="logo">
-      <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
-      <span class="logo-text"><strong>Rent2Ride</strong><span>Motorcycle Rental</span></span>
+      <img src="./images/logo-signature.png" alt="Rent2Ride — Your Ride. Your Freedom." class="logo-full">
     </a>
     <button class="burger" aria-label="Menu" aria-expanded="false">&#9776;</button>
     <div class="nav-links">
@@ -85,7 +86,7 @@
     <div class="rides-list">
 
       <!-- ===== RIDE 1 — Ronda ===== -->
-      <article class="ride-card" data-diff="medium">
+      <article class="ride-card" data-diff="medium" data-ride-id="1" data-km="80" data-hours="2.5">
         <div class="ride-photo" style="--ride-img:url('../images/Col-de-la-Ronda-1.jpg')">
           <!-- PHOTO SLOT: moto sur la A-397 vers Ronda, coucher de soleil -->
           <span class="ride-diff-badge diff-medium" data-i18n="diff_medium">Modéré</span>
@@ -116,6 +117,10 @@
             <a href="./gpx/balade-01-col-de-la-ronda.gpx" download class="btn btn-outline btn-sm"><span data-i18n="label_gpx">Télécharger le GPX</span></a>
             <a href="https://www.google.com/maps/dir/?api=1&origin=36.4848,-4.9970&destination=36.7213,-5.1636&waypoints=36.5721,-5.0398|36.6520,-5.0870&travelmode=driving" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span data-i18n="label_map">Voir l'itinéraire</span></a>
           </div>
+          <label class="ride-plan-check">
+            <input type="checkbox" class="ride-plan-input" data-ride-id="1">
+            <span data-i18n="plan_add">Ajouter à mon itinéraire</span>
+          </label>
           <div class="ride-footer">
             <p class="ride-bike-tip" data-i18n="r1_bike">Idéale avec : MT-09, Tracer 9</p>
             <a href="reservation.html?model=mt09#booking" class="btn btn-dark btn-sm" data-i18n="label_book">Réserver cette moto</a>
@@ -124,7 +129,7 @@
       </article>
 
       <!-- ===== RIDE 2 — Corniche côtière ===== -->
-      <article class="ride-card" data-diff="easy">
+      <article class="ride-card" data-diff="easy" data-ride-id="2" data-km="120" data-hours="3.25">
         <div class="ride-photo" style="--ride-img:url('../images/Corniche-Costa-del-Sol-1.jpg')">
           <!-- PHOTO SLOT: vue aérienne corniche méditerranéenne -->
           <span class="ride-diff-badge diff-easy" data-i18n="diff_easy">Facile</span>
@@ -155,6 +160,10 @@
             <a href="./gpx/balade-02-corniche-costa-del-sol.gpx" download class="btn btn-outline btn-sm"><span data-i18n="label_gpx">Télécharger le GPX</span></a>
             <a href="https://www.google.com/maps/dir/?api=1&origin=36.7213,-4.4214&destination=36.4285,-5.1449&waypoints=36.5988,-4.5054|36.5411,-4.6247|36.5100,-4.8826&travelmode=driving" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span data-i18n="label_map">Voir l'itinéraire</span></a>
           </div>
+          <label class="ride-plan-check">
+            <input type="checkbox" class="ride-plan-input" data-ride-id="2">
+            <span data-i18n="plan_add">Ajouter à mon itinéraire</span>
+          </label>
           <div class="ride-footer">
             <p class="ride-bike-tip" data-i18n="r2_bike">Idéale avec : MT-07, Tracer 7</p>
             <a href="reservation.html?model=mt07#booking" class="btn btn-dark btn-sm" data-i18n="label_book">Réserver cette moto</a>
@@ -163,7 +172,7 @@
       </article>
 
       <!-- ===== RIDE 3 — Villages blancs ===== -->
-      <article class="ride-card" data-diff="medium">
+      <article class="ride-card" data-diff="medium" data-ride-id="3" data-km="95" data-hours="3.5">
         <div class="ride-photo" style="--ride-img:url('../images/Villages-Blancs-1.jpg')">
           <!-- PHOTO SLOT: village blanc perché dans la sierra -->
           <span class="ride-diff-badge diff-medium" data-i18n="diff_medium">Modéré</span>
@@ -194,6 +203,10 @@
             <a href="./gpx/balade-03-circuit-villages-blancs.gpx" download class="btn btn-outline btn-sm"><span data-i18n="label_gpx">Télécharger le GPX</span></a>
             <a href="https://www.google.com/maps/dir/?api=1&origin=36.5959,-4.6372&destination=36.5959,-4.6372&waypoints=36.5537,-4.8523|36.5892,-4.8511|36.6598,-4.7565|36.6002,-4.7469&travelmode=driving" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span data-i18n="label_map">Voir l'itinéraire</span></a>
           </div>
+          <label class="ride-plan-check">
+            <input type="checkbox" class="ride-plan-input" data-ride-id="3">
+            <span data-i18n="plan_add">Ajouter à mon itinéraire</span>
+          </label>
           <div class="ride-footer">
             <p class="ride-bike-tip" data-i18n="r3_bike">Idéale avec : Tracer 7, MT-07</p>
             <a href="reservation.html?model=tracer7#booking" class="btn btn-dark btn-sm" data-i18n="label_book">Réserver cette moto</a>
@@ -202,7 +215,7 @@
       </article>
 
       <!-- ===== RIDE 4 — Sierra Nevada ===== -->
-      <article class="ride-card" data-diff="hard">
+      <article class="ride-card" data-diff="hard" data-ride-id="4" data-km="180" data-hours="4.5">
         <div class="ride-photo" style="--ride-img:url('../images/Sierra-Nevada-1.jpg')">
           <!-- PHOTO SLOT: route de montagne Sierra Nevada, haute altitude -->
           <span class="ride-diff-badge diff-hard" data-i18n="diff_hard">Sportif</span>
@@ -233,6 +246,10 @@
             <a href="./gpx/balade-04-sierra-nevada-veleta.gpx" download class="btn btn-outline btn-sm"><span data-i18n="label_gpx">Télécharger le GPX</span></a>
             <a href="https://www.google.com/maps/dir/?api=1&origin=37.1773,-3.5986&destination=37.0542,-3.3661&waypoints=37.1000,-3.4700|37.0967,-3.3961&travelmode=driving" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span data-i18n="label_map">Voir l'itinéraire</span></a>
           </div>
+          <label class="ride-plan-check">
+            <input type="checkbox" class="ride-plan-input" data-ride-id="4">
+            <span data-i18n="plan_add">Ajouter à mon itinéraire</span>
+          </label>
           <div class="ride-footer">
             <p class="ride-bike-tip" data-i18n="r4_bike">Idéale avec : Tracer 9, MT-09</p>
             <a href="reservation.html?model=tracer9#booking" class="btn btn-dark btn-sm" data-i18n="label_book">Réserver cette moto</a>
@@ -241,7 +258,7 @@
       </article>
 
       <!-- ===== RIDE 5 — Cabo de Gata ===== -->
-      <article class="ride-card" data-diff="medium">
+      <article class="ride-card" data-diff="medium" data-ride-id="5" data-km="160" data-hours="4.25">
         <div class="ride-photo" style="--ride-img:url('../images/Cabo-de-Gata-1.jpg')">
           <!-- PHOTO SLOT: littoral désertique Cabo de Gata, mer turquoise -->
           <span class="ride-diff-badge diff-medium" data-i18n="diff_medium">Modéré</span>
@@ -272,6 +289,10 @@
             <a href="./gpx/balade-05-cabo-de-gata.gpx" download class="btn btn-outline btn-sm"><span data-i18n="label_gpx">Télécharger le GPX</span></a>
             <a href="https://www.google.com/maps/dir/?api=1&origin=36.8381,-2.4597&destination=36.8381,-2.4597&waypoints=36.7677,-2.1058|36.7743,-2.0396|36.8848,-2.0563&travelmode=driving" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span data-i18n="label_map">Voir l'itinéraire</span></a>
           </div>
+          <label class="ride-plan-check">
+            <input type="checkbox" class="ride-plan-input" data-ride-id="5">
+            <span data-i18n="plan_add">Ajouter à mon itinéraire</span>
+          </label>
           <div class="ride-footer">
             <p class="ride-bike-tip" data-i18n="r5_bike">Idéale avec : Tracer 7, Tracer 9</p>
             <a href="reservation.html?model=tracer7#booking" class="btn btn-dark btn-sm" data-i18n="label_book">Réserver cette moto</a>
@@ -280,7 +301,7 @@
       </article>
 
       <!-- ===== RIDE 6 — Alpujarras ===== -->
-      <article class="ride-card" data-diff="hard">
+      <article class="ride-card" data-diff="hard" data-ride-id="6" data-km="110" data-hours="3.75">
         <div class="ride-photo" style="--ride-img:url('../images/Alpujarras-1.jpg')">
           <!-- PHOTO SLOT: village berbère sur flanc de montagne -->
           <span class="ride-diff-badge diff-hard" data-i18n="diff_hard">Sportif</span>
@@ -311,6 +332,10 @@
             <a href="./gpx/balade-06-alpujarras.gpx" download class="btn btn-outline btn-sm"><span data-i18n="label_gpx">Télécharger le GPX</span></a>
             <a href="https://www.google.com/maps/dir/?api=1&origin=36.9214,-3.4842&destination=36.9598,-3.2664&waypoints=36.8998,-3.4198|36.8994,-3.3496|36.9161,-3.3479&travelmode=driving" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span data-i18n="label_map">Voir l'itinéraire</span></a>
           </div>
+          <label class="ride-plan-check">
+            <input type="checkbox" class="ride-plan-input" data-ride-id="6">
+            <span data-i18n="plan_add">Ajouter à mon itinéraire</span>
+          </label>
           <div class="ride-footer">
             <p class="ride-bike-tip" data-i18n="r6_bike">Idéale avec : Tracer 9, MT-09</p>
             <a href="reservation.html?model=tracer9#booking" class="btn btn-dark btn-sm" data-i18n="label_book">Réserver cette moto</a>
@@ -319,7 +344,7 @@
       </article>
 
       <!-- ===== RIDE 7 — Grazalema ===== -->
-      <article class="ride-card" data-diff="hard">
+      <article class="ride-card" data-diff="hard" data-ride-id="7" data-km="130" data-hours="3.5">
         <div class="ride-photo" style="--ride-img:url('../images/Grazalema-1.jpg')">
           <!-- PHOTO SLOT: sierra Grazalema, forêt de sapins et falaises -->
           <span class="ride-diff-badge diff-hard" data-i18n="diff_hard">Sportif</span>
@@ -350,6 +375,10 @@
             <a href="./gpx/balade-07-parc-de-grazalema.gpx" download class="btn btn-outline btn-sm"><span data-i18n="label_gpx">Télécharger le GPX</span></a>
             <a href="https://www.google.com/maps/dir/?api=1&origin=36.7213,-5.1636&destination=36.7580,-5.3646&waypoints=36.7440,-5.2360|36.7311,-5.2593&travelmode=driving" target="_blank" rel="noopener" class="btn btn-outline btn-sm"><span data-i18n="label_map">Voir l'itinéraire</span></a>
           </div>
+          <label class="ride-plan-check">
+            <input type="checkbox" class="ride-plan-input" data-ride-id="7">
+            <span data-i18n="plan_add">Ajouter à mon itinéraire</span>
+          </label>
           <div class="ride-footer">
             <p class="ride-bike-tip" data-i18n="r7_bike">Idéale avec : Tracer 9, Tracer 7</p>
             <a href="reservation.html?model=tracer9#booking" class="btn btn-dark btn-sm" data-i18n="label_book">Réserver cette moto</a>
@@ -376,8 +405,7 @@
     <div class="footer-grid">
       <div>
         <div class="logo" style="margin-bottom:14px;">
-          <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
-          <span class="logo-text"><strong style="color:#fff;">Rent2Ride</strong><span>Motorcycle Rental</span></span>
+          <img src="./images/logo-signature.png" alt="Rent2Ride — Your Ride. Your Freedom." class="logo-full logo-full-white">
         </div>
         <p data-i18n="footer_about">Location de motos premium sur la Costa del Sol.</p>
       </div>
@@ -397,6 +425,7 @@
       <div>
         <h5 data-i18n="footer_legal_h">Informations légales</h5>
         <ul>
+          <li><a href="assurance.html" data-i18n="nav_insurance">Assurance &amp; garanties</a></li>
           <li><a href="conditions.html" data-i18n="footer_legal_terms">Conditions de location</a></li>
           <li><a href="confidentialite.html" data-i18n="footer_legal_privacy">Confidentialité</a></li>
           <li><a href="confidentialite.html#cookies" data-i18n="footer_legal_cookies">Cookies</a></li>
@@ -416,6 +445,21 @@
     </div>
   </div>
 </footer>
+
+<!-- ================= PLANIFICATEUR D'ITINÉRAIRE ================= -->
+<div class="ride-planner-bar" id="ridePlannerBar">
+  <div class="container ride-planner-inner">
+    <div class="ride-planner-summary">
+      <strong id="plannerCount">0</strong>
+      <span data-i18n="plan_selected">balade(s) sélectionnée(s)</span>
+      <span class="ride-planner-sep">·</span>
+      <span id="plannerKm">0 km</span>
+      <span class="ride-planner-sep">·</span>
+      <span id="plannerDays">0</span> <span data-i18n="plan_days">jour(s) de route estimé(s)</span>
+    </div>
+    <a href="reservation.html#booking" class="btn btn-primary btn-sm" data-i18n="plan_cta">Réserver pour ce séjour</a>
+  </div>
+</div>
 
 <!-- ================= WHATSAPP WIDGET ================= -->
 <div class="whatsapp-fab">

@@ -134,6 +134,14 @@ button{ font-family:inherit; }
 }
 .logo-text span{ font-size:.58rem; color:var(--c-ink-faint); letter-spacing:.12em; text-transform:uppercase; }
 
+/* Nouveau logo complet (icône + RENT2RIDE + slogan intégrés dans l'image) */
+.logo-full{
+  height:46px; width:auto; display:block;
+}
+.logo-full-white{
+  filter:brightness(0) invert(1); /* logo noir -> blanc, pour le footer sombre */
+}
+
 .nav-links{
   display:flex; align-items:center; gap:18px;
   font-size:.82rem; font-weight:500;

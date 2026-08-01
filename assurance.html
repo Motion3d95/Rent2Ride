@@ -3,19 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title data-i18n="title_faq">FAQ — Rent2Ride</title>
-<meta name="description" content="Toutes les réponses à vos questions sur la location de moto : permis, âge minimum, caution, assurance, annulation.">
-<link rel="canonical" href="https://motion3d95.github.io/Rent2Ride/faq.html">
-<meta property="og:title" content="FAQ — Rent2Ride">
-<meta property="og:description" content="Toutes les réponses à vos questions sur la location de moto : permis, âge minimum, caution, assurance, annulation.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://motion3d95.github.io/Rent2Ride/faq.html">
-<meta property="og:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
-<meta property="og:locale" content="fr_FR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="FAQ — Rent2Ride">
-<meta name="twitter:description" content="Toutes les réponses à vos questions sur la location de moto : permis, âge minimum, caution, assurance, annulation.">
-<meta name="twitter:image" content="https://motion3d95.github.io/Rent2Ride/images/route-coast.jpg">
+<title data-i18n="title_insurance">Assurance & Garanties — Rent2Ride</title>
+<meta name="description" content="Ce qui est couvert par l'assurance incluse avec chaque location de moto Rent2Ride : dommages, vol, franchise, assistance.">
+<link rel="canonical" href="https://motion3d95.github.io/Rent2Ride/assurance.html">
 <link rel="manifest" href="./manifest.json">
 <meta name="theme-color" content="#E0383A">
 <link rel="icon" type="image/png" href="./favicon.png">
@@ -41,7 +31,7 @@
       <a href="balades.html" data-i18n="nav_rides">Balades</a>
       <a href="galerie.html" data-i18n="nav_gallery">Galerie</a>
       <a href="avis.html" data-i18n="nav_reviews">Avis clients</a>
-      <a href="faq.html" class="active" data-i18n="nav_faq">FAQ</a>
+      <a href="faq.html" data-i18n="nav_faq">FAQ</a>
       <a href="contact.html" data-i18n="nav_contact">Contact</a>
       <a href="boutique.html" data-i18n="nav_shop">Boutique</a>
       <a href="reservation.html#booking" class="btn btn-primary nav-cta" data-i18n="nav_book">Réserver</a>
@@ -61,90 +51,59 @@
   </nav>
 </header>
 
-<section class="page-hero" style="--hero-img:url('../images/route-ronda.jpg')">
+<section class="page-hero" style="--hero-img:url('./images/route-coast.jpg')">
   <div class="container">
-    <h1 data-i18n="faq_title">Tout ce que vous devez savoir</h1>
-    <p data-i18n="faq_sub">Vous ne trouvez pas la réponse à votre question ? Contactez-nous directement.</p>
+    <p class="eyebrow" data-i18n="insurance_eyebrow">TRANQUILLITÉ D'ESPRIT</p>
+    <h1 data-i18n="insurance_title">Assurance &amp; garanties</h1>
+    <p data-i18n="insurance_sub">Ce qui est couvert, ce qui ne l'est pas, et comment ça marche en cas de pépin.</p>
   </div>
 </section>
 
 <section class="section">
-  <div class="container-narrow">
-    <div class="faq-list">
+  <div class="container" style="max-width:820px;">
 
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq1_q">Quel permis faut-il pour louer une moto ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq1_a">Un permis A2 suffit pour la MT-07 et la Tracer 7.</div></div>
+    <div class="included-strip" style="margin-bottom:40px;">
+      <p class="eyebrow" data-i18n="insurance_included_h">✅ TOUJOURS INCLUS</p>
+      <div class="included-grid">
+        <div><span>✓</span> <span data-i18n="ins_inc_1">Assurance responsabilité civile</span></div>
+        <div><span>✓</span> <span data-i18n="ins_inc_2">Assistance dépannage 24/7</span></div>
+        <div><span>✓</span> <span data-i18n="ins_inc_3">Casques homologués (2)</span></div>
+        <div><span>✓</span> <span data-i18n="ins_inc_4">Antivol fourni</span></div>
       </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq2_q">Quel est l'âge minimum pour louer ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq2_a">21 ans pour la MT-07 et la Tracer 7.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq3_q">Comment fonctionne la caution ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq3_a">Une pré-autorisation bancaire est bloquée.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq4_q">L'assurance est-elle vraiment incluse ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq4_a">Oui, chaque location inclut une assurance de base.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq5_q">Puis-je annuler ou modifier ma réservation ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq5_a">L'annulation est gratuite jusqu'à 48h avant.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq6_q">Puis-je sortir d'Espagne avec la moto ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq6_a">Le kilométrage est illimité sur le territoire espagnol.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq7_q">Que se passe-t-il en cas de panne ou d'accident ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq7_a">Notre assistance routière est disponible 24/7.</div></div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-question">
-          <span data-i18n="faq8_q">Quel équipement de protection est fourni ?</span>
-          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
-        </button>
-        <div class="faq-answer"><div class="faq-answer-inner" data-i18n="faq8_a">Deux casques homologués sont inclus.</div></div>
-      </div>
-
     </div>
-  </div>
-</section>
 
-<section class="section section--dark text-center">
-  <div class="container-narrow">
-    <h2 style="font-family:var(--f-display); font-size:clamp(1.6rem,3.5vw,2.2rem); margin:0 0 12px;" data-i18n="contact_title">Une question ? Parlons-en</h2>
-    <p style="color:rgba(255,255,255,.75); margin:0 0 24px;" data-i18n="contact_sub">Notre équipe répond en français, espagnol et anglais.</p>
-    <a href="contact.html" class="btn btn-primary btn-lg" data-i18n="nav_contact">Contact</a>
+    <h2 style="font-family:var(--f-display); font-size:1.4rem;" data-i18n="ins_h_covered">Ce qui est couvert</h2>
+    <ul style="line-height:1.9;">
+      <li data-i18n="ins_cov_1">Dommages accidentels — collision, chute, dégâts causés au véhicule pendant la location</li>
+      <li data-i18n="ins_cov_2">Vol — si la moto est volée alors que l'antivol fourni était utilisé et que vous avez déposé plainte</li>
+      <li data-i18n="ins_cov_3">Responsabilité civile — dommages causés à un tiers (personne ou bien) pendant la conduite</li>
+      <li data-i18n="ins_cov_4">Bris de glace et rétroviseurs — casse accidentelle des optiques et rétroviseurs</li>
+    </ul>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;" data-i18n="ins_h_excluded">Ce qui n'est pas couvert</h2>
+    <ul style="line-height:1.9;">
+      <li data-i18n="ins_exc_1">Conduite sous l'emprise d'alcool ou de stupéfiants</li>
+      <li data-i18n="ins_exc_2">Conduite sans permis valide pour la catégorie du véhicule loué</li>
+      <li data-i18n="ins_exc_3">Usage hors route (tout-terrain, circuit fermé)</li>
+      <li data-i18n="ins_exc_4">Négligence manifeste (moto laissée non verrouillée, clés visibles)</li>
+    </ul>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;" data-i18n="ins_h_deposit">La franchise, en clair</h2>
+    <p data-i18n="ins_deposit_p">Une caution est prélevée (empreinte bancaire, non débitée) au retrait de la moto — son montant varie selon le modèle (voir le comparateur du catalogue). En cas de sinistre couvert, seule la franchise reste à votre charge ; le reste est pris en charge par l'assurance. Sans sinistre, la caution est intégralement libérée au retour du véhicule.</p>
+
+    <h2 style="font-family:var(--f-display); font-size:1.4rem; margin-top:36px;" data-i18n="ins_h_claim">En cas de sinistre</h2>
+    <ol style="line-height:1.9;">
+      <li data-i18n="ins_claim_1">Mettez-vous en sécurité et contactez-nous immédiatement via WhatsApp ou par téléphone</li>
+      <li data-i18n="ins_claim_2">En cas d'accident avec un tiers ou de vol, déposez plainte auprès de la police locale</li>
+      <li data-i18n="ins_claim_3">Prenez des photos des dégâts si possible</li>
+      <li data-i18n="ins_claim_4">Notre assistance 24/7 vous guide pour la suite (remorquage, moto de remplacement si disponible)</li>
+    </ol>
+
+    <div style="background:var(--c-bg-cream); border-radius:var(--radius-md); padding:20px 24px; margin-top:40px; text-align:center;">
+      <p style="margin:0 0 14px; font-size:.92rem; color:var(--c-ink-soft);" data-i18n="ins_cta_text">Une question sur une situation précise ? On vous répond directement.</p>
+      <a href="contact.html" class="btn btn-primary" data-i18n="ins_cta_btn">Nous contacter</a>
+    </div>
+
   </div>
 </section>
 
@@ -153,7 +112,8 @@
     <div class="footer-grid">
       <div>
         <div class="logo" style="margin-bottom:14px;">
-          <img src="./images/logo-signature.png" alt="Rent2Ride — Your Ride. Your Freedom." class="logo-full logo-full-white">
+          <span class="logo-mark"><img src="./images/logo-header.png" alt="Rent2Ride logo"></span>
+          <span class="logo-text"><strong style="color:#fff;">Rent2Ride</strong><span>Motorcycle Rental</span></span>
         </div>
         <p data-i18n="footer_about">Location de motos premium sur la Costa del Sol.</p>
       </div>
@@ -175,8 +135,8 @@
         <ul>
           <li><a href="assurance.html" data-i18n="nav_insurance">Assurance &amp; garanties</a></li>
           <li><a href="conditions.html" data-i18n="footer_legal_terms">Conditions de location</a></li>
-          <li><a href="confidentialite.html" data-i18n="footer_legal_privacy">Confidentialité</a></li>
-          <li><a href="confidentialite.html#cookies" data-i18n="footer_legal_cookies">Cookies</a></li>
+          <li><a href="#" data-i18n="footer_legal_privacy">Confidentialité</a></li>
+          <li><a href="#" data-i18n="footer_legal_cookies">Cookies</a></li>
         </ul>
       </div>
       <div>
@@ -275,12 +235,6 @@
   </div>
 
 </aside>
-
-<!-- ================= COOKIE BANNER ================= -->
-<div class="cookie-banner" id="cookieBanner" style="display:none;">
-  <p data-i18n="cookie_text">Ce site utilise uniquement des cookies techniques nécessaires à son fonctionnement (langue choisie, panier boutique) — aucun cookie publicitaire ni traceur tiers. <a href="confidentialite.html#cookies">En savoir plus</a></p>
-  <button id="cookieAccept" class="btn btn-primary btn-sm" data-i18n="cookie_accept">J'ai compris</button>
-</div>
 
 <script src="./js/i18n.js"></script>
 <script src="./js/main.js"></script>

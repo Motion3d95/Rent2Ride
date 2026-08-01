@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — Rent2Ride</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/png" href="./favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/components.css">
+<style>
+  .error-page{
+    min-height:80vh; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:120px 24px 60px;
+  }
+  .error-code{
+    font-family:var(--f-display); font-size:clamp(5rem,14vw,9rem); font-weight:600;
+    color:var(--c-accent); line-height:1; margin:0;
+  }
+  .error-title{ font-family:var(--f-display); font-size:clamp(1.5rem,3vw,2.2rem); margin:12px 0 10px; }
+  .error-text{ color:var(--c-ink-soft); max-width:480px; margin:0 0 32px; line-height:1.6; }
+  .error-actions{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="index.html" class="logo">
+      <img src="./images/logo-signature.png" alt="Rent2Ride — Your Ride. Your Freedom." class="logo-full">
+    </a>
+  </nav>
+</header>
+
+<div class="error-page">
+  <p class="error-code">404</p>
+  <h1 class="error-title">Cette page a pris un autre itinéraire</h1>
+  <p class="error-text">La page que vous cherchez n'existe pas, plus, ou l'adresse comporte une erreur. Repartons sur la bonne route.</p>
+  <div class="error-actions">
+    <a href="index.html" class="btn btn-primary">Retour à l'accueil</a>
+    <a href="catalogue.html" class="btn btn-outline">Voir le catalogue</a>
+  </div>
+</div>
+
+<script src="./js/i18n.js"></script>
+<script src="./js/main.js"></script>
+</body>
+</html>

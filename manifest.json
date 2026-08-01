@@ -1,0 +1,14 @@
+{
+  "name": "Rent2Ride — Location de motos",
+  "short_name": "Rent2Ride",
+  "description": "Location de motos premium sur la Costa del Sol.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#E0383A",
+  "icons": [
+    { "src": "./favicon.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "./favicon.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
