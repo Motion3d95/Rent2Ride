@@ -1384,3 +1384,43 @@ body:has(#ridePlannerBar.is-visible){ padding-bottom:70px; }
 .weather-icon{ font-size:1.8rem; line-height:1; }
 .weather-widget strong{ display:block; font-size:1.05rem; }
 .weather-widget span{ font-size:.8rem; color:var(--c-ink-soft); }
+
+/* =========================================================
+   RENT2RIDE — SIGNATURE DE MARQUE DISCRÈTE
+   ========================================================= */
+
+.brand-signature {
+  height: 72px;
+  background: #171717;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 20px;
+}
+
+.brand-signature .container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand-signature-logo {
+  width: 105px;
+  height: auto;
+  max-height: 58px;
+  object-fit: contain;
+  display: block;
+  opacity: .92;
+}
+
+@media (max-width: 768px) {
+  .brand-signature {
+    height: 62px;
+  }
+
+  .brand-signature-logo {
+    width: 90px;
+    max-height: 50px;
+  }
+}
