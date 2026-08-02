@@ -66,14 +66,14 @@ const WHATSAPP_NUMBER = "33688133895";
 const TELEGRAM_BOT_TOKEN = "8829634456:AAFhfclUyKdM8zH1r4R5ylZvyHZ-0gAHjxQ";
 const TELEGRAM_CHAT_ID = "-1004485459396";
 
-function sendTelegramNotification(text){
+function sendTelegramNotification(text, label = "🛍️ Nouvelle commande boutique"){
   if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return; // pas encore configuré
   fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       chat_id: TELEGRAM_CHAT_ID,
-      text: `🛍️ Nouvelle commande boutique\n\n${text}`,
+      text: `${label}\n\n${text}`,
     }),
   }).catch(err => console.error("Erreur envoi Telegram:", err));
 }
@@ -487,6 +487,26 @@ function initContactForm(){
     const success = document.getElementById("contactSuccess");
     if (success) success.classList.add("show");
     form.reset();
+  });
+}
+
+/* =========================================================
+   6bis. NEWSLETTER (footer, toutes les pages)
+   Envoie l'e-mail via Telegram (même canal que les commandes
+   boutique) — pas de service tiers à connecter.
+   ========================================================= */
+function initNewsletterForm(){
+  document.querySelectorAll(".newsletter-form").forEach(form => {
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const input = form.querySelector("input[type=email]");
+      const success = form.querySelector(".newsletter-success");
+      const email = input ? input.value.trim() : "";
+      if (!email) return;
+      sendTelegramNotification(`📧 ${email}\nPage : ${window.location.pathname}`, "📬 Nouvelle inscription newsletter");
+      if (success) success.classList.add("show");
+      form.reset();
+    });
   });
 }
 
@@ -1437,6 +1457,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initBookingForm();
   initPromoCode();
   initContactForm();
+  initNewsletterForm();
   syncDateInputs();
   initFaqAccordion();
   initGalleryLightbox();

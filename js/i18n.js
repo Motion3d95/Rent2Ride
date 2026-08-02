@@ -169,6 +169,47 @@ const TRANSLATIONS = {
   view_all_fleet: { fr: "Voir tout le catalogue", es: "Ver todo el catálogo", en: "View full catalogue" },
 
   /* ---------------- INCLUDED ---------------- */
+  /* ---------------- WHY US (home) ---------------- */
+  why_eyebrow: { fr: "POURQUOI RENT2RIDE", es: "POR QUÉ RENT2RIDE", en: "WHY RENT2RIDE" },
+  why_title:   { fr: "Pas une plateforme. Une équipe sur place.",
+                 es: "No una plataforma. Un equipo sobre el terreno.",
+                 en: "Not a platform. A team on the ground." },
+  why_sub:     { fr: "Vous pouvez réserver une moto sur une marketplace anonyme. Ou nous appeler.",
+                 es: "Puede reservar una moto en un marketplace anónimo. O llamarnos.",
+                 en: "You could book a bike on an anonymous marketplace. Or call us." },
+  why1_t: { fr: "Une équipe locale, joignable", es: "Un equipo local, disponible", en: "A local team, reachable" },
+  why1_p: { fr: "Eloy est basé sur la Costa del Sol et répond en direct, pas un centre d'appel délocalisé.",
+            es: "Eloy está en la Costa del Sol y responde en directo, no un call center deslocalizado.",
+            en: "Eloy is based on the Costa del Sol and answers directly — not an offshore call centre." },
+  why2_t: { fr: "Prix affichés, sans commission cachée", es: "Precios claros, sin comisión oculta", en: "Transparent pricing, no hidden fees" },
+  why2_p: { fr: "Ce que vous voyez sur le site est ce que vous payez, contrairement aux marketplaces qui ajoutent des frais de service.",
+            es: "Lo que ve en la web es lo que paga, a diferencia de los marketplaces que añaden gastos de servicio.",
+            en: "What you see is what you pay, unlike marketplaces that add service fees on top." },
+  why3_t: { fr: "Motos que nous connaissons par cœur", es: "Motos que conocemos de memoria", en: "Bikes we know inside out" },
+  why3_p: { fr: "Chaque moto est entretenue et inspectée par notre équipe, pas par un partenaire anonyme.",
+            es: "Cada moto es mantenida e inspeccionada por nuestro equipo, no por un socio anónimo.",
+            en: "Every bike is maintained and inspected by our own team, not an anonymous partner." },
+  why4_t: { fr: "Assistance en cas de pépin", es: "Asistencia si surge un imprevisto", en: "Support if something goes wrong" },
+  why4_p: { fr: "Panne, question sur un itinéraire, urgence : quelqu'un décroche, pas un formulaire de ticket.",
+            es: "Avería, duda sobre una ruta, urgencia: alguien contesta, no un formulario de ticket.",
+            en: "Breakdown, route question, emergency: a person picks up, not a support ticket form." },
+
+  /* ---------------- REFERRAL TEASER (home) ---------------- */
+  /* ---------------- NEWSLETTER (footer) ---------------- */
+  newsletter_t: { fr: "Restez informé", es: "Manténgase informado", en: "Stay in the loop" },
+  newsletter_p: { fr: "Bons plans, nouvelles routes, offres exclusives — pas de spam.",
+                  es: "Ofertas, nuevas rutas, promociones exclusivas — sin spam.",
+                  en: "Deals, new routes, exclusive offers — no spam." },
+  newsletter_ph: { fr: "Votre e-mail", es: "Su e-mail", en: "Your email" },
+  newsletter_btn: { fr: "S'inscrire", es: "Suscribirse", en: "Subscribe" },
+  newsletter_success: { fr: "Merci ! Vous êtes inscrit.", es: "¡Gracias! Está suscrito.", en: "Thanks! You're subscribed." },
+
+  refteaser_t: { fr: "Parrainez un ami, gagnez 50 € chacun", es: "Recomiende a un amigo, ganen 50 € cada uno", en: "Refer a friend, earn €50 each" },
+  refteaser_p: { fr: "Votre filleul économise 15 % sur sa première location, vous recevez votre crédit dès qu'il roule.",
+                 es: "Su referido ahorra un 15 % en su primer alquiler, usted recibe su crédito en cuanto circule.",
+                 en: "Your friend saves 15% on their first rental, you get your credit as soon as they ride." },
+  refteaser_cta: { fr: "Générer mon code de parrainage", es: "Generar mi código de referido", en: "Generate my referral code" },
+
   included_eyebrow: { fr: "TOUT EST INCLUS", es: "TODO INCLUIDO", en: "EVERYTHING INCLUDED" },
   included_title:   { fr: "Tout ce qui vient avec votre location", es: "Todo lo que va con su alquiler", en: "Everything that comes with your rental" },
   inc1_t: { fr: "Assurance incluse", es: "Seguro incluido", en: "Insurance included" },

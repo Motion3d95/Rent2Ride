@@ -24,6 +24,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="./css/base.css">
 <link rel="stylesheet" href="./css/components.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    { "@type": "Question", "name": "Quel permis faut-il pour louer une moto ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Un permis A2 suffit pour la MT-07 et la Tracer 7." } },
+    { "@type": "Question", "name": "Quel est l'âge minimum pour louer ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "21 ans pour la MT-07 et la Tracer 7." } },
+    { "@type": "Question", "name": "Comment fonctionne la caution ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Une pré-autorisation bancaire est bloquée." } },
+    { "@type": "Question", "name": "L'assurance est-elle incluse ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Oui, chaque location inclut une assurance de base." } },
+    { "@type": "Question", "name": "Puis-je annuler ma réservation ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "L'annulation est gratuite jusqu'à 48h avant." } },
+    { "@type": "Question", "name": "Le kilométrage est-il limité ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Le kilométrage est illimité sur le territoire espagnol." } },
+    { "@type": "Question", "name": "Que faire en cas de panne ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Notre assistance routière est disponible 24/7." } },
+    { "@type": "Question", "name": "Les casques sont-ils fournis ?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Deux casques homologués sont inclus." } }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -150,6 +174,19 @@
 
 <footer class="site-footer">
   <div class="container">
+    <div class="newsletter-bar">
+      <div>
+        <h5 data-i18n="newsletter_t">Restez informé</h5>
+        <p data-i18n="newsletter_p">Bons plans, nouvelles routes, offres exclusives — pas de spam.</p>
+      </div>
+      <div>
+        <form class="newsletter-form">
+          <input type="email" required placeholder="Votre e-mail" data-i18n-placeholder="newsletter_ph">
+          <button type="submit" class="btn btn-primary" data-i18n="newsletter_btn">S'inscrire</button>
+          <p class="newsletter-success" data-i18n="newsletter_success">Merci ! Vous êtes inscrit.</p>
+        </form>
+      </div>
+    </div>
     <div class="footer-grid">
       <div>
         <div class="logo" style="margin-bottom:14px;">
