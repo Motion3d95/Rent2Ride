@@ -216,11 +216,15 @@
 
 .bike-photo{
   aspect-ratio:4/3;
-  background:
-    var(--bike-img, linear-gradient(135deg,#e8e4de,#c9c2b6));
-  background-size:cover; background-position:center;
+  background:linear-gradient(135deg,#e8e4de,#c9c2b6);
   position:relative;
+  overflow:hidden;
 }
+.bike-photo img.bike-main-img{
+  width:100%; height:100%; object-fit:cover; display:block;
+  transition:transform .4s ease;
+}
+.bike-card:hover .bike-photo img.bike-main-img{ transform:scale(1.06); }
 .bike-badge{
   position:absolute; top:14px; left:14px;
   background:#fff; color:var(--c-ink);
@@ -552,26 +556,6 @@ table.price-table tbody tr:hover{ background:var(--c-bg-cream); }
    FOOTER
    ========================================================= */
 .site-footer{ background:var(--c-dark); color:rgba(255,255,255,.7); padding:52px 0 28px; font-size:.88rem; }
-
-.newsletter-bar{
-  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap;
-  gap:18px; padding-bottom:36px; margin-bottom:36px;
-  border-bottom:1px solid rgba(255,255,255,.12);
-}
-.newsletter-bar h5{ color:#fff; font-size:1rem; font-weight:700; margin:0 0 4px; }
-.newsletter-bar p{ margin:0; font-size:.85rem; color:rgba(255,255,255,.6); }
-.newsletter-form{ display:flex; gap:10px; flex-wrap:wrap; }
-.newsletter-form input[type=email]{
-  padding:11px 16px; border-radius:var(--radius-pill); border:1px solid rgba(255,255,255,.2);
-  background:rgba(255,255,255,.06); color:#fff; font-family:var(--f-body); font-size:.88rem;
-  min-width:220px;
-}
-.newsletter-form input[type=email]::placeholder{ color:rgba(255,255,255,.45); }
-.newsletter-form button{ white-space:nowrap; }
-.newsletter-success{ display:none; font-size:.85rem; color:#8FD19E; margin-top:8px; width:100%; }
-.newsletter-success.show{ display:block; }
-@media (max-width:700px){ .newsletter-bar{ flex-direction:column; align-items:flex-start; } .newsletter-form{ width:100%; } .newsletter-form input[type=email]{ flex:1; } }
-
 .footer-grid{ display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:32px; margin-bottom:36px; }
 @media (max-width:880px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
 @media (max-width:560px){ .footer-grid{ grid-template-columns:1fr; } }
@@ -1269,6 +1253,26 @@ body.cart-open .cart-overlay{ opacity:1; pointer-events:auto; }
 .promo-feedback.is-invalid{ color:var(--c-accent); }
 
 /* =========================================================
+   SIGNATURE DE MARQUE (page d'accueil)
+   ========================================================= */
+.brand-signature{
+  background:var(--c-dark);
+  padding:64px 0;
+  text-align:center;
+}
+.brand-signature-logo{
+  max-width:340px; width:100%; height:auto;
+  filter:brightness(0) invert(1); /* logo noir -> blanc, pour ressortir sur fond sombre */
+  opacity:.95;
+}
+.brand-signature-tagline{
+  margin:20px 0 0;
+  font-family:var(--f-display); font-style:italic; font-weight:500;
+  font-size:clamp(1rem, 2vw, 1.25rem);
+  color:rgba(255,255,255,.75);
+}
+
+/* =========================================================
    COMPARATEUR DE MODÈLES (page Catalogue)
    ========================================================= */
 .compare-table td:first-child, .compare-table th:first-child{
@@ -1386,41 +1390,31 @@ body:has(#ridePlannerBar.is-visible){ padding-bottom:70px; }
 .weather-widget span{ font-size:.8rem; color:var(--c-ink-soft); }
 
 /* =========================================================
-   RENT2RIDE — SIGNATURE DE MARQUE DISCRÈTE
+   GALERIE MINIATURES + FICHE TECHNIQUE (page Catalogue)
    ========================================================= */
-
-.brand-signature {
-  height: 44px;
-  background: #171717;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 6px 20px;
+.bike-gallery-thumbs{
+  display:flex; gap:7px; padding:10px 20px 0;
 }
-
-.brand-signature .container {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.bike-thumb{
+  width:62px; height:47px; border-radius:var(--radius-sm);
+  background-size:cover; background-position:center;
+  border:2px solid transparent; cursor:pointer; padding:0;
+  opacity:.6; transition:opacity .2s, border-color .2s, transform .2s;
 }
+.bike-thumb:hover{ opacity:.9; transform:translateY(-2px); }
+.bike-thumb.is-active{ opacity:1; border-color:var(--c-accent); }
 
-.brand-signature-logo {
-  width: 68px;
-  height: auto;
-  max-height: 32px;
-  object-fit: contain;
-  display: block;
-  opacity: .85;
+.bike-desc{ font-size:.86rem; color:var(--c-ink-soft); line-height:1.55; margin:0; }
+
+.bike-specs-grid{
+  display:grid; grid-template-columns:repeat(4,1fr); gap:10px;
+  background:var(--c-bg-cream); border-radius:var(--radius-sm);
+  padding:12px 10px;
 }
-
-@media (max-width: 768px) {
-  .brand-signature {
-    height: 40px;
-  }
-
-  .brand-signature-logo {
-    width: 58px;
-    max-height: 28px;
-  }
+.bike-specs-grid div{ text-align:center; }
+.bike-specs-grid span{
+  display:block; font-size:.66rem; letter-spacing:.04em; text-transform:uppercase;
+  color:var(--c-ink-faint); margin-bottom:3px;
 }
+.bike-specs-grid strong{ font-size:.86rem; font-weight:700; }
+@media (max-width:480px){ .bike-specs-grid{ grid-template-columns:repeat(2,1fr); } }
