@@ -175,6 +175,18 @@
           </select>
         </div>
 
+        <div class="field-row">
+          <div class="field">
+            <label for="pickupTime" data-i18n="form_pickup_time">Collecte</label>
+            <select id="pickupTime" name="pickup_time"></select>
+          </div>
+          <div class="field">
+            <label for="returnTime" data-i18n="form_return_time">Retour</label>
+            <select id="returnTime" name="return_time"></select>
+          </div>
+        </div>
+        <p class="field-note" data-i18n="form_hours_note">Créneaux standards tous les jours de 9h à 20h. En dehors de ces horaires ou un jour férié : supplément de 20 €, sous réserve de disponibilité.</p>
+
         <input type="hidden" id="pickupDate" name="pickup_date">
         <input type="hidden" id="returnDate" name="return_date">
 
@@ -204,6 +216,7 @@
           <div class="summary-row"><span data-i18n="summary_days">Nombre de jours</span><span id="summaryDays">—</span></div>
           <div class="summary-row"><span data-i18n="summary_rate">Tarif journalier</span><span id="summaryRate">—</span></div>
           <div class="summary-row" id="summaryDiscountRow" style="display:none;"><span data-i18n="summary_discount">Réduction</span><span id="summaryDiscount">—</span></div>
+          <div class="summary-row" id="summaryHoursFeeRow" style="display:none;"><span data-i18n="summary_hours_fee">Supplément hors horaires</span><span id="summaryHoursFee">—</span></div>
           <div class="summary-row total"><span data-i18n="summary_total">Total estimé</span><span id="summaryTotal">—</span></div>
         </div>
 

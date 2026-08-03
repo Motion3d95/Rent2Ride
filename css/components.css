@@ -1257,11 +1257,11 @@ body.cart-open .cart-overlay{ opacity:1; pointer-events:auto; }
    ========================================================= */
 .brand-signature{
   background:var(--c-dark);
-  padding:64px 0;
+  padding:24px 0;
   text-align:center;
 }
 .brand-signature-logo{
-  max-width:340px; width:100%; height:auto;
+  max-width:200px; width:100%; height:auto;
   filter:brightness(0) invert(1); /* logo noir -> blanc, pour ressortir sur fond sombre */
   opacity:.95;
 }
@@ -1418,3 +1418,10 @@ body:has(#ridePlannerBar.is-visible){ padding-bottom:70px; }
 }
 .bike-specs-grid strong{ font-size:.86rem; font-weight:700; }
 @media (max-width:480px){ .bike-specs-grid{ grid-template-columns:repeat(2,1fr); } }
+
+/* =========================================================
+   CRÉNEAUX HORAIRES COLLECTE/RETOUR (page Réservation)
+   ========================================================= */
+.field-row{ display:flex; gap:14px; }
+.field-row .field{ flex:1; }
+.field-note{ font-size:.78rem; color:var(--c-ink-faint); line-height:1.5; margin:-6px 0 16px; }

@@ -321,17 +321,31 @@ function updateBookingSummary(){
 
   const discountRow = document.getElementById("summaryDiscountRow");
   const discountOut = document.getElementById("summaryDiscount");
+  const hoursFeeRow = document.getElementById("summaryHoursFeeRow");
+  const hoursFeeOut = document.getElementById("summaryHoursFee");
+
+  const pickupTime = document.getElementById("pickupTime");
+  const returnTime = document.getElementById("returnTime");
+  let hoursFee = 0;
+  if (pickupTime?.value === "off-hours") hoursFee += OFF_HOURS_FEE;
+  if (returnTime?.value === "off-hours") hoursFee += OFF_HOURS_FEE;
+  if (hoursFeeRow && hoursFeeOut){
+    hoursFeeRow.style.display = hoursFee > 0 ? "flex" : "none";
+    hoursFeeOut.textContent = `+${hoursFee} €`;
+  }
+
+  const baseForDiscount = total; // la reduction promo s'applique sur le tarif de location, pas sur le supplement horaire
 
   if (appliedPromoCode && total > 0){
     const pct = PROMO_CODES[appliedPromoCode];
-    const discountAmount = Math.round(total * pct / 100);
-    const finalTotal = total - discountAmount;
+    const discountAmount = Math.round(baseForDiscount * pct / 100);
+    const finalTotal = baseForDiscount - discountAmount + hoursFee;
     if (discountRow) discountRow.style.display = "flex";
     if (discountOut) discountOut.textContent = `-${discountAmount} € (${appliedPromoCode})`;
     totalOut.textContent = `${finalTotal} €`;
   } else {
     if (discountRow) discountRow.style.display = "none";
-    totalOut.textContent = total > 0 ? `${total} €` : "—";
+    totalOut.textContent = total > 0 ? `${total + hoursFee} €` : (hoursFee > 0 ? `${hoursFee} €` : "—");
   }
 }
 
@@ -380,20 +394,30 @@ function buildBookingSummaryText(form, modelKey){
   const name = form.querySelector("#fullName")?.value.trim() || "";
   const email = form.querySelector("#email")?.value.trim() || "";
   const phone = form.querySelector("#phone")?.value.trim() || "";
+  const pickupTime = form.querySelector("#pickupTime")?.value || "";
+  const returnTime = form.querySelector("#returnTime")?.value || "";
 
-  let finalTotal = total;
+  let hoursFee = 0;
+  if (pickupTime === "off-hours") hoursFee += OFF_HOURS_FEE;
+  if (returnTime === "off-hours") hoursFee += OFF_HOURS_FEE;
+  const pickupTimeLabel = pickupTime === "off-hours" ? "Hors créneaux standards (à confirmer)" : pickupTime;
+  const returnTimeLabel = returnTime === "off-hours" ? "Hors créneaux standards (à confirmer)" : returnTime;
+
+  let finalTotal = total + hoursFee;
   let discountLine = "";
   if (appliedPromoCode && PROMO_CODES[appliedPromoCode] && total > 0){
     const pct = PROMO_CODES[appliedPromoCode];
     const discountAmount = Math.round(total * pct / 100);
-    finalTotal = total - discountAmount;
+    finalTotal = total - discountAmount + hoursFee;
     discountLine = `\nCode promo : ${appliedPromoCode} (-${discountAmount} €)`;
   }
+  const hoursFeeLine = hoursFee > 0 ? `\nSupplément hors horaires : +${hoursFee} €` : "";
 
   return `Demande de réservation Rent2Ride\n\n` +
     `Moto : ${modelName}\n` +
     `Du ${formatBookingDate(selectedRange.start)} au ${formatBookingDate(selectedRange.end)} (${days} jours)\n` +
-    `Tarif journalier : ${rate} €${discountLine}\n` +
+    `Collecte : ${pickupTimeLabel}   Retour : ${returnTimeLabel}\n` +
+    `Tarif journalier : ${rate} €${discountLine}${hoursFeeLine}\n` +
     `Total estimé : ${finalTotal} €\n\n` +
     `Nom : ${name}\n` +
     `Contact : ${[email, phone].filter(Boolean).join(" / ")}`;
@@ -1403,6 +1427,44 @@ function initWeatherWidget(){
     .catch(() => { widget.style.display = "none"; });
 }
 
+/* =========================================================
+   CRÉNEAUX HORAIRES DE COLLECTE / RETOUR
+   ---------------------------------------------------------
+   Créneaux standards 9h-20h, pas de 1h. Choisir "Hors créneaux
+   standards" applique un supplément fixe (OFF_HOURS_FEE) —
+   modifiable ci-dessous.
+   ========================================================= */
+const STANDARD_HOURS = { start: 9, end: 20 };
+const OFF_HOURS_FEE = 20;
+
+function populateTimeSelect(selectEl, lang){
+  if (!selectEl || selectEl.dataset.populated) return;
+  selectEl.innerHTML = "";
+  for (let h = STANDARD_HOURS.start; h <= STANDARD_HOURS.end; h++){
+    const label = `${String(h).padStart(2, "0")}:00`;
+    const opt = document.createElement("option");
+    opt.value = label;
+    opt.textContent = label;
+    if (h === 10) opt.selected = true; // creneau par defaut
+    selectEl.appendChild(opt);
+  }
+  const offOpt = document.createElement("option");
+  offOpt.value = "off-hours";
+  offOpt.textContent = TRANSLATIONS.form_off_hours_option[lang];
+  selectEl.appendChild(offOpt);
+  selectEl.dataset.populated = "true";
+}
+
+function initBookingTimeSlots(){
+  const pickupSelect = document.getElementById("pickupTime");
+  const returnSelect = document.getElementById("returnTime");
+  if (!pickupSelect || !returnSelect) return;
+  const lang = getCurrentLang();
+  populateTimeSelect(pickupSelect, lang);
+  populateTimeSelect(returnSelect, lang);
+  [pickupSelect, returnSelect].forEach(sel => sel.addEventListener("change", updateBookingSummary));
+}
+
 function initCookieBanner(){
   const banner = document.getElementById("cookieBanner");
   if (!banner) return;
@@ -1451,6 +1513,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderCalendar();
   initBookingForm();
   initPromoCode();
+  initBookingTimeSlots();
   initContactForm();
   syncDateInputs();
   initFaqAccordion();
